@@ -1,10 +1,21 @@
 import { z } from "zod"
 import { env } from "~/env.mjs"
+import { transformZodSchemaToOpenAi } from "./transformFunctionToOpenAi"
 
 export const fetchTeampilot = async ({ message }: { message: string }) => {
+  // const url = `http://localhost:3000/api/rest/message`
   const url = `http://localhost:3000/api/rest/message`
 
-  const inputSchema = null
+  const inputSchema = z.object({
+    persons: z.array(
+      z.object({
+        firstName: z.string(),
+        lastName: z.string(),
+        dateOfBirth: z.string(),
+        imageUrl: z.string(),
+      })
+    ),
+  })
 
   const response = await fetch(url, {
     method: "POST",
@@ -14,6 +25,7 @@ export const fetchTeampilot = async ({ message }: { message: string }) => {
     body: JSON.stringify({
       launchpadSlugId: env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID,
       message,
+      schema: inputSchema ? transformZodSchemaToOpenAi(inputSchema) : null,
     }),
   })
 

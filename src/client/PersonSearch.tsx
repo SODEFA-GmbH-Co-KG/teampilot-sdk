@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import { fetchTeampilot } from "~/teampilot-sdk/teampilot"
 
 export const PersonSearch = () => {
-  const { data, refetch } = useQuery(
+  const { data, refetch, isFetching } = useQuery(
     ["persons"],
     async () => {
       const response = await fetchTeampilot({
@@ -19,6 +19,7 @@ export const PersonSearch = () => {
     <>
       <div>Persons</div>
       <button onClick={() => refetch()}>Refetch</button>
+      {isFetching && <div>Loading...</div>}
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </>
   )
