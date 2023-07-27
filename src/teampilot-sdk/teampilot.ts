@@ -6,7 +6,7 @@ export const fetchTeampilot = async ({ message }: { message: string }) => {
   // const url = `http://localhost:3000/api/rest/message`
   const url = `http://localhost:3000/api/rest/message`
 
-  const inputSchema = z.object({
+  const schema = z.object({
     persons: z.array(
       z.object({
         firstName: z.string(),
@@ -25,14 +25,14 @@ export const fetchTeampilot = async ({ message }: { message: string }) => {
     body: JSON.stringify({
       launchpadSlugId: env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID,
       message,
-      schema: inputSchema ? transformZodSchemaToOpenAi(inputSchema) : null,
+      schema: schema ? transformZodSchemaToOpenAi(schema) : null,
     }),
   })
 
   const responseSchema = z.object({
     message: z.object({
       content: z.string().optional(),
-      data: inputSchema ?? z.undefined(),
+      data: schema ?? z.undefined(),
     }),
     usage: z.object({
       teamTokens: z.number(),
