@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build --port 4500",
-    "dev": "next dev",
+    "build": "next build",
+    "dev": "next dev --port 4500",
     "lint": "next lint",
     "start": "next start"
   },
