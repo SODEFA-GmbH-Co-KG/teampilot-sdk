@@ -2,20 +2,14 @@ import { z } from "zod"
 import { env } from "~/env.mjs"
 import { transformZodSchemaToOpenAi } from "./transformFunctionToOpenAi"
 
-export const fetchTeampilot = async ({ message }: { message: string }) => {
-  // const url = `http://localhost:3000/api/rest/message`
+export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
+  message,
+  schema,
+}: {
+  message: string
+  schema?: T
+}) => {
   const url = `http://localhost:3000/api/rest/message`
-
-  const schema = z.object({
-    persons: z.array(
-      z.object({
-        firstName: z.string(),
-        lastName: z.string(),
-        dateOfBirth: z.string(),
-        imageUrl: z.string(),
-      })
-    ),
-  })
 
   const response = await fetch(url, {
     method: "POST",
