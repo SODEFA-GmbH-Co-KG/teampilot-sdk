@@ -8,6 +8,9 @@ export const fetchTeampilot = async ({ message }: { message: string }) => {
 
   const response = await fetch(url, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       launchpadSlugId: env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID,
       message,
