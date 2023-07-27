@@ -9,7 +9,8 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
   message: string
   schema?: T
 }) => {
-  const url = `http://localhost:3000/api/rest/message`
+  // const url = `http://localhost:3000/api/rest/message`
+  const url = `https://teampilot.ai/api/rest/message`
 
   const response = await fetch(url, {
     method: "POST",
