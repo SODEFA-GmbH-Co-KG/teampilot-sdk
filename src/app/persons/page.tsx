@@ -20,6 +20,7 @@ export default function Page() {
           dateOfBirth: z.string(),
           shortDescription: z.string(),
           // noOfPresident: z.number(),
+          achievements: z.array(z.string()),
         })
       ),
     })
@@ -43,6 +44,15 @@ export default function Page() {
               </CardHeader>
               <CardContent>
                 <CardDescription>{p.shortDescription}</CardDescription>
+                <ul className="mt-2 list-inside list-disc">
+                  {p.achievements.map((a, idx) => {
+                    return (
+                      <li key={idx} className="text-xs text-muted-foreground">
+                        {a}
+                      </li>
+                    )
+                  })}
+                </ul>
               </CardContent>
             </Card>
           )
