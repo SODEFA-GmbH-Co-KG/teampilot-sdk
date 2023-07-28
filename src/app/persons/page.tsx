@@ -1,12 +1,12 @@
 import { Persons } from "~/client/Persons"
-import { ShowCaseSideBySide } from "~/client/ShowCaseSideBySide"
+import { ShowCaseTabs } from "~/client/ShowCaseTabs"
 
 export default function Page() {
   return (
     <>
-      <ShowCaseSideBySide file="./src/client/Persons.tsx">
+      <ShowCaseTabs file="./src/client/Persons.tsx">
         <Persons />
-      </ShowCaseSideBySide>
+      </ShowCaseTabs>
     </>
   )
 }

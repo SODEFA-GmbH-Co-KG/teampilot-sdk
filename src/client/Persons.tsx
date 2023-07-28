@@ -28,7 +28,6 @@ export const Persons = () => {
 
   return (
     <>
-      <div>Persons</div>
       <div className="grid grid-cols-3 gap-4">
         {data?.map((p, idx) => {
           return (
