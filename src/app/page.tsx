@@ -1,11 +1,9 @@
-import { DarkModeToggle } from "~/client/DarkModeToggle"
-import { Button } from "~/shadcn/components/ui/button"
+import { ReasonsShowCase } from "~/client/ReasonsShowCase"
 
 export default function Page() {
   return (
     <>
-      <Button>Button</Button>
-      <DarkModeToggle />
+      <ReasonsShowCase />
     </>
   )
 }
