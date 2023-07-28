@@ -39,3 +39,20 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
 
   return parsed
 }
+
+export const fetchTeampilotData = async <T extends z.Schema>({
+  message,
+  schema,
+}: {
+  message: string
+  schema: T
+}) => {
+  const response = await fetchTeampilot({
+    message,
+    schema: z.object({
+      response: schema,
+    }),
+  })
+
+  return response.message?.data?.response
+}
