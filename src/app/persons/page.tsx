@@ -19,7 +19,7 @@ export default function Page() {
           lastName: z.string(),
           dateOfBirth: z.string(),
           shortDescription: z.string(),
-          // imageUrl: z.string(),
+          // noOfPresident: z.number(),
         })
       ),
     })
@@ -34,6 +34,9 @@ export default function Page() {
             <Card key={idx}>
               <CardHeader>
                 <CardTitle>
+                  {/* <span className="text-muted-foreground">
+                    #{p.noOfPresident}
+                  </span>{" "} */}
                   <span>{p.firstName}</span> <strong>{p.lastName}</strong>
                 </CardTitle>
                 <div className="font-mono">{p.dateOfBirth}</div>
