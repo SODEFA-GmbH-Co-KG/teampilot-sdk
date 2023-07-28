@@ -11,6 +11,10 @@ const font = Space_Grotesk({
   subsets: ["latin"],
 })
 
+export const metadata = {
+  title: "Teampilot SDK",
+}
+
 export default function RootLayout({ children }: { children?: ReactNode }) {
   return (
     <>
