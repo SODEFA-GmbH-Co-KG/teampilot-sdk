@@ -17,7 +17,7 @@ export const ShowCaseSideBySide = ({
           <CodeBlock language="tsx" value={code} lightMode="dark" />
         </div>
         <ArrowRight className="h-4 w-4" />
-        <Card className="flex flex-1 items-center bg-accent p-2">
+        <Card className="flex flex-1 items-center bg-accent p-4">
           <CardContent>{children}</CardContent>
         </Card>
       </div>
