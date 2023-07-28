@@ -8,6 +8,7 @@ import {
   TabsTrigger,
 } from "~/shadcn/components/ui/tabs"
 import { cn } from "~/shadcn/utils"
+import { fetchTeampilot } from "~/teampilot-sdk/teampilot"
 import { CodeBlock } from "./CodeBlock"
 
 export const ShowCaseTabs = ({
@@ -15,15 +16,23 @@ export const ShowCaseTabs = ({
   children,
   align = "center",
   title,
-  description,
-}: {
+}: // description,
+{
   file: string
   children?: ReactNode
   align?: "center" | "start" | "end"
   title?: string
-  description?: string
+  // description?: string
 }) => {
   const fileContent = use(readFile(file, { encoding: "utf-8" }))
+
+  const {
+    message: { content: description },
+  } = use(
+    fetchTeampilot({
+      message: `Explain this code very briefly: ${fileContent}`,
+    })
+  )
 
   return (
     <>

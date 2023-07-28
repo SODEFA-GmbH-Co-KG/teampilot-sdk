@@ -6,7 +6,7 @@ export default function Page() {
     <>
       <ShowCaseTabs
         title="Presidents"
-        description="so presidential"
+        // description="so presidential"
         file="./src/client/Persons.tsx"
       >
         <Persons />
