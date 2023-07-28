@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
-import { type z } from "zod"
+import { z } from "zod"
 import { fetchTeampilot } from "./teampilot"
 
-export const useTeampilotQuery = <T extends z.Schema = z.ZodUndefined>({
+export const useTeampilotQuery = <T extends z.Schema>({
   key,
   query,
   schema,
@@ -14,11 +14,13 @@ export const useTeampilotQuery = <T extends z.Schema = z.ZodUndefined>({
   return useQuery(
     key,
     async () => {
-      const response = await fetchTeampilot<T>({
+      const response = await fetchTeampilot({
         message: query,
-        schema,
+        schema: z.object({
+          response: schema,
+        }),
       })
-      return response.message?.data
+      return response.message?.data?.response
     },
     {
       staleTime: Infinity,

@@ -5,20 +5,16 @@ export const PersonSearch = () => {
   const { data, refetch, isFetching } = useTeampilotQuery({
     key: ["persons"],
     query: "First 3 Presidents of the US",
-    schema: z.object({
-      persons: z.array(
-        z.object({
-          firstName: z.string(),
-          lastName: z.string(),
-          dateOfBirth: z.string(),
-          shortDescription: z.string(),
-          // imageUrl: z.string(),
-        })
-      ),
-    }),
+    schema: z.array(
+      z.object({
+        firstName: z.string(),
+        lastName: z.string(),
+        dateOfBirth: z.string(),
+        shortDescription: z.string(),
+        // imageUrl: z.string(),
+      })
+    ),
   })
-
-  const persons = data?.persons
 
   return (
     <>
@@ -27,7 +23,7 @@ export const PersonSearch = () => {
       {isFetching && <div>Loading...</div>}
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       <div className="grid grid-cols-3 gap-2">
-        {persons?.map((p, idx) => {
+        {data?.map((p, idx) => {
           return (
             <div key={idx}>
               <div className="text-xl">
