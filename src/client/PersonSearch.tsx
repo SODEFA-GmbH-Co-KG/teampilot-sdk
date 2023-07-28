@@ -1,33 +1,24 @@
-import { useQuery } from "@tanstack/react-query"
 import { z } from "zod"
-import { fetchTeampilot } from "~/teampilot-sdk/teampilot"
+import { useTeampilotQuery } from "~/teampilot-sdk/useTeampilotQuery"
 
 export const PersonSearch = () => {
-  const { data, refetch, isFetching } = useQuery(
-    ["persons"],
-    async () => {
-      const response = await fetchTeampilot({
-        message: "First 3 Presidents of the US",
-        schema: z.object({
-          persons: z.array(
-            z.object({
-              firstName: z.string(),
-              lastName: z.string(),
-              dateOfBirth: z.string(),
-              shortDescription: z.string(),
-              // imageUrl: z.string(),
-            })
-          ),
-        }),
-      })
-      return response
-    },
-    {
-      enabled: false,
-    }
-  )
+  const { data, refetch, isFetching } = useTeampilotQuery({
+    key: ["persons"],
+    query: "First 3 Presidents of the US",
+    schema: z.object({
+      persons: z.array(
+        z.object({
+          firstName: z.string(),
+          lastName: z.string(),
+          dateOfBirth: z.string(),
+          shortDescription: z.string(),
+          // imageUrl: z.string(),
+        })
+      ),
+    }),
+  })
 
-  const persons = data?.message.data?.persons
+  const persons = data?.persons
 
   return (
     <>
