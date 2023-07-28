@@ -9,8 +9,8 @@ export const ReasonsShowCase = () => {
         <div className="flex-1">
           <CodeBlock language="tsx" value={reasonsCode} lightMode="dark" />
         </div>
-        <Card className="flex-1 bg-accent p-2">
-          <CardContent>
+        <Card className="flex flex-1 items-center bg-accent p-2">
+          <CardContent className="">
             <Reasons />
           </CardContent>
         </Card>
