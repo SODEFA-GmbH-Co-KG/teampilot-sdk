@@ -1,16 +1,16 @@
 import { Persons } from "~/client/Persons"
-import { ShowCaseTabs } from "~/client/ShowCaseTabs"
+import { ShowCase } from "~/client/ShowCase"
 
 export default function Page() {
   return (
     <>
-      <ShowCaseTabs
+      <ShowCase
         title="Presidents"
         // description="so presidential"
         file="./src/client/Persons.tsx"
       >
         <Persons />
-      </ShowCaseTabs>
+      </ShowCase>
     </>
   )
 }

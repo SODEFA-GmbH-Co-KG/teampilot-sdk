@@ -1,6 +1,5 @@
-import { readFile } from "fs/promises"
 import { Loader2 } from "lucide-react"
-import React, { use, type ReactNode } from "react"
+import React, { type ReactNode } from "react"
 import {
   Tabs,
   TabsContent,
@@ -8,50 +7,19 @@ import {
   TabsTrigger,
 } from "~/shadcn/components/ui/tabs"
 import { cn } from "~/shadcn/utils"
-import { fetchTeampilot } from "~/teampilot-sdk/teampilot"
 import { CodeBlock } from "./CodeBlock"
 
 export const ShowCaseTabs = ({
-  file,
+  code,
   children,
-  align = "center",
-  title,
-}: // description,
-{
-  file: string
+  align,
+}: {
+  code: string
   children?: ReactNode
   align?: "center" | "start" | "end"
-  title?: string
-  // description?: string
 }) => {
-  const fileContent = use(readFile(file, { encoding: "utf-8" }))
-
-  const {
-    message: { content: description },
-  } = use(
-    fetchTeampilot({
-      message: `Explain this code very briefly: ${fileContent}`,
-    })
-  )
-
   return (
     <>
-      {(title || description) && (
-        <div className="space-y-2">
-          {title && (
-            <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-              {title}
-            </h1>
-          )}
-          {description && (
-            <p className="text-lg text-muted-foreground">
-              <span data-br=":r14d:" data-brr="1">
-                {description}
-              </span>
-            </p>
-          )}
-        </div>
-      )}
       <Tabs defaultValue="preview" className="relative mr-auto w-full">
         <div className="flex items-center justify-between pb-3">
           <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
@@ -100,7 +68,7 @@ export const ShowCaseTabs = ({
                 // "[&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto"
               )}
             >
-              <CodeBlock language="tsx" value={fileContent} lightMode="dark" />
+              <CodeBlock language="tsx" value={code} lightMode="dark" />
             </div>
           </div>
         </TabsContent>
