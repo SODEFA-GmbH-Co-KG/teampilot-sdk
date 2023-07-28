@@ -54,5 +54,10 @@ export const fetchTeampilotData = async <T extends z.Schema>({
     }),
   })
 
-  return response.message?.data?.response
+  const data = response.message?.data?.response
+
+  if (!data) {
+    throw new Error("No data")
+  }
+  return data
 }
