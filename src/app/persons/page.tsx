@@ -43,16 +43,14 @@ export default function Page() {
                 <div className="font-mono">{p.dateOfBirth}</div>
               </CardHeader>
               <CardContent>
-                <CardDescription>{p.shortDescription}</CardDescription>
-                <ul className="mt-2 list-inside list-disc">
-                  {p.achievements.map((a, idx) => {
-                    return (
-                      <li key={idx} className="text-xs text-muted-foreground">
-                        {a}
-                      </li>
-                    )
-                  })}
-                </ul>
+                <CardDescription>
+                  <div>{p.shortDescription}</div>
+                  <ul className="mt-2 list-inside list-disc">
+                    {p.achievements.map((a, idx) => {
+                      return <li key={idx}>{a}</li>
+                    })}
+                  </ul>
+                </CardDescription>
               </CardContent>
             </Card>
           )
