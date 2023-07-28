@@ -4,7 +4,11 @@ import { ShowCaseTabs } from "~/client/ShowCaseTabs"
 export default function Page() {
   return (
     <>
-      <ShowCaseTabs file="./src/client/Persons.tsx">
+      <ShowCaseTabs
+        title="Presidents"
+        description="so presidential"
+        file="./src/client/Persons.tsx"
+      >
         <Persons />
       </ShowCaseTabs>
     </>

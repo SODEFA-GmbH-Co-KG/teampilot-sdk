@@ -14,15 +14,35 @@ export const ShowCaseTabs = ({
   file,
   children,
   align = "center",
+  title,
+  description,
 }: {
   file: string
   children?: ReactNode
   align?: "center" | "start" | "end"
+  title?: string
+  description?: string
 }) => {
   const fileContent = use(readFile(file, { encoding: "utf-8" }))
 
   return (
     <>
+      {(title || description) && (
+        <div className="space-y-2">
+          {title && (
+            <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
+              {title}
+            </h1>
+          )}
+          {description && (
+            <p className="text-lg text-muted-foreground">
+              <span data-br=":r14d:" data-brr="1">
+                {description}
+              </span>
+            </p>
+          )}
+        </div>
+      )}
       <Tabs defaultValue="preview" className="relative mr-auto w-full">
         <div className="flex items-center justify-between pb-3">
           <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
