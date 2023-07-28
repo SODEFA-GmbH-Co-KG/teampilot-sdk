@@ -1,8 +1,14 @@
+import { Space_Grotesk } from "next/font/google"
 import { type ReactNode } from "react"
 import { DarkModeToggle } from "~/client/DarkModeToggle"
 import { TeampilotLogo } from "~/client/TeampilotLogo"
 import { ThemeProvider } from "~/shadcn/components/theme-provider"
+import { cn } from "~/shadcn/utils"
 import "~/styles/globals.css"
+
+const font = Space_Grotesk({
+  subsets: ["latin"],
+})
 
 export default function RootLayout({ children }: { children?: ReactNode }) {
   return (
@@ -11,7 +17,12 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
         <head>
           <link rel="icon" href="/favicon.svg" />
         </head>
-        <body className="min-h-screen bg-background font-sans antialiased">
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            font.className
+          )}
+        >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <>
               <div className="container flex flex-row items-center gap-4 py-6">
