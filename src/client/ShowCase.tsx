@@ -1,6 +1,7 @@
 import { readFile } from "fs/promises"
 import { use, type ReactNode } from "react"
 import { fetchTeampilot } from "~/teampilot-sdk/teampilot"
+import { ShowCaseSideBySide } from "./ShowCaseSideBySide"
 import { ShowCaseTabs } from "./ShowCaseTabs"
 
 export const ShowCase = ({
@@ -48,7 +49,14 @@ export const ShowCase = ({
       )}
       {layout === "tabs" && (
         <>
-          <ShowCaseTabs code={code}>{children}</ShowCaseTabs>
+          <ShowCaseTabs code={code} align={align}>
+            {children}
+          </ShowCaseTabs>
+        </>
+      )}
+      {layout === "side-by-side" && (
+        <>
+          <ShowCaseSideBySide code={code}>{children}</ShowCaseSideBySide>
         </>
       )}
     </>

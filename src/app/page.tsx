@@ -1,12 +1,16 @@
 import { Reasons } from "~/client/Reasons"
-import { ShowCaseSideBySide } from "~/client/ShowCaseSideBySide"
+import { ShowCase } from "~/client/ShowCase"
 
 export default function Page() {
   return (
     <>
-      <ShowCaseSideBySide file="./src/client/Reasons.tsx">
+      <ShowCase
+        title="Simple Example"
+        file="./src/client/Reasons.tsx"
+        layout="side-by-side"
+      >
         <Reasons />
-      </ShowCaseSideBySide>
+      </ShowCase>
     </>
   )
 }
