@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { Button } from "~/shadcn/components/ui/button"
 import { useTeampilotQuery } from "~/teampilot-sdk/useTeampilotQuery"
 
 export const PersonSearch = () => {
@@ -19,7 +20,7 @@ export const PersonSearch = () => {
   return (
     <>
       <div>Persons</div>
-      <button onClick={() => refetch()}>Refetch</button>
+      <Button onClick={() => refetch()}>Refetch</Button>
       {isFetching && <div>Loading...</div>}
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       <div className="grid grid-cols-3 gap-2">
