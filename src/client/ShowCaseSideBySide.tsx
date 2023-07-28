@@ -11,7 +11,7 @@ export const ShowCaseSideBySide = ({
 }) => {
   return (
     <>
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-row gap-8">
         <div className="flex-1">
           <CodeBlock language="tsx" value={code} lightMode="dark" />
         </div>
