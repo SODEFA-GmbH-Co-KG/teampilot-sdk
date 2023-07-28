@@ -11,7 +11,7 @@ export const Reasons = () => {
   )
   return (
     <>
-      <ul className="list-inside list-disc">
+      <ul className="list-outside list-disc">
         {reasons.map((reason, idx) => {
           return <li key={idx}>{reason}</li>
         })}
