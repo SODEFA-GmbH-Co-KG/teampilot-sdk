@@ -12,10 +12,12 @@ export default function Page() {
       >
         <Reasons />
       </ShowCase>
-      <ShowCase title="Setup" file="./src/teampilot.ts" layout="side-by-side">
-        <ShowCase file="./src/client/MultipleAssistants.tsx" layout="tabs">
-          <MultipleAssistants />
-        </ShowCase>
+      <ShowCase
+        title="Setup Multiple Assistants"
+        file="./src/client/MultipleAssistants.tsx"
+        layout="side-by-side"
+      >
+        <MultipleAssistants />
       </ShowCase>
     </>
   )

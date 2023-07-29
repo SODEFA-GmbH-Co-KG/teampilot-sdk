@@ -1,37 +1,29 @@
-import { use } from "react"
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "~/shadcn/components/ui/card"
-import { teampilot } from "~/teampilot"
+import { env } from "~/env.mjs"
+import { createTeampilotClient } from "~/teampilot-sdk"
 
-export const MultipleAssistants = () => {
-  const defaultAnswer = use(
-    teampilot.default.fetchText({
-      message: "Describe Teampilot in one sentence",
-    })
-  )
-  const expertAnswer = use(
-    teampilot.sdkExpert.fetchText({
-      message: "Describe Teampilot in one sentence",
-    })
-  )
+export const teampilot = createTeampilotClient({
+  default: {
+    launchpadSlugId: env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID,
+  },
+  sdkExpert: {
+    launchpadSlugId: env.LAUNCHPAD_SLUG_ID_SDK_EXPERT,
+  },
+})
+
+export const MultipleAssistants = async () => {
+  const message = "Describe Teampilot in one sentence"
+  const defaultAnswer = await teampilot.default.fetchText({ message })
+  const expertAnswer = await teampilot.sdkExpert.fetchText({ message })
+
   return (
     <>
-      <Card>
-        <CardHeader>
-          <CardTitle>Default</CardTitle>
-        </CardHeader>
-        <CardContent>{defaultAnswer}</CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>SDK Expert</CardTitle>
-        </CardHeader>
-        <CardContent>{expertAnswer}</CardContent>
-      </Card>
+      <div>
+        <strong>Default:</strong>
+        <div>{defaultAnswer}</div>
+        <br />
+        <strong>Expert:</strong>
+        <div>{expertAnswer}</div>
+      </div>
     </>
   )
 }
