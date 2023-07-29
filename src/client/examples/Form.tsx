@@ -3,9 +3,9 @@ import { Input } from "~/shadcn/components/ui/input"
 import { teampilot } from "~/teampilot"
 
 export const Form = () => {
-  const submit = async (data: any) => {
+  const submit = async (data: FormData) => {
     "use server"
-    const email = data.get("email") as string
+    const email = data.get("email")
     await teampilot.functions.fetch({
       message: `Notify me via discord that a new user has signed up with email: ${email}`,
     })
