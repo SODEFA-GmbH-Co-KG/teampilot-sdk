@@ -1,14 +1,11 @@
-import { use } from "react"
 import { z } from "zod"
 import { fetchTeampilotData } from "~/teampilot-sdk/teampilot"
 
-export const Reasons = () => {
-  const reasons = use(
-    fetchTeampilotData({
-      message: "5 Reasons why NextJS is awesome",
-      schema: z.array(z.string()),
-    })
-  )
+export const Reasons = async () => {
+  const reasons = await fetchTeampilotData({
+    message: "5 Reasons why NextJS is awesome",
+    schema: z.array(z.string()),
+  })
   return (
     <>
       <ul className="list-disc space-y-2">
