@@ -15,21 +15,23 @@ export const ShowCase = ({
   file: string
   children?: ReactNode
   align?: "center" | "start" | "end"
-  title: string
+  title?: string
   layout?: "tabs" | "side-by-side"
 }) => {
   const code = use(readFile(file, { encoding: "utf-8" }))
 
   return (
     <>
-      <div className="space-y-2">
-        <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-          {title}
-        </h1>
-        <SuspenseLoader>
-          <ShowCaseDescription title={title} code={code} />
-        </SuspenseLoader>
-      </div>
+      {!!title && (
+        <div className="space-y-2">
+          <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
+            {title}
+          </h1>
+          <SuspenseLoader>
+            <ShowCaseDescription title={title} code={code} />
+          </SuspenseLoader>
+        </div>
+      )}
       {layout === "tabs" && (
         <>
           <ShowCaseTabs code={code} align={align}>
