@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <>
       <ShowCase
-        title="Time Function"
+        title="Time"
         file="./src/client/examples/Time.tsx"
         layout="side-by-side"
       >
