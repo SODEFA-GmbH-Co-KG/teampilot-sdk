@@ -12,8 +12,9 @@ export const Form = () => {
   }
   return (
     <>
-      <form className="flex flex-col items-center gap-2" action={submit}>
-        <Input type="text" placeholder="Your Email" name="email" />
+      <form className="flex flex-col gap-2" action={submit}>
+        <div className="text-center font-bold">Register</div>
+        <Input type="email" placeholder="Your Email" name="email" />
         <Button type="submit">Submit</Button>
       </form>
     </>
