@@ -102,3 +102,15 @@ export const fetchTeampilotText = async (
   }
   return text
 }
+
+export const fetchTeampilotMedia = async (
+  options: Omit<FetchTeampilotOptions, "schema">
+) => {
+  const response = await fetchTeampilot(options)
+
+  const media = response.mediaAttachments?.[0]
+  if (!media) {
+    throw new Error("No media")
+  }
+  return media
+}

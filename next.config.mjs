@@ -22,6 +22,10 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+
+  images: {
+    domains: ["teampilot.s3.eu-central-1.amazonaws.com"],
+  },
 }
 
 export default config

@@ -1,6 +1,7 @@
 import {
   fetchTeampilot,
   fetchTeampilotData,
+  fetchTeampilotMedia,
   fetchTeampilotText,
 } from "./fetchTeampilot"
 
@@ -30,6 +31,7 @@ const createLaunchpadProxy = (config: LaunchpadConfig) => {
     fetch: setDefaults(fetchTeampilot, config),
     fetchData: setDefaults(fetchTeampilotData, config),
     fetchText: setDefaults(fetchTeampilotText, config),
+    fetchMedia: setDefaults(fetchTeampilotMedia, config),
   }
 }
 
