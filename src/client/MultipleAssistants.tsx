@@ -1,3 +1,4 @@
+import { use } from "react"
 import { env } from "~/env.mjs"
 import { createTeampilotClient } from "~/teampilot-sdk"
 
@@ -10,10 +11,10 @@ export const teampilot = createTeampilotClient({
   },
 })
 
-export const MultipleAssistants = async () => {
+export const MultipleAssistants = () => {
   const message = "Describe Teampilot in one sentence"
-  const defaultAnswer = await teampilot.default.fetchText({ message })
-  const expertAnswer = await teampilot.sdkExpert.fetchText({ message })
+  const defaultAnswer = use(teampilot.default.fetchText({ message }))
+  const expertAnswer = use(teampilot.sdkExpert.fetchText({ message }))
 
   return (
     <>
