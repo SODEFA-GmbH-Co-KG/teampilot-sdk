@@ -69,3 +69,22 @@ export const fetchTeampilotData = async <T extends z.Schema>({
   }
   return data
 }
+
+export const fetchTeampilotText = async ({
+  message,
+  ...requestOptions
+}: {
+  message: string
+} & RequestOptions) => {
+  const response = await fetchTeampilot({
+    message,
+    ...requestOptions,
+  })
+
+  const text = response.message?.content
+
+  if (!text) {
+    throw new Error("No text")
+  }
+  return text
+}
