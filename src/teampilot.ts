@@ -11,4 +11,7 @@ export const teampilot = createTeampilotClient({
   functions: {
     launchpadSlugId: env.LAUNCHPAD_SLUG_ID_FUNCTIONS,
   },
+  websiteToVoice: {
+    launchpadSlugId: env.LAUNCHPAD_SLUG_ID_WEBSITE_TO_VOICE,
+  },
 })

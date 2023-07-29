@@ -10,6 +10,7 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "test", "production"]),
     LAUNCHPAD_SLUG_ID_SDK_EXPERT: z.string(),
     LAUNCHPAD_SLUG_ID_FUNCTIONS: z.string(),
+    LAUNCHPAD_SLUG_ID_WEBSITE_TO_VOICE: z.string(),
   },
 
   /**
@@ -30,6 +31,8 @@ export const env = createEnv({
     NEXT_PUBLIC_LAUNCHPAD_SLUG_ID: process.env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID,
     LAUNCHPAD_SLUG_ID_SDK_EXPERT: process.env.LAUNCHPAD_SLUG_ID_SDK_EXPERT,
     LAUNCHPAD_SLUG_ID_FUNCTIONS: process.env.LAUNCHPAD_SLUG_ID_FUNCTIONS,
+    LAUNCHPAD_SLUG_ID_WEBSITE_TO_VOICE:
+      process.env.LAUNCHPAD_SLUG_ID_WEBSITE_TO_VOICE,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.

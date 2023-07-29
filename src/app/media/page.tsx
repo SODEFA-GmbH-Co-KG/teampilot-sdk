@@ -11,6 +11,13 @@ export default function Page() {
       >
         <ImageExample />
       </ShowCase>
+      {/* <ShowCase
+        title="Audio"
+        file="./src/client/examples/AudioExample.tsx"
+        layout="side-by-side"
+      >
+        <AudioExample />
+      </ShowCase> */}
     </>
   )
 }
