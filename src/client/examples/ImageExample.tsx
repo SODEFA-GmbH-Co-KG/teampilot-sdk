@@ -11,7 +11,7 @@ export const ImageExample = () => {
 
   return (
     <>
-      <Image src={media.url} height={500} width={500} alt="Wallpaper" />
+      <Image src={media.url} height={500} width={500} alt="Flying Elephant" />
     </>
   )
 }
