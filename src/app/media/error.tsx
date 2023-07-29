@@ -15,6 +15,13 @@ export default function Page({ error }: { error: Error }) {
       <AlertDescription>
         {error.message || "An error occurred."}
       </AlertDescription>
+      {/* {isTeampilotError(error) && (
+        <Link href={error.response.chatroom.url} target="_blank">
+          <AlertDescription className="underline">
+            {error.response.chatroom.url}
+          </AlertDescription>
+        </Link>
+      )} */}
     </Alert>
   )
 }

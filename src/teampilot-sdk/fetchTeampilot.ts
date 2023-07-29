@@ -10,6 +10,48 @@ export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   url?: string
 } & RequestOptions
 
+const createResponseSchema = <T extends z.Schema = z.ZodUndefined>(
+  schema: T
+) => {
+  return z.object({
+    message: z.object({
+      content: z.string().optional(),
+      data: schema ?? z.undefined(),
+    }),
+    mediaAttachments: z
+      .array(
+        z.object({
+          id: z.string(),
+          type: z.enum(["AUDIO", "IMAGE", "DOCUMENT"]),
+          url: z.string(),
+        })
+      )
+      .optional(),
+    usage: z.object({
+      teamTokens: z.number(),
+    }),
+    chatroom: z.object({
+      id: z.string(),
+      url: z.string(),
+    }),
+  })
+}
+
+type FetchTeampilotResponse<T extends z.Schema = z.ZodUndefined> = z.infer<
+  ReturnType<typeof createResponseSchema<T>>
+>
+
+class TeampilotError<T extends z.Schema = z.ZodUndefined> extends Error {
+  constructor(message: string, public response: FetchTeampilotResponse<T>) {
+    console.error(`${message}: ${response.chatroom.url}`)
+    super(message)
+  }
+}
+
+// export const isTeampilotError = (error: unknown): error is TeampilotError => {
+//   return error instanceof TeampilotError
+// }
+
 export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
   launchpadSlugId,
   message,
@@ -44,24 +86,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
     ...requestOptions,
   })
 
-  const responseSchema = z.object({
-    message: z.object({
-      content: z.string().optional(),
-      data: schema ?? z.undefined(),
-    }),
-    mediaAttachments: z
-      .array(
-        z.object({
-          id: z.string(),
-          type: z.enum(["AUDIO", "IMAGE", "DOCUMENT"]),
-          url: z.string(),
-        })
-      )
-      .optional(),
-    usage: z.object({
-      teamTokens: z.number(),
-    }),
-  })
+  const responseSchema = createResponseSchema(schema ?? z.undefined())
 
   const data = await response.json()
   const parsed = responseSchema.parse(data)
@@ -85,7 +110,7 @@ export const fetchTeampilotData = async <T extends z.Schema>({
   const data = response.message?.data?.response
 
   if (!data) {
-    throw new Error("No data")
+    throw new TeampilotError("API did not return any data", response)
   }
   return data
 }
@@ -98,7 +123,7 @@ export const fetchTeampilotText = async (
   const text = response.message?.content
 
   if (!text) {
-    throw new Error("No text")
+    throw new TeampilotError("API did not return any text", response)
   }
   return text
 }
@@ -110,7 +135,7 @@ export const fetchTeampilotMedia = async (
 
   const media = response.mediaAttachments?.[0]
   if (!media) {
-    throw new Error("API did not return any media")
+    throw new TeampilotError("API did not return any media", response)
   }
   return media
 }
