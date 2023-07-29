@@ -5,13 +5,13 @@ import { teampilot } from "~/teampilot"
 export const ImageExample = () => {
   const media = use(
     teampilot.functions.fetchMedia({
-      message: "Generate an iOS Wallpaper",
+      message: "Generate an Image of a flying elephant",
     })
   )
 
   return (
     <>
-      <Image src={media.url} height={600} width={400} alt="Wallpaper" />
+      <Image src={media.url} height={500} width={500} alt="Wallpaper" />
     </>
   )
 }
