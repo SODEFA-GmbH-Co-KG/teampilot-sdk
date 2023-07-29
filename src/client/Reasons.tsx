@@ -7,12 +7,10 @@ export const Reasons = async () => {
     schema: z.array(z.string()),
   })
   return (
-    <>
-      <ul className="list-disc space-y-2">
-        {reasons.map((reason, idx) => {
-          return <li key={idx}>{reason}</li>
-        })}
-      </ul>
-    </>
+    <ul className="list-disc space-y-2">
+      {reasons.map((reason, idx) => (
+        <li key={idx}>{reason}</li>
+      ))}
+    </ul>
   )
 }
