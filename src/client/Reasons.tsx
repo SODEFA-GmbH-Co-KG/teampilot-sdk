@@ -1,9 +1,11 @@
 import { z } from "zod"
+import { env } from "~/env.mjs"
 import { fetchTeampilotData } from "~/teampilot-sdk"
 
 export const Reasons = async () => {
   const reasons = await fetchTeampilotData({
-    message: "5 Reasons why NextJS is awesome",
+    launchpadSlugId: env.LAUNCHPAD_SLUG_ID_SDK_EXPERT,
+    message: "5 Reasons why Teampilot SDK is awesome",
     schema: z.array(z.string()),
   })
   return (

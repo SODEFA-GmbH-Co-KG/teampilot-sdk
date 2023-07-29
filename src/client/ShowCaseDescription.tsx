@@ -1,4 +1,5 @@
 import { use } from "react"
+import { env } from "~/env.mjs"
 import { fetchTeampilot } from "~/teampilot-sdk"
 
 export const ShowCaseDescription = ({
@@ -12,6 +13,7 @@ export const ShowCaseDescription = ({
     message: { content: description },
   } = use(
     fetchTeampilot({
+      launchpadSlugId: env.LAUNCHPAD_SLUG_ID_SDK_EXPERT,
       message: `Explain this code very briefly. Title: ${title} \n Code: ${code}`,
     })
   )

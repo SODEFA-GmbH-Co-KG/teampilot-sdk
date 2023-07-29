@@ -1,14 +1,15 @@
 import { z } from "zod"
-import { env } from "~/env.mjs"
 import { transformZodSchemaToOpenAi } from "./transformFunctionToOpenAi"
 
 type RequestOptions = Omit<RequestInit, "body" | "method">
 
 export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
+  launchpadSlugId,
   message,
   schema,
   ...requestOptions
 }: {
+  launchpadSlugId: string
   message: string
   schema?: T
 } & RequestOptions) => {
@@ -22,7 +23,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
       ...requestOptions.headers,
     },
     body: JSON.stringify({
-      launchpadSlugId: env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID,
+      launchpadSlugId,
       message,
       schema: schema ? transformZodSchemaToOpenAi(schema) : null,
     }),
@@ -46,15 +47,17 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
 }
 
 export const fetchTeampilotData = async <T extends z.Schema>({
+  launchpadSlugId,
   message,
   schema,
-
   ...requestOptions
 }: {
+  launchpadSlugId: string
   message: string
   schema: T
 } & RequestOptions) => {
   const response = await fetchTeampilot({
+    launchpadSlugId,
     message,
     schema: z.object({
       response: schema,
@@ -71,12 +74,15 @@ export const fetchTeampilotData = async <T extends z.Schema>({
 }
 
 export const fetchTeampilotText = async ({
+  launchpadSlugId,
   message,
   ...requestOptions
 }: {
+  launchpadSlugId: string
   message: string
 } & RequestOptions) => {
   const response = await fetchTeampilot({
+    launchpadSlugId,
     message,
     ...requestOptions,
   })
