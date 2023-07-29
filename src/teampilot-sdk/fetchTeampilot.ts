@@ -9,10 +9,20 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
   schema,
   ...requestOptions
 }: {
-  launchpadSlugId: string
+  launchpadSlugId?: string
   message: string
   schema?: T
 } & RequestOptions) => {
+  if (!launchpadSlugId) {
+    launchpadSlugId =
+      process.env.LAUNCHPAD_SLUG_ID || process.env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID
+  }
+  if (!launchpadSlugId) {
+    throw new Error(
+      "Provide a launchpadSlugId in the function call or in the environment variables via LAUNCHPAD_SLUG_ID or NEXT_PUBLIC_LAUNCHPAD_SLUG_ID"
+    )
+  }
+
   // const url = `http://localhost:3000/api/rest/message`
   const url = `https://teampilot.ai/api/rest/message`
 
@@ -52,7 +62,7 @@ export const fetchTeampilotData = async <T extends z.Schema>({
   schema,
   ...requestOptions
 }: {
-  launchpadSlugId: string
+  launchpadSlugId?: string
   message: string
   schema: T
 } & RequestOptions) => {
@@ -78,7 +88,7 @@ export const fetchTeampilotText = async ({
   message,
   ...requestOptions
 }: {
-  launchpadSlugId: string
+  launchpadSlugId?: string
   message: string
 } & RequestOptions) => {
   const response = await fetchTeampilot({

@@ -1,22 +1,16 @@
-import { use } from "react"
-import { env } from "~/env.mjs"
-import { fetchTeampilot } from "~/teampilot-sdk"
+import { teampilot } from "~/teampilot"
 
-export const ShowCaseDescription = ({
+export const ShowCaseDescription = async ({
   title,
   code,
 }: {
   title: string
   code: string
 }) => {
-  const {
-    message: { content: description },
-  } = use(
-    fetchTeampilot({
-      launchpadSlugId: env.LAUNCHPAD_SLUG_ID_SDK_EXPERT,
-      message: `Explain this code very briefly. Title: ${title} \n Code: ${code}`,
-    })
-  )
+  const description = await teampilot.sdkExpert.fetchText({
+    message: `Explain this code very briefly. Title: ${title} \n Code: ${code}`,
+  })
+
   return (
     <>
       <p className="text-lg text-muted-foreground">{description}</p>

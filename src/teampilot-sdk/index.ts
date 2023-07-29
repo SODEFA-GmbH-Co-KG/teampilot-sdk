@@ -3,3 +3,5 @@ export {
   fetchTeampilotData,
   fetchTeampilotText,
 } from "./fetchTeampilot"
+
+export { createTeampilotClient } from "./proxy"

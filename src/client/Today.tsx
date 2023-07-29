@@ -3,7 +3,6 @@
 import { format } from "date-fns"
 import { use, useState } from "react"
 import { z } from "zod"
-import { env } from "~/env.mjs"
 import { Calendar } from "~/shadcn/components/ui/calendar"
 import {
   Card,
@@ -11,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/shadcn/components/ui/card"
-import { fetchTeampilotData } from "~/teampilot-sdk"
+import { teampilot } from "~/teampilot"
 import { SuspenseLoader } from "./SuspenseLoader"
 
 export const Today = () => {
@@ -37,8 +36,7 @@ export const Today = () => {
 const TodayText = ({ date }: { date: Date }) => {
   const dateString = format(date, "MMMM d")
   const response = use(
-    fetchTeampilotData({
-      launchpadSlugId: env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID,
+    teampilot.default.fetchData({
       message: `Tell what happened on this day in history: ${dateString}`,
       schema: z.array(
         z.object({
