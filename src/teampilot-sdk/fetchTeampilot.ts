@@ -3,16 +3,20 @@ import { transformZodSchemaToOpenAi } from "./transformFunctionToOpenAi"
 
 type RequestOptions = Omit<RequestInit, "body" | "method">
 
+export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
+  launchpadSlugId?: string
+  message: string
+  schema?: T
+  url?: string
+} & RequestOptions
+
 export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
   launchpadSlugId,
   message,
   schema,
+  url: overrideUrl,
   ...requestOptions
-}: {
-  launchpadSlugId?: string
-  message: string
-  schema?: T
-} & RequestOptions) => {
+}: FetchTeampilotOptions<T>) => {
   if (!launchpadSlugId) {
     launchpadSlugId =
       process.env.LAUNCHPAD_SLUG_ID || process.env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID
@@ -24,7 +28,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
   }
 
   // const url = `http://localhost:3000/api/rest/message`
-  const url = `https://teampilot.ai/api/rest/message`
+  const url = overrideUrl || `https://teampilot.ai/api/rest/message`
 
   const response = await fetch(url, {
     method: "POST",
@@ -57,22 +61,16 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
 }
 
 export const fetchTeampilotData = async <T extends z.Schema>({
-  launchpadSlugId,
-  message,
   schema,
-  ...requestOptions
-}: {
-  launchpadSlugId?: string
-  message: string
+  ...options
+}: FetchTeampilotOptions<T> & {
   schema: T
-} & RequestOptions) => {
+}) => {
   const response = await fetchTeampilot({
-    launchpadSlugId,
-    message,
+    ...options,
     schema: z.object({
       response: schema,
     }),
-    ...requestOptions,
   })
 
   const data = response.message?.data?.response
@@ -83,19 +81,10 @@ export const fetchTeampilotData = async <T extends z.Schema>({
   return data
 }
 
-export const fetchTeampilotText = async ({
-  launchpadSlugId,
-  message,
-  ...requestOptions
-}: {
-  launchpadSlugId?: string
-  message: string
-} & RequestOptions) => {
-  const response = await fetchTeampilot({
-    launchpadSlugId,
-    message,
-    ...requestOptions,
-  })
+export const fetchTeampilotText = async (
+  options: Omit<FetchTeampilotOptions, "schema">
+) => {
+  const response = await fetchTeampilot(options)
 
   const text = response.message?.content
 
