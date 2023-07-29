@@ -12,6 +12,7 @@ export default function Page() {
       //   hours: z.string(),
       //   minutes: z.string(),
       // }),
+      cache: "no-cache",
     })
   )
   return (
