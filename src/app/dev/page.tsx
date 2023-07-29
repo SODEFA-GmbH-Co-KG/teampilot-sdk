@@ -1,13 +1,18 @@
 import { use } from "react"
+import { z } from "zod"
 import { CodeBlock } from "~/client/CodeBlock"
-import { fetchTeampilotText } from "~/teampilot-sdk"
+import { fetchTeampilotData } from "~/teampilot-sdk"
 
 export default function Page() {
   const answer = use(
-    fetchTeampilotText({
+    fetchTeampilotData({
       url: `http://localhost:3000/api/rest/message`,
       launchpadSlugId: process.env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID_LOCAL,
       message: "What time is it?",
+      schema: z.object({
+        hours: z.string(),
+        minutes: z.string(),
+      }),
     })
   )
   return (
