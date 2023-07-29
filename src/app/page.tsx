@@ -1,6 +1,6 @@
 import { MultipleAssistants } from "~/client/MultipleAssistants"
-import { Reasons } from "~/client/Reasons"
 import { ShowCase } from "~/client/ShowCase"
+import { Reasons } from "~/client/examples/Reasons"
 
 export default function Page() {
   return (

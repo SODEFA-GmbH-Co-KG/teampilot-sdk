@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "~/shadcn/components/ui/card"
 import { fetchTeampilotData } from "~/teampilot-sdk"
-import { SuspenseLoader } from "./SuspenseLoader"
+import { SuspenseLoader } from "../SuspenseLoader"
 
 export const DayInHistorySelector = () => {
   const [date, setDate] = useState<Date>(new Date())

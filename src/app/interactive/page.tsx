@@ -1,4 +1,4 @@
-import { DayInHistorySelector } from "~/client/DayInHistory"
+import { DayInHistorySelector } from "~/client/examples/DayInHistory"
 import { ShowCase } from "~/client/ShowCase"
 
 export default function Page() {
