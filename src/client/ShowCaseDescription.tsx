@@ -8,7 +8,7 @@ export const ShowCaseDescription = async ({
   code: string
 }) => {
   const description = await teampilot.sdkExpert.fetchText({
-    message: `Explain this code very briefly. Title: ${title} \n Code: ${code}`,
+    message: `Describe how this example show why Teampilot SDK is awesome. Dont explain the code. Just explain the use case briefly. Title: ${title} \n Code: ${code}`,
   })
 
   return (
