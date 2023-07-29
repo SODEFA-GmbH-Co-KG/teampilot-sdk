@@ -1,6 +1,6 @@
 import { readFile } from "fs/promises"
 import { use, type ReactNode } from "react"
-import { fetchTeampilot } from "~/teampilot-sdk/teampilot"
+import { fetchTeampilot } from "~/teampilot-sdk"
 import { ShowCaseSideBySide } from "./ShowCaseSideBySide"
 import { ShowCaseTabs } from "./ShowCaseTabs"
 

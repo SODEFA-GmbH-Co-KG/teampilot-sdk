@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/shadcn/components/ui/card"
-import { fetchTeampilotData } from "~/teampilot-sdk/teampilot"
+import { fetchTeampilotData } from "~/teampilot-sdk"
 
 export const Persons = () => {
   const data = use(

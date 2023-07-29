@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { type z } from "zod"
-import { fetchTeampilotData } from "./teampilot"
+import { fetchTeampilotData } from "."
 
 export const useTeampilotQuery = <T extends z.Schema>({
   key,
