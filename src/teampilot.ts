@@ -8,4 +8,7 @@ export const teampilot = createTeampilotClient({
   sdkExpert: {
     launchpadSlugId: env.LAUNCHPAD_SLUG_ID_SDK_EXPERT,
   },
+  functions: {
+    launchpadSlugId: env.LAUNCHPAD_SLUG_ID_FUNCTIONS,
+  },
 })

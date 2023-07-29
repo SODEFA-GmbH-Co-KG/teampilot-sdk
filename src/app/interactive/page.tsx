@@ -6,7 +6,7 @@ export default function Page() {
     <>
       <ShowCase
         title="Interactive Example"
-        file="./src/client/DayInHistory.tsx"
+        file="./src/client/examples/DayInHistory.tsx"
       >
         <DayInHistorySelector />
       </ShowCase>

@@ -17,6 +17,10 @@ const entries = [
     name: "Interactive",
     href: "/interactive",
   },
+  {
+    name: "Functions",
+    href: "/functions",
+  },
 ]
 
 export function MainTopNav({
