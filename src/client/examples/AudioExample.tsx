@@ -1,19 +1,17 @@
 import { use } from "react"
 import { teampilot } from "~/teampilot"
-import { CodeBlock } from "../CodeBlock"
 
 export const AudioExample = () => {
-  const answer = use(
-    teampilot.websiteToVoice.fetch({
-      message: "Read this Website to me: https://teampilot.ai",
+  const media = use(
+    teampilot.functions.fetchMedia({
+      // message: "Read this Website to me: https://teampilot.ai",
+      message: `Read out this document: clkog80n9002mjg08l5idr0cf`,
     })
   )
 
   return (
-    <CodeBlock
-      lightMode="dark"
-      language="json"
-      value={JSON.stringify(answer, null, 2)}
-    />
+    <>
+      <audio controls src={media.url} />
+    </>
   )
 }
