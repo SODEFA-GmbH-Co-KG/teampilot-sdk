@@ -14,4 +14,7 @@ export const teampilot = createTeampilotClient({
   websiteToVoice: {
     launchpadSlugId: env.LAUNCHPAD_SLUG_ID_WEBSITE_TO_VOICE,
   },
+  textToSpeech: {
+    launchpadSlugId: env.LAUNCHPAD_SLUG_ID_TEXT_TO_SPEECH,
+  },
 })
