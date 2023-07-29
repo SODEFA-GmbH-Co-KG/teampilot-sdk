@@ -2,7 +2,7 @@ import { CodeBlock } from "~/client/CodeBlock"
 import { fetchTeampilot } from "~/teampilot-sdk"
 
 export default async function Page() {
-  const launchpadSlugId = process.env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID
+  const launchpadSlugId = process.env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID_LOCAL
   if (!launchpadSlugId) return null
   const answer = await fetchTeampilot({
     url: `http://localhost:3000/api/rest/message`,
