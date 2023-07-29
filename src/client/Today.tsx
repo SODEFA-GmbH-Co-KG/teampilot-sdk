@@ -51,7 +51,6 @@ const TodayText = ({ date }: { date: Date }) => {
       <Card>
         <CardHeader>
           <CardTitle>This day in History</CardTitle>
-          {/* <CardDescription>{dateString}</CardDescription> */}
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
           {response.map((data, idx) => (
