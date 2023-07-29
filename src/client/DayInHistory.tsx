@@ -13,7 +13,7 @@ import {
 import { teampilot } from "~/teampilot"
 import { SuspenseLoader } from "./SuspenseLoader"
 
-export const Today = () => {
+export const DayInHistorySelector = () => {
   const [date, setDate] = useState<Date>(new Date())
 
   return (
@@ -26,14 +26,14 @@ export const Today = () => {
       />
       <div className="w-72">
         <SuspenseLoader>
-          <TodayText date={date} />
+          <DayInHistory date={date} />
         </SuspenseLoader>
       </div>
     </div>
   )
 }
 
-const TodayText = ({ date }: { date: Date }) => {
+const DayInHistory = ({ date }: { date: Date }) => {
   const dateString = format(date, "MMMM d")
   const response = use(
     teampilot.default.fetchData({
@@ -52,7 +52,7 @@ const TodayText = ({ date }: { date: Date }) => {
         <CardHeader>
           <CardTitle>This day in History</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col gap-2">
+        <CardContent className="flex flex-col gap-4">
           {response.map((data, idx) => (
             <div key={idx}>
               <div>
