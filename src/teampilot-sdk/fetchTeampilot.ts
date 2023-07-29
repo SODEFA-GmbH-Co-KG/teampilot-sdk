@@ -49,6 +49,15 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
       content: z.string().optional(),
       data: schema ?? z.undefined(),
     }),
+    mediaAttachments: z
+      .array(
+        z.object({
+          id: z.string(),
+          type: z.enum(["AUDIO", "IMAGE", "DOCUMENT"]),
+          url: z.string(),
+        })
+      )
+      .optional(),
     usage: z.object({
       teamTokens: z.number(),
     }),
