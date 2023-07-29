@@ -21,10 +21,10 @@ export const Time = () => {
         <div>
           {answer.dayOfWeek}, {answer.dateWithoutYear}
         </div>
-        <div className="text-6xl">
-          <strong>{answer.hours}</strong>
-          <span className="text-muted-foreground">:</span>
-          <strong>{answer.minutes}</strong>
+        <div className="text-6xl font-bold">
+          <span>{answer.hours}</span>
+          <span className="opacity-40">:</span>
+          <span>{answer.minutes}</span>
         </div>
         <div>{answer.timezone}</div>
       </div>
