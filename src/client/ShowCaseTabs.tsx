@@ -1,5 +1,4 @@
-import { Loader2 } from "lucide-react"
-import React, { type ReactNode } from "react"
+import { type ReactNode } from "react"
 import {
   Tabs,
   TabsContent,
@@ -8,6 +7,7 @@ import {
 } from "~/shadcn/components/ui/tabs"
 import { cn } from "~/shadcn/utils"
 import { CodeBlock } from "./CodeBlock"
+import { SuspenseLoader } from "./SuspenseLoader"
 
 export const ShowCaseTabs = ({
   code,
@@ -48,16 +48,7 @@ export const ShowCaseTabs = ({
               }
             )}
           >
-            <React.Suspense
-              fallback={
-                <div className="flex items-center text-sm text-muted-foreground">
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Loading...
-                </div>
-              }
-            >
-              {children}
-            </React.Suspense>
+            <SuspenseLoader>{children}</SuspenseLoader>
           </div>
         </TabsContent>
         <TabsContent value="code">

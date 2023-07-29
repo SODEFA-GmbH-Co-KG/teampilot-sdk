@@ -2,6 +2,7 @@ import { Space_Grotesk } from "next/font/google"
 import { type ReactNode } from "react"
 import { DarkModeToggle } from "~/client/DarkModeToggle"
 import { MainTopNav } from "~/client/MainTopNav"
+import { SuspenseLoader } from "~/client/SuspenseLoader"
 import { TeampilotLogo } from "~/client/TeampilotLogo"
 import { ThemeProvider } from "~/shadcn/components/theme-provider"
 import { cn } from "~/shadcn/utils"
@@ -43,7 +44,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
               </div>
               <hr />
               <div className="container flex flex-col gap-8 py-8">
-                {children}
+                <SuspenseLoader>{children}</SuspenseLoader>
               </div>
             </>
           </ThemeProvider>
