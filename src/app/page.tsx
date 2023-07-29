@@ -15,7 +15,7 @@ export default function Page() {
       <ShowCase
         title="Interactive Example"
         file="./src/client/Today.tsx"
-        layout="side-by-side"
+        layout="tabs"
       >
         <Today />
       </ShowCase>
