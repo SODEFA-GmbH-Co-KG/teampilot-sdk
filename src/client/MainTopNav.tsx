@@ -31,7 +31,10 @@ export function MainTopNav({
 
   return (
     <nav
-      className={cn("flex items-center space-x-4 lg:space-x-6", className)}
+      className={cn(
+        "flex flex-1 flex-wrap items-center gap-4 lg:gap-6",
+        className
+      )}
       {...props}
     >
       {entries.map((entry) => {

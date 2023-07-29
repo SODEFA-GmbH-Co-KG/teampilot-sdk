@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react"
+import { ArrowDown } from "lucide-react"
 import { type ReactNode } from "react"
 import { Card, CardContent } from "~/shadcn/components/ui/card"
 import { cn } from "~/shadcn/utils"
@@ -16,11 +16,11 @@ export const ShowCaseSideBySide = ({
 }) => {
   return (
     <>
-      <div className="flex flex-row gap-8">
+      <div className="flex flex-col gap-8 lg:flex-row">
         <div className="flex-1">
           <CodeBlock language="tsx" value={code} lightMode="dark" />
         </div>
-        <ArrowRight className="h-8 w-8 self-center" />
+        <ArrowDown className="h-8 w-8 self-center lg:-rotate-90" />
         <Card
           className={cn(
             "flex flex-1 flex-col justify-center bg-accent p-4",

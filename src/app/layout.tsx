@@ -37,9 +37,14 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                     <strong>Teampilot SDK</strong>
                   </div>
                 </div>
-                <MainTopNav />
-                <div className="flex-1" />
+                <div className="hidden lg:flex">
+                  <MainTopNav />
+                </div>
+                <div className="flex-1"></div>
                 <DarkModeToggle />
+              </div>
+              <div className="container flex pb-6 lg:hidden">
+                <MainTopNav />
               </div>
               <hr />
               <div className="container flex flex-col gap-8 py-8">

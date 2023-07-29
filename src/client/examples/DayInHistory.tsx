@@ -18,7 +18,7 @@ export const DayInHistorySelector = () => {
   const [date, setDate] = useState<Date>(new Date())
 
   return (
-    <div className="flex flex-row items-start gap-4">
+    <div className="flex flex-col items-start gap-4 lg:flex-row">
       <Calendar
         mode="single"
         selected={date}

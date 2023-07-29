@@ -13,7 +13,7 @@ export const ShowCaseDescription = async ({
 
   return (
     <>
-      <p className="text-lg text-muted-foreground">{description}</p>
+      <p className="text-xs text-muted-foreground lg:text-lg">{description}</p>
     </>
   )
 }
