@@ -1,4 +1,3 @@
-import { Space_Grotesk } from "next/font/google"
 import { type ReactNode } from "react"
 import { DarkModeToggle } from "~/client/DarkModeToggle"
 import { MainTopNav } from "~/client/MainTopNav"
@@ -8,9 +7,9 @@ import { ThemeProvider } from "~/shadcn/components/theme-provider"
 import { cn } from "~/shadcn/utils"
 import "~/styles/globals.css"
 
-const font = Space_Grotesk({
-  subsets: ["latin"],
-})
+// const font = Space_Grotesk({
+//   subsets: ["latin"],
+// })
 
 export const metadata = {
   title: "Teampilot SDK",
@@ -25,8 +24,8 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
         </head>
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            font.className
+            "min-h-screen bg-background font-sans antialiased"
+            // font.className
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
