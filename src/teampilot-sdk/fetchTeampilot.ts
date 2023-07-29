@@ -89,9 +89,15 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
   const responseSchema = createResponseSchema(schema ?? z.undefined())
 
   const data = await response.json()
-  const parsed = responseSchema.parse(data)
+  const parsed = responseSchema.safeParse(data)
 
-  return parsed
+  if (!parsed.success) {
+    console.error("Response:", data)
+    console.error(parsed.error)
+    throw new Error(parsed.error.message)
+  }
+
+  return parsed.data
 }
 
 export const fetchTeampilotData = async <T extends z.Schema>({
