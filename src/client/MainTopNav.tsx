@@ -21,6 +21,10 @@ const entries = [
     name: "Functions",
     href: "/functions",
   },
+  {
+    name: "Media",
+    href: "/media",
+  },
 ]
 
 export function MainTopNav({

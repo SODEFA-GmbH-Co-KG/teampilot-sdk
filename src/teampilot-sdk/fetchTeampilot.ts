@@ -110,7 +110,7 @@ export const fetchTeampilotMedia = async (
 
   const media = response.mediaAttachments?.[0]
   if (!media) {
-    throw new Error("No media")
+    throw new Error("API did not return any media")
   }
   return media
 }

@@ -1,5 +1,4 @@
 import { Form } from "~/client/examples/Form"
-import { ImageExample } from "~/client/examples/ImageExample"
 import { Time } from "~/client/examples/Time"
 import { ShowCase } from "~/client/ShowCase"
 
@@ -19,13 +18,6 @@ export default function Page() {
         layout="side-by-side"
       >
         <Form />
-      </ShowCase>
-      <ShowCase
-        title="Image"
-        file="./src/client/examples/ImageExample.tsx"
-        layout="side-by-side"
-      >
-        <ImageExample />
       </ShowCase>
     </>
   )
