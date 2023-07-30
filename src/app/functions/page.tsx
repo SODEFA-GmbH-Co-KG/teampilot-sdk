@@ -7,14 +7,14 @@ export default function Page() {
     <>
       <ShowCase
         title="Time"
-        file="./src/client/examples/Time.tsx"
+        file="/src/client/examples/Time.tsx"
         layout="side-by-side"
       >
         <Time />
       </ShowCase>
       <ShowCase
         title="Form"
-        file="./src/client/examples/Form.tsx"
+        file="/src/client/examples/Form.tsx"
         layout="side-by-side"
       >
         <Form />

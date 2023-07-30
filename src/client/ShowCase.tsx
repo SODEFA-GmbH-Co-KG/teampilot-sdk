@@ -1,4 +1,5 @@
 import { readFile } from "fs/promises"
+import path from "path"
 import { use, type ReactNode } from "react"
 import { ShowCaseDescription } from "./ShowCaseDescription"
 import { ShowCaseSideBySide } from "./ShowCaseSideBySide"
@@ -18,7 +19,9 @@ export const ShowCase = ({
   title?: string
   layout?: "tabs" | "side-by-side"
 }) => {
-  const code = use(readFile(file, { encoding: "utf-8" }))
+  const code = use(
+    readFile(path.join(process.cwd(), file), { encoding: "utf-8" })
+  )
 
   return (
     <>

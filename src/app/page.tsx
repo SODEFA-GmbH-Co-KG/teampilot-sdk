@@ -7,14 +7,14 @@ export default function Page() {
     <>
       <ShowCase
         title="Simple Example"
-        file="./src/client/examples/Reasons.tsx"
+        file="/src/client/examples/Reasons.tsx"
         layout="side-by-side"
       >
         <Reasons />
       </ShowCase>
       <ShowCase
         title="Setup Multiple Assistants"
-        file="./src/client/examples/MultipleAssistants.tsx"
+        file="/src/client/examples/MultipleAssistants.tsx"
         layout="side-by-side"
       >
         <MultipleAssistants />
