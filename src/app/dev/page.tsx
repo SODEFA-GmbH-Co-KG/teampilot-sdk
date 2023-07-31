@@ -7,7 +7,8 @@ export default async function Page() {
   const answer = await fetchTeampilot({
     url: `http://localhost:3000/api/rest/message`,
     launchpadSlugId,
-    message: "Draw an image of a sunset",
+    message: "What time is it?",
+    cacheTtlSeconds: 60,
     // schema: z.object({
     //   hours: z.string(),
     //   minutes: z.string(),
