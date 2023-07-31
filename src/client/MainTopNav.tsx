@@ -25,6 +25,10 @@ const entries = [
     name: "Media",
     href: "/media",
   },
+  {
+    name: "Todo",
+    href: "/todo-app",
+  },
 ]
 
 export function MainTopNav({
