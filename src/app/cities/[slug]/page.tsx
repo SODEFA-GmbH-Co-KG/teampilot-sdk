@@ -15,13 +15,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
     schema: z.object({
       name: z.string(),
       population: z.number(),
+      whyThisCityIsAwesome: z.string(),
       // ...
     }),
   })
   return (
     <>
-      <h1>{city.name}</h1>
-      <div>Population: {city.population.toLocaleString()}</div>
+      <h1 className="text-3xl">{city.name}</h1>
+      <div className="text-mono">
+        Population: {city.population.toLocaleString()}
+      </div>
+      <div>{city.whyThisCityIsAwesome}</div>
     </>
   )
 }
