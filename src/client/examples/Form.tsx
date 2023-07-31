@@ -9,6 +9,7 @@ export const Form = () => {
     const email = data.get("email")
     await teampilot.functions.fetch({
       message: `Notify me via discord that a new user has signed up with email: ${email}`,
+      cacheTtlSeconds: 0,
     })
   }
   return (
