@@ -1,4 +1,5 @@
 import { ShowCase } from "~/client/ShowCase"
+import { BehindTheScenes } from "~/client/examples/BehindTheScenes"
 import { MultipleAssistants } from "~/client/examples/MultipleAssistants"
 import { Reasons } from "~/client/examples/Reasons"
 
@@ -19,6 +20,7 @@ export default function Page() {
       >
         <MultipleAssistants />
       </ShowCase>
+      <BehindTheScenes />
     </>
   )
 }
