@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { type ReactNode } from "react"
 import { DarkModeToggle } from "~/client/DarkModeToggle"
 import { MainTopNav } from "~/client/MainTopNav"
@@ -31,12 +32,12 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <>
               <div className="container flex flex-row items-center gap-6 py-6 2xl:max-w-[2000px]">
-                <div className="flex flex-row items-center gap-3">
+                <Link href="/" className="flex flex-row items-center gap-3">
                   <TeampilotLogo className="h-8 w-8" />
                   <div className="text-xl">
                     <strong>Teampilot SDK</strong>
                   </div>
-                </div>
+                </Link>
                 <div className="hidden lg:flex">
                   <MainTopNav />
                 </div>
