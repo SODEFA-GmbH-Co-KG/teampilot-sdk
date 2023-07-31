@@ -10,8 +10,8 @@ const entries = [
     href: "/",
   },
   {
-    name: "Persons",
-    href: "/persons",
+    name: "Schema",
+    href: "/schema",
   },
   {
     name: "Interactive",
