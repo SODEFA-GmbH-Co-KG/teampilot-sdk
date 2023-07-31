@@ -2,6 +2,8 @@ import { redirect } from "next/navigation"
 import { env } from "~/env.mjs"
 import { teampilot } from "~/teampilot"
 
+export const dynamic = "force-dynamic"
+
 // http://localhost:4500/api/seed
 // --> https://teampilot.ai/team/teampilot-sdk/chat/6c247b7dd69296454dd27e6143c2977d
 
