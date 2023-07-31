@@ -30,6 +30,10 @@ const entries = [
   //   href: "/todo-app",
   // },
   {
+    name: "SEO",
+    href: "/seo",
+  },
+  {
     name: "Future™️",
     href: "/future",
   },
