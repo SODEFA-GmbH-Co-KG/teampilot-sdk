@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { ShowCase } from "~/client/ShowCase"
 import sidebar from "../../../public/examples/sidebar.png"
 
@@ -6,7 +7,27 @@ export default function Page() {
   return (
     <>
       <ShowCase
-        title="A New way to write code"
+        title="A New way to write APIs"
+        file="/src/app/api/seed/route.ts"
+        layout="side-by-side"
+      >
+        <div className="flex flex-col items-center gap-6">
+          <iframe
+            src="https://teampilot.ai/widget/chat/6c247b7dd69296454dd27e6143c2977d"
+            height={620}
+            className="w-full"
+          />
+          <Link
+            href="https://teampilot.ai/chat/6c247b7dd69296454dd27e6143c2977d"
+            target="_blank"
+            className="text-blue-500 hover:underline"
+          >
+            https://teampilot.ai/chat/6c247b7dd69296454dd27e6143c2977d
+          </Link>
+        </div>
+      </ShowCase>
+      <ShowCase
+        title="A New way to write UI"
         file="/src/client/examples/future/Sidebar.tsx"
         layout="side-by-side"
       >
