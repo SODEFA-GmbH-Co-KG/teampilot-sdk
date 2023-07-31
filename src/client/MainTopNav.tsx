@@ -25,9 +25,13 @@ const entries = [
     name: "Media",
     href: "/media",
   },
+  // {
+  //   name: "Todo",
+  //   href: "/todo-app",
+  // },
   {
-    name: "Todo",
-    href: "/todo-app",
+    name: "Future™️",
+    href: "/future",
   },
 ]
 
