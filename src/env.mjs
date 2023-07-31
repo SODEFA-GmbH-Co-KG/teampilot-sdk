@@ -12,6 +12,7 @@ export const env = createEnv({
     LAUNCHPAD_SLUG_ID_FUNCTIONS: z.string(),
     LAUNCHPAD_SLUG_ID_WEBSITE_TO_VOICE: z.string(),
     LAUNCHPAD_SLUG_ID_TEXT_TO_SPEECH: z.string(),
+    LAUNCHPAD_SLUG_ID_TODO_APP: z.string(),
   },
 
   /**
@@ -36,6 +37,7 @@ export const env = createEnv({
       process.env.LAUNCHPAD_SLUG_ID_WEBSITE_TO_VOICE,
     LAUNCHPAD_SLUG_ID_TEXT_TO_SPEECH:
       process.env.LAUNCHPAD_SLUG_ID_TEXT_TO_SPEECH,
+    LAUNCHPAD_SLUG_ID_TODO_APP: process.env.LAUNCHPAD_SLUG_ID_TODO_APP,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.

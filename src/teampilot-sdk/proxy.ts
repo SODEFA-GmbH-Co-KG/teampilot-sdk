@@ -32,6 +32,14 @@ const createLaunchpadProxy = (config: LaunchpadConfig) => {
     fetchData: setDefaults(fetchTeampilotData, config),
     fetchText: setDefaults(fetchTeampilotText, config),
     fetchMedia: setDefaults(fetchTeampilotMedia, config),
+    mutate: (message: string) =>
+      setDefaults(
+        fetchTeampilot,
+        config
+      )({
+        message,
+        cacheTtlSeconds: 0,
+      }),
   }
 }
 
