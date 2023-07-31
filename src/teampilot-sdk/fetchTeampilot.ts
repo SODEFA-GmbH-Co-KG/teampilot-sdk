@@ -71,6 +71,18 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
     )
   }
 
+  const defaultCacheTtlSecondsEnv =
+    process.env.TEAMPILOT_DEFAULT_CACHE_TTL_SECONDS ||
+    process.env.NEXT_PUBLIC_TEAMPILOT_DEFAULT_CACHE_TTL_SECONDS
+  const defaultCacheTtlSeconds = defaultCacheTtlSecondsEnv
+    ? defaultCacheTtlSecondsEnv === "forever"
+      ? "forever"
+      : parseInt(defaultCacheTtlSecondsEnv)
+    : undefined
+  if (cacheTtlSeconds === undefined && defaultCacheTtlSeconds) {
+    cacheTtlSeconds = defaultCacheTtlSeconds
+  }
+
   // const url = `http://localhost:3000/api/rest/message`
   const url = overrideUrl || `https://teampilot.ai/api/rest/message`
 
