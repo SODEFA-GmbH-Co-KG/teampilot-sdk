@@ -15,14 +15,15 @@ export default function Page() {
           <iframe
             src="https://teampilot.ai/widget/chat/6c247b7dd69296454dd27e6143c2977d"
             height={620}
-            className="w-full"
+            width={400}
+            className="max-w-[calc(100vw-4rem)]"
           />
           <Link
             href="https://teampilot.ai/chat/6c247b7dd69296454dd27e6143c2977d"
             target="_blank"
-            className="text-blue-500 hover:underline"
+            className="truncate text-blue-500 hover:underline"
           >
-            https://teampilot.ai/chat/6c247b7dd69296454dd27e6143c2977d
+            Open Chat
           </Link>
         </div>
       </ShowCase>
