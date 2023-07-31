@@ -1,5 +1,6 @@
 import { ArrowDown } from "lucide-react"
 import { CodeBlock } from "../CodeBlock"
+import { ShowCaseDescription } from "../ShowCaseDescription"
 
 const input = `fetch('https://teampilot.ai/api/rest/message', {
   method: "POST",
@@ -36,37 +37,16 @@ const output = `type Output = {
 }
 `
 
-// const outputZod = `
-// const PublicApiOutput = z.object({
-//   message: z.object({
-//     content: z.string().optional(),
-//     data: z.any(),
-//   }),
-//   mediaAttachments: z
-//     .array(
-//       z.object({
-//         id: z.string(),
-//         type: z.nativeEnum(MediaAttachmentType),
-//         url: z.string(),
-//       })
-//     )
-//     .optional(),
-//   usage: z.object({
-//     teamTokens: z.number(),
-//   }),
-//   chatroom: z.object({
-//     id: z.string(),
-//     url: z.string(),
-//   }),
-// })
-// `
-
-export const BehindTheScenes = () => {
+export const BehindTheScenes = async () => {
   return (
     <>
       <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
         Behind the scenes
       </h1>
+      <ShowCaseDescription
+        title="Behind the scenes"
+        code={[input, output].join("\n\n")}
+      />
       <div className="flex flex-col gap-8 lg:flex-row">
         <div className="flex-1">
           <CodeBlock language="tsx" value={input} lightMode="dark" />
