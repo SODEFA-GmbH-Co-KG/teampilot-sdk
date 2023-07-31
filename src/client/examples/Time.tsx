@@ -13,6 +13,7 @@ export const Time = () => {
         dateWithoutYear: z.string(),
         timezone: z.string(),
       }),
+      cacheTtlSeconds: 60,
     })
   )
   return (
