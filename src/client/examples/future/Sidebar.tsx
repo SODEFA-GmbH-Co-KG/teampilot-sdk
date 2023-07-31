@@ -1,6 +1,11 @@
 /* eslint-disable */
 // @ts-nocheck
 
+import { Button, Tab, Tabs } from "@teampilot/components"
+import { teampilot } from "@teampilot/sdk"
+import { use, useState } from "react"
+import { z } from "zod"
+
 export const Sidebar = () => {
   const [query, setQuery] = useState(
     "All Chatrooms from the last 12 hours that are not archived"
@@ -33,11 +38,11 @@ export const Sidebar = () => {
       <Button action="Create new Chatroom and navigate to it">+ New</Button>
 
       {chats.map((chat) => (
-        <Card key={chat.id} action={`Navigate to chatroom ${id}`}>
-          <CardImage src={chat.authorImageUrl} />
-          <CardTitle>{chat.name}</CardTitle>
-          <CardDescription>{chat.lastMessage}</CardDescription>
-        </Card>
+        <Button key={chat.id} action={`Navigate to chatroom ${id}`}>
+          <img src={chat.authorImageUrl} />
+          <strong>{chat.name}</strong>
+          <p>{chat.lastMessage}</p>
+        </Button>
       ))}
     </>
   )
