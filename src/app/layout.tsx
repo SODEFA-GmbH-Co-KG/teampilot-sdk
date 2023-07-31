@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <>
-              <div className="container flex flex-row items-center gap-6 py-6">
+              <div className="container flex flex-row items-center gap-6 py-6 2xl:max-w-[2000px]">
                 <div className="flex flex-row items-center gap-3">
                   <TeampilotLogo className="h-8 w-8" />
                   <div className="text-xl">
@@ -43,11 +43,11 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                 <div className="flex-1"></div>
                 <DarkModeToggle />
               </div>
-              <div className="container flex pb-6 lg:hidden">
+              <div className="container flex pb-6 lg:hidden 2xl:max-w-[2000px]">
                 <MainTopNav />
               </div>
               <hr />
-              <div className="container flex flex-col gap-8 py-8">
+              <div className="container flex flex-col gap-8 py-8 2xl:max-w-[2000px]">
                 <SuspenseLoader>{children}</SuspenseLoader>
               </div>
             </>
