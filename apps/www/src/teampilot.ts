@@ -1,5 +1,5 @@
+import { createTeampilotClient } from "@teampilot/sdk"
 import { env } from "./env.mjs"
-import { createTeampilotClient } from "./teampilot-sdk"
 
 export const teampilot = createTeampilotClient({
   default: {

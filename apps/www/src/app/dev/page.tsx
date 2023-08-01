@@ -1,6 +1,6 @@
+import { fetchTeampilot } from "@teampilot/sdk"
 import { CodeBlock } from "~/client/CodeBlock"
 import { env } from "~/env.mjs"
-import { fetchTeampilot } from "~/teampilot-sdk"
 
 export default async function Page() {
   if (env.NODE_ENV !== "development") return null
