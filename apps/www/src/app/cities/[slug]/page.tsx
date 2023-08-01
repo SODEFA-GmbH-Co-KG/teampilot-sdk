@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { teampilot } from "~/teampilot"
-import { getAllCities } from "../page"
+import { getAllCities } from "../getAllCities"
 
 export async function generateStaticParams() {
   const cities = await getAllCities()
