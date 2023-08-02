@@ -1,5 +1,6 @@
 "use client"
 
+import { ExternalLink } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "~/shadcn/utils"
@@ -37,6 +38,12 @@ const entries = [
     name: "Future™️",
     href: "/future",
   },
+  // {
+  //   name: "Teampilot",
+  //   iconEnd: ExternalLink,
+  //   href: "https://teampilot.ai",
+  //   target: "_blank",
+  // },
 ]
 
 export function MainTopNav({
@@ -71,6 +78,18 @@ export function MainTopNav({
           </Link>
         )
       })}
+      <div className="flex-1" />
+      <Link
+        href={"https://teampilot.ai"}
+        className={cn(
+          "text-sm font-medium transition-colors hover:text-primary",
+          "text-muted-foreground",
+          "flex flex-row items-center gap-1"
+        )}
+      >
+        <div>Teampilot AI</div>
+        <ExternalLink className="h-3 w-3" />
+      </Link>
     </nav>
   )
 }
