@@ -14,6 +14,7 @@ const input = `fetch('https://teampilot.ai/api/rest/message', {
     // Optional:
     schema: transformZodSchemaToOpenAi(myZodSchema),
     cacheTtlSeconds: 60 * 60 * 24 * 7, // 1 week
+    chatroomId: "8ebd214b048d9354eb7afe33314d1d30" // continue chat
   }),
 })
 `
