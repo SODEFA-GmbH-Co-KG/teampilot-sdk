@@ -10,7 +10,7 @@
   "repository": "https://github.com/SODEFA-GmbH-Co-KG/teampilot-sdk",
   "scripts": {
     "build": "tsup ./src/index.ts --format esm,cjs --dts",
-    "build-and-publish": "pnpm run build && npm publish --access public"
+    "build-and-publish": "pnpm run build && cp ../../README.md README.md && npm publish --access public"
   },
   "keywords": [],
   "author": {

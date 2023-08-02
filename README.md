@@ -1,5 +1,7 @@
 # Teampilot SDK
 
+[![npm version](https://badge.fury.io/js/@teampilot%2Fsdk.svg)](https://badge.fury.io/js/@teampilot%2Fsdk)
+
 [sdk.teampilot.ai](https://sdk.teampilot.ai/)
 
 ```tsx
