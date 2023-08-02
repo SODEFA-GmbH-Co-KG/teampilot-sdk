@@ -1,6 +1,7 @@
 import { ArrowDown } from "lucide-react"
 import Link from "next/link"
 import { CodeBlock } from "../CodeBlock"
+import { Heading } from "../Heading"
 import { ShowCaseDescription } from "../ShowCaseDescription"
 
 const input = `import { transformZodToJsonSchema } from "@teampilot/sdk"
@@ -45,9 +46,7 @@ const output = `type Output = {
 export const BehindTheScenes = async () => {
   return (
     <>
-      <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-        Behind the scenes
-      </h1>
+      <Heading>Behind the scenes</Heading>
       <ShowCaseDescription
         title="Behind the scenes"
         code={[input, output].join("\n\n")}

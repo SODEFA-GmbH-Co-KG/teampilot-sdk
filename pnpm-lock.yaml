@@ -222,6 +222,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.2.8
         version: 0.2.8(prettier@2.8.8)
+      slugify:
+        specifier: ^1.6.6
+        version: 1.6.6
       tailwindcss:
         specifier: ^3.3.0
         version: 3.3.0(postcss@8.4.21)
@@ -5759,6 +5762,11 @@ packages:
       ansi-styles: 4.3.0
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
+    dev: true
+
+  /slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
     dev: true
 
   /snake-case@2.1.0:

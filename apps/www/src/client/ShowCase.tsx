@@ -1,6 +1,7 @@
 import { readFile } from "fs/promises"
 import path from "path"
 import { use, type ReactNode } from "react"
+import { Heading } from "./Heading"
 import { ShowCaseDescription } from "./ShowCaseDescription"
 import { ShowCaseSideBySide } from "./ShowCaseSideBySide"
 import { ShowCaseTabs } from "./ShowCaseTabs"
@@ -27,9 +28,7 @@ export const ShowCase = ({
     <>
       {!!title && (
         <div className="space-y-2">
-          <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-            {title}
-          </h1>
+          <Heading>{title}</Heading>
           <SuspenseLoader>
             <ShowCaseDescription title={title} code={code} />
           </SuspenseLoader>

@@ -1,6 +1,7 @@
 import { ArrowDown } from "lucide-react"
 import { CodeBlock } from "~/client/CodeBlock"
 import { ShowCaseDescription } from "~/client/ShowCaseDescription"
+import { Heading } from "../Heading"
 
 const input = `# .env
 
@@ -24,9 +25,7 @@ await fetchTeampilot({
 export const ConfigureDefaultsExample = async () => {
   return (
     <>
-      <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-        Configure Defaults (optional)
-      </h1>
+      <Heading>Configure Defaults (optional)</Heading>
       <ShowCaseDescription
         title="Configure Defaults (optional)"
         code={[input, output].join("\n\n")}
