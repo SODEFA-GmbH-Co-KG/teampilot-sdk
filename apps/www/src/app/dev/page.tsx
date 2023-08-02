@@ -32,6 +32,7 @@ export default async function Page() {
     message: "Who landed on the moon first?",
     url,
     launchpadSlugId,
+    accessLevel: "LINK_WRITE",
   })
   const secondAnswer = await fetchTeampilot({
     message: "How old was the person when he did?",

@@ -3,6 +3,7 @@ import { teampilot } from "~/teampilot"
 export const ChatExample = async () => {
   const firstAnswer = await teampilot.default.fetch({
     message: "Who landed on the moon first?",
+    accessLevel: "LINK_WRITE",
   })
   const secondAnswer = await teampilot.default.fetch({
     message: "How old was the person when he did?",

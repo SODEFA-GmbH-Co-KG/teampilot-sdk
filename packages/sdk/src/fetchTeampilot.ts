@@ -10,6 +10,7 @@ export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   url?: string
   cacheTtlSeconds?: number | 'forever'
   chatroomId?: string
+  accessLevel?: 'TEAM' | 'LINK_READ' | 'LINK_WRITE'
 } & RequestOptions
 
 const createResponseSchema = <T extends z.Schema = z.ZodUndefined>(
@@ -61,6 +62,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
   url: overrideUrl,
   cacheTtlSeconds,
   chatroomId,
+  accessLevel,
   ...requestOptions
 }: FetchTeampilotOptions<T>) => {
   if (!launchpadSlugId) {
@@ -104,6 +106,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
       schema: schema ? transformZodToJsonSchema(schema) : null,
       cacheTtlSeconds,
       chatroomId,
+      accessLevel,
     }),
     ...requestOptions,
   })

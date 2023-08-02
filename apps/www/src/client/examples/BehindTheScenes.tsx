@@ -3,7 +3,9 @@ import Link from "next/link"
 import { CodeBlock } from "../CodeBlock"
 import { ShowCaseDescription } from "../ShowCaseDescription"
 
-const input = `fetch('https://teampilot.ai/api/rest/message', {
+const input = `import { transformZodToJsonSchema } from "@teampilot/sdk"
+
+fetch('https://teampilot.ai/api/rest/message', {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -13,9 +15,10 @@ const input = `fetch('https://teampilot.ai/api/rest/message', {
     message: 'Why is Teampilot SDK awesome?',
 
     // Optional:
-    schema: transformZodSchemaToOpenAi(myZodSchema),
+    schema: transformZodToJsonSchema(myZodSchema),
     cacheTtlSeconds: 60 * 60 * 24 * 7, // 1 week
     chatroomId: "8ebd214b048d9354eb7afe33314d1d30" // continue chat
+    accessLevel: "TEAM" // TEAM or LINK_READ or LINK_WRITE (default TEAM)
   }),
 })
 `
