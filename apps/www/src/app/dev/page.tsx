@@ -1,4 +1,6 @@
 import { fetchTeampilot } from "@teampilot/sdk"
+import { z } from "zod"
+import { CodeBlock } from "~/client/CodeBlock"
 import { env } from "~/env.mjs"
 
 export default async function Page() {
@@ -7,44 +9,44 @@ export default async function Page() {
   if (!launchpadSlugId) return null
   const url = `http://localhost:3000/api/rest/message`
 
-  // const answer = await fetchTeampilot({
-  //   url,
-  //   launchpadSlugId,
-  //   message: "What time is it?",
-  //   cacheTtlSeconds: 60,
-  //   // schema: z.object({
-  //   //   hours: z.string(),
-  //   //   minutes: z.string(),
-  //   // }),
-  // })
-
-  // return (
-  //   <>
-  //     <CodeBlock
-  //       lightMode="dark"
-  //       language="json"
-  //       value={JSON.stringify(answer, null, 2)}
-  //     />
-  //   </>
-  // )
-
-  const firstAnswer = await fetchTeampilot({
-    message: "Who landed on the moon first?",
+  const answer = await fetchTeampilot({
     url,
     launchpadSlugId,
-    accessLevel: "LINK_WRITE",
+    message: "What time is it?",
+    cacheTtlSeconds: 60,
+    schema: z.object({
+      hours: z.string(),
+      minutes: z.string(),
+    }),
   })
-  const secondAnswer = await fetchTeampilot({
-    message: "How old was the person when he did?",
-    chatroomId: firstAnswer.chatroom.id,
-    url,
-    launchpadSlugId,
-  })
+
   return (
     <>
-      <div>{firstAnswer.message.content}</div>
-      <hr />
-      <div>{secondAnswer.message.content}</div>
+      <CodeBlock
+        lightMode="dark"
+        language="json"
+        value={JSON.stringify(answer, null, 2)}
+      />
     </>
   )
+
+  // const firstAnswer = await fetchTeampilot({
+  //   message: "Who landed on the moon first?",
+  //   url,
+  //   launchpadSlugId,
+  //   accessLevel: "LINK_WRITE",
+  // })
+  // const secondAnswer = await fetchTeampilot({
+  //   message: "How old was the person when he did?",
+  //   chatroomId: firstAnswer.chatroom.id,
+  //   url,
+  //   launchpadSlugId,
+  // })
+  // return (
+  //   <>
+  //     <div>{firstAnswer.message.content}</div>
+  //     <hr />
+  //     <div>{secondAnswer.message.content}</div>
+  //   </>
+  // )
 }
