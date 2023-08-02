@@ -1,8 +1,10 @@
+import { fetchTeampilotData } from "@teampilot/sdk"
 import { z } from "zod"
-import { teampilot } from "~/teampilot"
+import { env } from "~/env.mjs"
 
 export const Reasons = async () => {
-  const reasons = await teampilot.sdkExpert.fetchData({
+  const reasons = await fetchTeampilotData({
+    launchpadSlugId: env.LAUNCHPAD_SLUG_ID_SDK_EXPERT,
     message: "5 Reasons why Teampilot SDK is awesome",
     schema: z.array(z.string()),
   })
