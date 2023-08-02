@@ -81,6 +81,7 @@ export function MainTopNav({
       <div className="flex-1" />
       <Link
         href={"https://teampilot.ai"}
+        target="_blank"
         className={cn(
           "text-sm font-medium transition-colors hover:text-primary",
           "text-muted-foreground",
