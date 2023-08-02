@@ -1,4 +1,5 @@
 import { ShowCase } from "~/client/ShowCase"
+import { DayInHistorySelector } from "~/client/examples/DayInHistory"
 
 export default function Page() {
   return (
@@ -7,7 +8,7 @@ export default function Page() {
         title="Interactive Example"
         file="/src/client/examples/DayInHistory.tsx"
       >
-        {/* <DayInHistorySelector /> */}
+        <DayInHistorySelector />
       </ShowCase>
     </>
   )
