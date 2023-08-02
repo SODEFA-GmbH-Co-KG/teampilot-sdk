@@ -1,3 +1,4 @@
+import { Github } from "lucide-react"
 import Link from "next/link"
 import { type ReactNode } from "react"
 import { DarkModeToggle } from "~/client/DarkModeToggle"
@@ -5,6 +6,7 @@ import { MainTopNav } from "~/client/MainTopNav"
 import { SuspenseLoader } from "~/client/SuspenseLoader"
 import { TeampilotLogo } from "~/client/TeampilotLogo"
 import { ThemeProvider } from "~/shadcn/components/theme-provider"
+import { Button } from "~/shadcn/components/ui/button"
 import { cn } from "~/shadcn/utils"
 import "~/styles/globals.css"
 
@@ -42,7 +44,17 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                   <MainTopNav />
                 </div>
                 <div className="flex-1"></div>
-                <DarkModeToggle />
+                <div className="flex flex-row">
+                  <Link
+                    href="https://github.com/sodefa-gmbh-co-kg/teampilot-sdk"
+                    target="_blank"
+                  >
+                    <Button variant={"ghost"} size="icon">
+                      <Github />
+                    </Button>
+                  </Link>
+                  <DarkModeToggle />
+                </div>
               </div>
               <div className="container flex pb-6 lg:hidden 2xl:max-w-[2000px]">
                 <MainTopNav />
