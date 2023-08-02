@@ -6,7 +6,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
-  "homepage": "https://github.com/SODEFA-GmbH-Co-KG/teampilot-sdk",
+  "homepage": "https://sdk.teampilot.ai/",
   "repository": "https://github.com/SODEFA-GmbH-Co-KG/teampilot-sdk",
   "scripts": {
     "build": "tsup ./src/index.ts --format esm,cjs --dts"
