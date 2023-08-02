@@ -63,12 +63,12 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
 }: FetchTeampilotOptions<T>) => {
   if (!launchpadSlugId) {
     launchpadSlugId =
-      process.env.TEAMPILOT_LAUNCHPAD_SLUG_ID ||
-      process.env.NEXT_PUBLIC_TEAMPILOT_LAUNCHPAD_SLUG_ID
+      process.env.TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID ||
+      process.env.NEXT_PUBLIC_TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID
   }
   if (!launchpadSlugId) {
     throw new Error(
-      'Provide a launchpadSlugId in the function call or in the environment variables via TEAMPILOT_LAUNCHPAD_SLUG_ID or NEXT_PUBLIC_TEAMPILOT_LAUNCHPAD_SLUG_ID'
+      'Provide a launchpadSlugId in the function call or in the environment variables via TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID or NEXT_PUBLIC_TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID'
     )
   }
 

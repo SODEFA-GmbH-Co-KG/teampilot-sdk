@@ -1,6 +1,7 @@
 import { CodeBlock } from "~/client/CodeBlock"
 import { ShowCase } from "~/client/ShowCase"
 import { BehindTheScenes } from "~/client/examples/BehindTheScenes"
+import { ConfigureDefaultsExample } from "~/client/examples/ConfigureDefaultsExample"
 import { MultipleAssistants } from "~/client/examples/MultipleAssistants"
 import { Reasons } from "~/client/examples/Reasons"
 import { CopyNpmCommandButton } from "~/shadcn/components/copy-button"
@@ -37,6 +38,7 @@ export default function Page() {
         <MultipleAssistants />
       </ShowCase>
       <BehindTheScenes />
+      <ConfigureDefaultsExample />
     </>
   )
 }
