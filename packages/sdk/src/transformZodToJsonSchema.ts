@@ -45,7 +45,7 @@ const isZodDefault = (
   return getZodType(schema) === 'ZodDefault'
 }
 
-export function transformZodSchemaToOpenAi(
+export function transformZodToJsonSchema(
   schema: z.Schema<unknown>
 ): OpenAIFunctionParameters {
   if (isZodObject(schema)) {
@@ -58,7 +58,7 @@ export function transformZodSchemaToOpenAi(
       if (!zodType.isOptional()) {
         required.push(key)
       }
-      const subProperty = transformZodSchemaToOpenAi(zodType)
+      const subProperty = transformZodToJsonSchema(zodType)
       if (subProperty) {
         properties[key] = subProperty
       }
@@ -87,7 +87,7 @@ export function transformZodSchemaToOpenAi(
       description: schema.description,
     }
   } else if (isZodDefault(schema) || isZodOptional(schema)) {
-    const subProperty = transformZodSchemaToOpenAi(schema._def.innerType)
+    const subProperty = transformZodToJsonSchema(schema._def.innerType)
     return {
       ...subProperty,
     }
@@ -95,7 +95,7 @@ export function transformZodSchemaToOpenAi(
   //extended with teampilot: https://teampilot.ai/team/sodefa/chat/cljwvoee1000jmf08aelqaum0
   else if (isZodArray(schema)) {
     const elementType = schema._def.type
-    const subProperty = transformZodSchemaToOpenAi(elementType)
+    const subProperty = transformZodToJsonSchema(elementType)
     return {
       type: 'array',
       items: subProperty,

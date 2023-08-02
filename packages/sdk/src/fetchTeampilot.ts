@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { transformZodSchemaToOpenAi } from './transformFunctionToOpenAi'
+import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
 type RequestOptions = Omit<RequestInit, 'body' | 'method'>
 
@@ -99,7 +99,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
     body: JSON.stringify({
       launchpadSlugId,
       message,
-      schema: schema ? transformZodSchemaToOpenAi(schema) : null,
+      schema: schema ? transformZodToJsonSchema(schema) : null,
       cacheTtlSeconds,
     }),
     ...requestOptions,
