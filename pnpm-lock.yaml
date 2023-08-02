@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@teampilot/sdk': link:./packages/sdk
-
 importers:
 
   .:
@@ -114,7 +111,7 @@ importers:
         specifier: ^4.29.7
         version: 4.29.7(react-dom@18.2.0)(react@18.2.0)
       '@teampilot/sdk':
-        specifier: link:../../packages/sdk
+        specifier: workspace:^
         version: link:../../packages/sdk
       '@trpc/client':
         specifier: ^10.26.0

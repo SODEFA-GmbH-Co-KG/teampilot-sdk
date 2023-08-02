@@ -80,5 +80,10 @@
   },
   "ct3aMetadata": {
     "initVersion": "7.16.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@teampilot/sdk": "link:../../packages/sdk"
+    }
   }
 }
