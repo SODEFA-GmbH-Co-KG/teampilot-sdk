@@ -6,12 +6,18 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
+  "homepage": "https://github.com/SODEFA-GmbH-Co-KG/teampilot-sdk",
+  "repository": "https://github.com/SODEFA-GmbH-Co-KG/teampilot-sdk",
   "scripts": {
     "build": "tsup ./src/index.ts --format esm,cjs --dts"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Tristan Rechenberger",
+    "email": "rechenberger@me.com",
+    "url": "https://rechenberger.io"
+  },
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.16.0",
     "tsup": "^7.1.0",
