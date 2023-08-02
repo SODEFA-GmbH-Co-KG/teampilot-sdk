@@ -5,7 +5,8 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "clean": "find . -name node_modules -exec rm -r {} \\;"
+    "clean": "find . -name node_modules -exec rm -r {} \\;",
+    "publish:sdk": "cd packages/sdk && pnpm build-and-publish"
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
