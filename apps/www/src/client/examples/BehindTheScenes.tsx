@@ -1,4 +1,5 @@
 import { ArrowDown } from "lucide-react"
+import Link from "next/link"
 import { CodeBlock } from "../CodeBlock"
 import { ShowCaseDescription } from "../ShowCaseDescription"
 
@@ -56,6 +57,16 @@ export const BehindTheScenes = async () => {
         <div className="flex-1">
           <CodeBlock language="tsx" value={output} lightMode="dark" />
         </div>
+      </div>
+      <div>
+        <div>You can also checkout our OpenAPI Schema at</div>
+        <Link
+          href="https://teampilot.ai/docs/api"
+          className="text-blue-500 hover:underline"
+          target="_blank"
+        >
+          https://teampilot.ai/docs/api
+        </Link>
       </div>
     </>
   )
