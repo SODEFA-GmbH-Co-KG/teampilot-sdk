@@ -37,8 +37,8 @@ export default function Page() {
       >
         <MultipleAssistants />
       </ShowCase>
-      <BehindTheScenes />
       <ConfigureDefaultsExample />
+      <BehindTheScenes />
     </>
   )
 }
