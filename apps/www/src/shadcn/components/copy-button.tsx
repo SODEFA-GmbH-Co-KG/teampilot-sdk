@@ -1,3 +1,4 @@
+"use client"
 // FROM: https://github.com/shadcn-ui/ui/blob/main/apps/www/components/copy-button.tsx
 
 import { type DropdownMenuTriggerProps } from "@radix-ui/react-dropdown-menu"

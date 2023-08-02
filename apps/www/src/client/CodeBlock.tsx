@@ -1,6 +1,7 @@
 "use client"
 
-import { type FC } from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { type FC, type ReactNode } from "react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import {
   oneDark,
@@ -12,13 +13,21 @@ interface Props {
   language: string
   value: string
   lightMode: "light" | "dark"
+  copyButton?: ReactNode
 }
 
 // FROM: https://github.com/mckaywrigley/chatbot-ui/blob/main/components/Markdown/CodeBlock.tsx
-export const CodeBlock: FC<Props> = ({ language, value, lightMode }) => {
+export const CodeBlock: FC<Props> = ({
+  language,
+  value,
+  lightMode,
+  copyButton,
+}) => {
   return (
     <div className="relative flex min-w-[160px] flex-col gap-2 text-base">
-      <CopyButton value={value} className="absolute right-4 top-4" />
+      <Slot className="absolute right-4 top-4">
+        {copyButton ?? <CopyButton value={value} />}
+      </Slot>
       <div className="-mx-2 -mb-1">
         <SyntaxHighlighter
           language={language}
