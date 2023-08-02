@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                     <strong>Teampilot SDK</strong>
                   </div>
                 </Link>
-                <div className="hidden flex-1 lg:flex">
+                <div className="hidden flex-1 xl:flex">
                   <MainTopNav />
                 </div>
                 <div className="flex flex-row">
@@ -55,7 +55,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                   <DarkModeToggle />
                 </div>
               </div>
-              <div className="container flex pb-6 lg:hidden 2xl:max-w-[2000px]">
+              <div className="container flex pb-6 xl:hidden 2xl:max-w-[2000px]">
                 <MainTopNav />
               </div>
               <hr />
