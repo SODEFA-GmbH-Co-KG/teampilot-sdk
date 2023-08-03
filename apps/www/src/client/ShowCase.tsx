@@ -1,11 +1,15 @@
 import { readFile } from "fs/promises"
 import path from "path"
-import { type ReactNode } from "react"
+import { cache, type ReactNode } from "react"
 import { Heading } from "./Heading"
 import { ShowCaseDescription } from "./ShowCaseDescription"
 import { ShowCaseSideBySide } from "./ShowCaseSideBySide"
 import { ShowCaseTabs } from "./ShowCaseTabs"
 import { SuspenseLoader } from "./SuspenseLoader"
+
+const getFile = cache(async (file: string) => {
+  return await readFile(path.join(process.cwd(), file), { encoding: "utf-8" })
+})
 
 export const ShowCase = async ({
   code = "",
@@ -23,7 +27,7 @@ export const ShowCase = async ({
   layout?: "tabs" | "side-by-side"
 }) => {
   if (!code && file) {
-    code = await readFile(path.join(process.cwd(), file), { encoding: "utf-8" })
+    code = await getFile(file)
   }
 
   return (
