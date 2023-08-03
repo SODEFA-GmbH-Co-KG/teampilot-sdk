@@ -7,8 +7,6 @@ import { ShowCaseSideBySide } from "./ShowCaseSideBySide"
 import { ShowCaseTabs } from "./ShowCaseTabs"
 import { SuspenseLoader } from "./SuspenseLoader"
 
-export const revalidate = "force-cache"
-
 const getFile = cache(async (file: string) => {
   return await readFile(path.join(process.cwd(), file), { encoding: "utf-8" })
 })
