@@ -11,7 +11,13 @@ export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   cacheTtlSeconds?: number | 'forever'
   chatroomId?: string
   accessLevel?: 'TEAM' | 'LINK_READ' | 'LINK_WRITE'
-} & RequestOptions
+} & RequestOptions & {
+    // TODO: NextJS 13 overrides the global RequestInit type. But when this SDK is packaged it inlines the RequestInit type from the global scope. This is a workaround to enable usage with NextJS 13.
+    next?: {
+      revalidate?: number | false
+      tags?: string[]
+    }
+  }
 
 const createResponseSchema = <T extends z.Schema = z.ZodUndefined>(
   schema: T
