@@ -2,9 +2,6 @@ import { Form } from "~/client/examples/Form"
 import { Time } from "~/client/examples/Time"
 import { ShowCase } from "~/client/ShowCase"
 
-export const revalidate = "force-cache"
-export const dynamic = "force-static"
-
 export default function Page() {
   return (
     <>
