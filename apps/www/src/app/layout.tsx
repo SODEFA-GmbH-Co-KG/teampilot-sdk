@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react"
 import { Github } from "lucide-react"
 import Link from "next/link"
 import { type ReactNode } from "react"
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
               </div>
             </>
           </ThemeProvider>
+          <Analytics />
         </body>
       </html>
     </>
