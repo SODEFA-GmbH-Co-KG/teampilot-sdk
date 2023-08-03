@@ -7,14 +7,75 @@ export default function Page() {
     <>
       <ShowCase
         title="Time"
-        file="/src/client/examples/Time.tsx"
+        // file="/src/client/examples/Time.tsx"
+        code={`import { use } from "react"
+import { z } from "zod"
+import { teampilot } from "~/teampilot"
+
+export const Time = () => {
+  const answer = use(
+    teampilot.functions.fetchData({
+      message: "What time is it in Berlin?",
+      schema: z.object({
+        hours: z.string(),
+        minutes: z.string(),
+        dayOfWeek: z.string(),
+        dateWithoutYear: z.string(),
+        timezone: z.string(),
+      }),
+      cacheTtlSeconds: 60,
+    })
+  )
+  return (
+    <>
+      <div className="flex flex-col items-center gap-2">
+        <div>
+          {answer.dayOfWeek}, {answer.dateWithoutYear}
+        </div>
+        <div className="text-6xl font-bold">
+          <span>{answer.hours}</span>
+          <span className="opacity-40">:</span>
+          <span>{answer.minutes}</span>
+        </div>
+        <div>{answer.timezone}</div>
+      </div>
+    </>
+  )
+}
+`}
         layout="side-by-side"
       >
         <Time />
       </ShowCase>
       <ShowCase
         title="Form"
-        file="/src/client/examples/Form.tsx"
+        code={`import { Send } from "lucide-react"
+import { Button } from "~/shadcn/components/ui/button"
+import { Input } from "~/shadcn/components/ui/input"
+import { teampilot } from "~/teampilot"
+
+export const Form = () => {
+  const submit = async (data: FormData) => {
+    "use server"
+    const email = data.get("email")
+    await teampilot.functions.fetch({
+      message: \`Notify me via discord that a new user has signed up with email: \${email}\`,
+      cacheTtlSeconds: 0,
+    })
+  }
+  return (
+    <>
+      <div className="mb-2 text-center font-bold">Register</div>
+      <form className="flex flex-row items-center gap-1" action={submit}>
+        <Input type="email" placeholder="Your Email" name="email" />
+        <Button type="submit" size="sm">
+          <Send />
+        </Button>
+      </form>
+    </>
+  )
+}
+`}
         layout="side-by-side"
       >
         <Form />
