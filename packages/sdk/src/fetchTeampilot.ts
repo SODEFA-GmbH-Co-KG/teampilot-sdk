@@ -1,8 +1,6 @@
 import { z } from 'zod'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
-type RequestOptions = Omit<RequestInit, 'body' | 'method'>
-
 export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   launchpadSlugId?: string
   message: string
@@ -11,7 +9,7 @@ export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   cacheTtlSeconds?: number | 'forever'
   chatroomId?: string
   accessLevel?: 'TEAM' | 'LINK_READ' | 'LINK_WRITE'
-} & RequestOptions & {
+} & Omit<RequestInit, 'body' | 'method'> & {
     // TODO: NextJS 13 overrides the global RequestInit type. But when this SDK is packaged it inlines the RequestInit type from the global scope. This is a workaround to enable usage with NextJS 13.
     next?: {
       revalidate?: number | false
