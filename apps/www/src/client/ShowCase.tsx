@@ -1,22 +1,17 @@
 import { readFile } from "fs/promises"
-import { unstable_cache } from "next/cache"
 import path from "path"
-import { type ReactNode } from "react"
+import { cache, type ReactNode } from "react"
 import { Heading } from "./Heading"
 import { ShowCaseDescription } from "./ShowCaseDescription"
 import { ShowCaseSideBySide } from "./ShowCaseSideBySide"
 import { ShowCaseTabs } from "./ShowCaseTabs"
 import { SuspenseLoader } from "./SuspenseLoader"
 
-const getFile = unstable_cache(
-  async (file: string) => {
-    return await readFile(path.join(process.cwd(), file), { encoding: "utf-8" })
-  },
-  undefined,
-  {
-    revalidate: false,
-  }
-)
+export const revalidate = "force-cache"
+
+const getFile = cache(async (file: string) => {
+  return await readFile(path.join(process.cwd(), file), { encoding: "utf-8" })
+})
 
 export const ShowCase = async ({
   code = "",
