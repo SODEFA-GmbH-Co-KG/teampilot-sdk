@@ -90,6 +90,7 @@ export function transformZodToJsonSchema(
     const subProperty = transformZodToJsonSchema(schema._def.innerType)
     return {
       ...subProperty,
+      description: schema.description ?? subProperty.description,
     }
   }
   //extended with teampilot: https://teampilot.ai/team/sodefa/chat/cljwvoee1000jmf08aelqaum0
