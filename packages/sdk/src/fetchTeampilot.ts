@@ -191,7 +191,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
       }))
 
     // Recursion:
-    return fetchTeampilot({
+    const result = await fetchTeampilot({
       ...options,
       chatroomId: parsed.data.chatroom.id,
       message:
@@ -201,6 +201,12 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
         error: 'error' in functionResult ? functionResult.error : undefined,
       },
     })
+    return {
+      ...result,
+      usage: {
+        teamTokens: result.usage.teamTokens + parsed.data.usage.teamTokens,
+      },
+    }
   }
 
   const parsedWithSchema = createResponseSchema(
