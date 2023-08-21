@@ -206,7 +206,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     throw new Error(parsedWithSchema.error.message)
   }
 
-  return parsedWithSchema.data
+  return parsedWithSchema.data as FetchTeampilotResponse<T>
 }
 
 export const fetchTeampilotData = async <T extends z.Schema>({
