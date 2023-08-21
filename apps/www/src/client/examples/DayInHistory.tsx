@@ -38,7 +38,7 @@ const DayInHistory = ({ date }: { date: Date }) => {
   const dateString = format(date, "MMMM d")
   const response = use(
     fetchTeampilotData({
-      launchpadSlugId: env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID,
+      launchpadSlugId: env.NEXT_PUBLIC_TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID,
       message: `Tell what happened on this day in history: ${dateString}`,
       schema: z.array(
         z.object({

@@ -4,7 +4,7 @@ import { env } from "~/env.mjs"
 
 export const teampilot = createTeampilotClient({
   default: {
-    launchpadSlugId: env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID,
+    launchpadSlugId: env.NEXT_PUBLIC_TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID,
   },
   sdkExpert: {
     launchpadSlugId: env.LAUNCHPAD_SLUG_ID_SDK_EXPERT,
