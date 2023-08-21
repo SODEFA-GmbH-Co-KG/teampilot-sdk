@@ -2,7 +2,9 @@ import { z } from 'zod'
 import { TeampilotCustomFunction } from './fetchTeampilot'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
-const jsonHandler = (handler: (request: Request) => Promise<object>) => {
+const jsonHandler = (
+  handler: (request: Request) => Promise<object | Response>
+) => {
   return async (request: Request) => {
     try {
       const response = await handler(request).catch((error) => {
@@ -10,6 +12,7 @@ const jsonHandler = (handler: (request: Request) => Promise<object>) => {
           error: error?.message ?? error?.toString() ?? 'Unknown Error',
         }
       })
+      if (response instanceof Response) return response
       return new Response(JSON.stringify(response), {
         headers: { 'content-type': 'application/json' },
       })
@@ -30,8 +33,8 @@ export const teampilotFunctionHandler = ({
 }: {
   functions: TeampilotCustomFunction<any>[]
 }) => {
-  return {
-    GET: jsonHandler(async () => {
+  const handler = jsonHandler(async (request: Request) => {
+    if (request.method === 'GET') {
       const descriptions = functions.map((fn) => {
         return {
           ...fn,
@@ -43,8 +46,7 @@ export const teampilotFunctionHandler = ({
       return {
         functions: descriptions,
       }
-    }),
-    POST: jsonHandler(async (request: Request) => {
+    } else if (request.method === 'POST') {
       const body = await request.json()
 
       const { functionName } = z
@@ -74,6 +76,12 @@ export const teampilotFunctionHandler = ({
       return {
         ...functionResult,
       }
-    }),
-  }
+    } else {
+      return new Response('Method not allowed', {
+        status: 405,
+      })
+    }
+  })
+
+  return handler
 }

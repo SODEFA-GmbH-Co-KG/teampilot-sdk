@@ -2,7 +2,7 @@ import { teampilotFunctionHandler } from "@teampilot/sdk"
 import { z } from "zod"
 import { fetchWikipediaArticle } from "~/client/examples/wikipedia/fetchWikipedia"
 
-export const { GET, POST } = teampilotFunctionHandler({
+const handler = teampilotFunctionHandler({
   functions: [
     {
       nameForAI: "fetchWikipediaArticle",
@@ -16,3 +16,6 @@ export const { GET, POST } = teampilotFunctionHandler({
     },
   ],
 })
+
+export const GET = handler
+export const POST = handler
