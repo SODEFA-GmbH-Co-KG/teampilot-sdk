@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "build:sdk": "turbo run build --filter @teampilot/sdk",
+    "dev": "pnpm build:sdk && turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "clean": "find . -name node_modules -exec rm -r {} \\;",
