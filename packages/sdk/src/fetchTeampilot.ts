@@ -1,6 +1,21 @@
 import { z } from 'zod'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
+type LocalizedString = string | { en: string; de: string }
+
+export type TeampilotCustomFunction<T extends z.Schema> = {
+  nameForAI: string
+  descriptionForAI: string
+  inputSchema: T
+  emoji?: string
+  nameForHuman?: LocalizedString
+  descriptionForHuman?: LocalizedString
+  releaseStatus?: string
+  categories?: string[]
+
+  execute: (input: z.infer<T>) => Promise<any>
+}
+
 export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   launchpadSlugId?: string
   message: string
@@ -9,6 +24,7 @@ export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   cacheTtlSeconds?: number | 'forever'
   chatroomId?: string
   accessLevel?: 'TEAM' | 'LINK_READ' | 'LINK_WRITE'
+  customFunctions?: TeampilotCustomFunction<any>[]
 } & Omit<RequestInit, 'body' | 'method'> & {
     // TODO: NextJS 13 overrides the global RequestInit type. But when this SDK is packaged it inlines the RequestInit type from the global scope. This is a workaround to enable usage with NextJS 13.
     next?: {
@@ -22,6 +38,7 @@ const createResponseSchema = <T extends z.Schema = z.ZodUndefined>(
 ) => {
   return z.object({
     message: z.object({
+      functionName: z.string().optional(),
       content: z.string().optional(),
       data: schema ?? z.undefined(),
     }),
@@ -67,6 +84,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
   cacheTtlSeconds,
   chatroomId,
   accessLevel,
+  customFunctions,
   ...requestOptions
 }: FetchTeampilotOptions<T>) => {
   if (!launchpadSlugId) {
@@ -111,6 +129,10 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
       cacheTtlSeconds,
       chatroomId,
       accessLevel,
+      customFunctions: customFunctions?.map((customFunction) => ({
+        ...customFunction,
+        inputSchema: transformZodToJsonSchema(customFunction.inputSchema),
+      })),
     }),
     ...requestOptions,
   })
