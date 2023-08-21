@@ -66,7 +66,7 @@ export const teampilotFunctionHandler = ({
 
       const functionResult = await fn
         .execute(input)
-        .then((data) => ({ data: JSON.stringify(data, null, 2) }))
+        .then((data) => ({ output: JSON.stringify(data, null, 2) }))
         .catch((error) => ({
           error: error?.message ?? error?.toString() ?? 'Unknown Error',
         }))
