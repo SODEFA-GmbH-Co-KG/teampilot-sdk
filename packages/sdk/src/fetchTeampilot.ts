@@ -1,17 +1,16 @@
 import { z } from 'zod'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
-type LocalizedString = string | { en: string; de: string }
-
+// type LocalizedString = string | { en: string; de: string }
 export type TeampilotCustomFunction<T extends z.Schema> = {
   nameForAI: string
   descriptionForAI: string
   inputSchema: T
-  emoji?: string
-  nameForHuman?: LocalizedString
-  descriptionForHuman?: LocalizedString
-  releaseStatus?: string
-  categories?: string[]
+  // emoji?: string
+  // nameForHuman?: LocalizedString
+  // descriptionForHuman?: LocalizedString
+  // releaseStatus?: string
+  // categories?: string[]
 
   execute: (input: z.infer<T>) => Promise<any>
 }
