@@ -83,5 +83,12 @@ export const teampilotFunctionHandler = ({
     }
   })
 
-  return handler
+  const overload: typeof handler & {
+    GET: typeof handler
+    POST: typeof handler
+  } = handler as any
+  overload.GET = handler
+  overload.POST = handler
+
+  return overload
 }
