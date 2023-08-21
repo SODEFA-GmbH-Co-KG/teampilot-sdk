@@ -12,7 +12,7 @@ export default async function Page() {
   const answer = await fetchTeampilot({
     url,
     launchpadSlugId,
-    message: "What time is it and whats the weather in Cologne?",
+    message: "What time is it and whats the weather in New York???",
     cacheTtlSeconds: 60,
     schema: z.object({
       hours: z.string(),
@@ -31,6 +31,7 @@ export default async function Page() {
           city: z.string(),
         }),
         execute: async () => {
+          throw new Error("Not so sunny")
           return {
             temperature: "20",
             description: "Sunny",

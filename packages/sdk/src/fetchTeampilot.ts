@@ -204,10 +204,15 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
       customFunctionsMaxExecutions: customFunctionsMaxExecutions - 1,
       chatroomId: parsed.data.chatroom.id,
       message:
-        'data' in functionResult ? functionResult.data : functionResult.error,
+        'data' in functionResult
+          ? functionResult.data
+          : JSON.stringify(functionResult.error),
       functionExecution: {
         name: customFunction.nameForAI,
-        error: 'error' in functionResult ? functionResult.error : undefined,
+        error:
+          'error' in functionResult
+            ? JSON.stringify(functionResult.error)
+            : undefined,
       },
     })
     return {
