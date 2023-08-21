@@ -83,12 +83,12 @@ export const Form = () => {
       </ShowCase>
       <ShowCase
         title="Custom Functions"
-        code={`import { z } from "zod"
-import { teampilot } from "~/teampilot"
+        code={`import { fetchTeampilotText } from "@teampilot/sdk"
+import { z } from "zod"
 import { fetchWikipediaArticle } from "./fetchWikipedia"
 
 export const Wikipedia = async () => {
-  const answer = await teampilot.default.fetchText({
+  const answer = await fetchTeampilotText({
     message: "How did Luna 25 land on the moon?",
     accessLevel: "LINK_WRITE",
     customFunctions: [
@@ -105,9 +105,7 @@ export const Wikipedia = async () => {
     ],
   })
   return answer
-}
-
-`}
+}`}
         layout="side-by-side"
       >
         <Wikipedia />
