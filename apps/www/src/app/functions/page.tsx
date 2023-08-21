@@ -1,5 +1,6 @@
 import { Form } from "~/client/examples/Form"
 import { Time } from "~/client/examples/Time"
+import { Wikipedia } from "~/client/examples/wikipedia/Wikipedia"
 import { ShowCase } from "~/client/ShowCase"
 
 export default function Page() {
@@ -79,6 +80,37 @@ export const Form = () => {
         layout="side-by-side"
       >
         <Form />
+      </ShowCase>
+      <ShowCase
+        title="Custom Functions"
+        code={`import { z } from "zod"
+import { teampilot } from "~/teampilot"
+import { fetchWikipediaArticle } from "./fetchWikipedia"
+
+export const Wikipedia = async () => {
+  const answer = await teampilot.default.fetchText({
+    message: "How did Luna 25 land on the moon?",
+    accessLevel: "LINK_WRITE",
+    customFunctions: [
+      {
+        nameForAI: "fetchWikipediaArticle",
+        descriptionForAI: "Fetches a Wikipedia article",
+        inputSchema: z.object({
+          articleName: z.string(),
+        }),
+        execute: async (input) => {
+          return await fetchWikipediaArticle(input.articleName)
+        },
+      },
+    ],
+  })
+  return answer
+}
+
+`}
+        layout="side-by-side"
+      >
+        <Wikipedia />
       </ShowCase>
     </>
   )
