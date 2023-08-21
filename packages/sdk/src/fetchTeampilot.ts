@@ -1,6 +1,22 @@
 import { z } from 'zod'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
+const DEFAULT_MAX_CUSTOM_FUNCTION_EXECUTIONS = 10
+
+// type LocalizedString = string | { en: string; de: string }
+export type TeampilotCustomFunction<T extends z.Schema> = {
+  nameForAI: string
+  descriptionForAI: string
+  inputSchema: T
+  // emoji?: string
+  // nameForHuman?: LocalizedString
+  // descriptionForHuman?: LocalizedString
+  // releaseStatus?: string
+  // categories?: string[]
+
+  execute: (input: z.infer<T>) => Promise<any>
+}
+
 export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   launchpadSlugId?: string
   message: string
@@ -9,6 +25,12 @@ export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   cacheTtlSeconds?: number | 'forever'
   chatroomId?: string
   accessLevel?: 'TEAM' | 'LINK_READ' | 'LINK_WRITE'
+  customFunctions?: TeampilotCustomFunction<any>[]
+  customFunctionsMaxExecutions?: number
+  functionExecution?: {
+    name: string
+    error?: string
+  }
 } & Omit<RequestInit, 'body' | 'method'> & {
     // TODO: NextJS 13 overrides the global RequestInit type. But when this SDK is packaged it inlines the RequestInit type from the global scope. This is a workaround to enable usage with NextJS 13.
     next?: {
@@ -22,6 +44,7 @@ const createResponseSchema = <T extends z.Schema = z.ZodUndefined>(
 ) => {
   return z.object({
     message: z.object({
+      functionName: z.string().optional(),
       content: z.string().optional(),
       data: schema ?? z.undefined(),
     }),
@@ -59,16 +82,23 @@ class TeampilotError<T extends z.Schema = z.ZodUndefined> extends Error {
 //   return error instanceof TeampilotError
 // }
 
-export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
-  launchpadSlugId,
-  message,
-  schema,
-  url: overrideUrl,
-  cacheTtlSeconds,
-  chatroomId,
-  accessLevel,
-  ...requestOptions
-}: FetchTeampilotOptions<T>) => {
+export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
+  options: FetchTeampilotOptions<T>
+): Promise<FetchTeampilotResponse<T>> => {
+  let {
+    launchpadSlugId,
+    message,
+    schema,
+    url: overrideUrl,
+    cacheTtlSeconds,
+    chatroomId,
+    accessLevel,
+    customFunctions,
+    customFunctionsMaxExecutions = DEFAULT_MAX_CUSTOM_FUNCTION_EXECUTIONS,
+    functionExecution,
+    ...requestOptions
+  } = options
+
   if (!launchpadSlugId) {
     launchpadSlugId =
       process.env.TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID ||
@@ -77,6 +107,12 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
   if (!launchpadSlugId) {
     throw new Error(
       'Provide a launchpadSlugId in the function call or in the environment variables via TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID or NEXT_PUBLIC_TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID'
+    )
+  }
+
+  if (customFunctions?.length && accessLevel !== 'LINK_WRITE') {
+    throw new Error(
+      `You need to set accessLevel to 'LINK_WRITE' when providing custom functions`
     )
   }
 
@@ -110,12 +146,17 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
       schema: schema ? transformZodToJsonSchema(schema) : null,
       cacheTtlSeconds,
       chatroomId,
-      accessLevel,
+      accessLevel: chatroomId ? undefined : accessLevel,
+      customFunctions: customFunctions?.map((customFunction) => ({
+        ...customFunction,
+        inputSchema: transformZodToJsonSchema(customFunction.inputSchema),
+      })),
+      functionExecution,
     }),
     ...requestOptions,
   })
 
-  const responseSchema = createResponseSchema(schema ?? z.undefined())
+  const responseSchema = createResponseSchema(z.any())
 
   if (!response.ok) {
     const error = await response.text()
@@ -131,7 +172,67 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>({
     throw new Error(parsed.error.message)
   }
 
-  return parsed.data
+  if (parsed.data.message.functionName) {
+    const customFunction = customFunctions?.find(
+      (f) => f.nameForAI === parsed.data.message.functionName
+    )
+    if (!customFunction) {
+      throw new Error(
+        `Custom function ${parsed.data.message.functionName} not found`
+      )
+    }
+    if (customFunctionsMaxExecutions <= 0) {
+      throw new Error(
+        `Custom function ${parsed.data.message.functionName} exceeded maximum number of executions`
+      )
+    }
+    const functionInput = parsed.data.message.data
+    const inputParsed = customFunction?.inputSchema?.safeParse(functionInput)
+    if (!inputParsed.success) {
+      throw new Error(`Function Input Schema Error: ${inputParsed.error}`)
+    }
+    const functionResult = await customFunction
+      .execute(inputParsed.data)
+      .then((data) => ({ data: JSON.stringify(data, null, 2) }))
+      .catch((error) => ({
+        error: error?.message ?? error?.toString() ?? 'Unknown Error',
+      }))
+
+    // Recursion:
+    const result = await fetchTeampilot({
+      ...options,
+      customFunctionsMaxExecutions: customFunctionsMaxExecutions - 1,
+      chatroomId: parsed.data.chatroom.id,
+      message:
+        'data' in functionResult
+          ? functionResult.data
+          : JSON.stringify(functionResult.error),
+      functionExecution: {
+        name: customFunction.nameForAI,
+        error:
+          'error' in functionResult
+            ? JSON.stringify(functionResult.error)
+            : undefined,
+      },
+    })
+    return {
+      ...result,
+      usage: {
+        teamTokens: result.usage.teamTokens + parsed.data.usage.teamTokens,
+      },
+    }
+  }
+
+  const parsedWithSchema = createResponseSchema(
+    schema ?? z.undefined()
+  ).safeParse(data)
+  if (!parsedWithSchema.success) {
+    console.error('Response:', data)
+    console.error(parsedWithSchema.error)
+    throw new Error(parsedWithSchema.error.message)
+  }
+
+  return parsedWithSchema.data as FetchTeampilotResponse<T>
 }
 
 export const fetchTeampilotData = async <T extends z.Schema>({

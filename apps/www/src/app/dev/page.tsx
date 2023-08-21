@@ -12,12 +12,33 @@ export default async function Page() {
   const answer = await fetchTeampilot({
     url,
     launchpadSlugId,
-    message: "What time is it?",
+    message: "What time is it and whats the weather in New York???",
     cacheTtlSeconds: 60,
     schema: z.object({
       hours: z.string(),
       minutes: z.string(),
+      weather: z.object({
+        temperature: z.number(),
+        description: z.string(),
+      }),
     }),
+    accessLevel: "LINK_WRITE",
+    customFunctions: [
+      {
+        nameForAI: "getWeather",
+        descriptionForAI: "Get the current weather",
+        inputSchema: z.object({
+          city: z.string(),
+        }),
+        execute: async () => {
+          throw new Error("Not so sunny")
+          return {
+            temperature: "20",
+            description: "Sunny",
+          }
+        },
+      },
+    ],
   })
 
   return (
