@@ -19,8 +19,3 @@ export async function fetchWikipediaArticle(articleTitle: string) {
     throw new Error(`HTTP error! status: ${response.status}`)
   }
 }
-
-// Use the function
-fetchWikipediaArticle("JavaScript")
-  .then((content) => console.log(content))
-  .catch((e) => console.error(e))
