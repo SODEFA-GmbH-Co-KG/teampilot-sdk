@@ -1,6 +1,8 @@
 import { z } from 'zod'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
+const DEFAULT_MAX_CUSTOM_FUNCTION_EXECUTIONS = 10
+
 // type LocalizedString = string | { en: string; de: string }
 export type TeampilotCustomFunction<T extends z.Schema> = {
   nameForAI: string
@@ -24,6 +26,7 @@ export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   chatroomId?: string
   accessLevel?: 'TEAM' | 'LINK_READ' | 'LINK_WRITE'
   customFunctions?: TeampilotCustomFunction<any>[]
+  customFunctionsMaxExecutions?: number
   functionExecution?: {
     name: string
     error?: string
@@ -91,6 +94,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     chatroomId,
     accessLevel,
     customFunctions,
+    customFunctionsMaxExecutions = DEFAULT_MAX_CUSTOM_FUNCTION_EXECUTIONS,
     functionExecution,
     ...requestOptions
   } = options
@@ -177,6 +181,11 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
         `Custom function ${parsed.data.message.functionName} not found`
       )
     }
+    if (customFunctionsMaxExecutions <= 0) {
+      throw new Error(
+        `Custom function ${parsed.data.message.functionName} exceeded maximum number of executions`
+      )
+    }
     const functionInput = parsed.data.message.data
     const inputParsed = customFunction?.inputSchema?.safeParse(functionInput)
     if (!inputParsed.success) {
@@ -192,6 +201,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     // Recursion:
     const result = await fetchTeampilot({
       ...options,
+      customFunctionsMaxExecutions: customFunctionsMaxExecutions - 1,
       chatroomId: parsed.data.chatroom.id,
       message:
         'data' in functionResult ? functionResult.data : functionResult.error,
