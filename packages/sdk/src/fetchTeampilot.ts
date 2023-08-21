@@ -107,6 +107,12 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     )
   }
 
+  if (customFunctions?.length && accessLevel !== 'LINK_WRITE') {
+    throw new Error(
+      `You need to set accessLevel to 'LINK_WRITE' when providing custom functions`
+    )
+  }
+
   const defaultCacheTtlSecondsEnv =
     process.env.TEAMPILOT_DEFAULT_CACHE_TTL_SECONDS ||
     process.env.NEXT_PUBLIC_TEAMPILOT_DEFAULT_CACHE_TTL_SECONDS
@@ -137,7 +143,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
       schema: schema ? transformZodToJsonSchema(schema) : null,
       cacheTtlSeconds,
       chatroomId,
-      accessLevel,
+      accessLevel: chatroomId ? undefined : accessLevel,
       customFunctions: customFunctions?.map((customFunction) => ({
         ...customFunction,
         inputSchema: transformZodToJsonSchema(customFunction.inputSchema),
