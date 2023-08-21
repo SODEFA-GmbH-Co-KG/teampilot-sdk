@@ -2,7 +2,7 @@ import { teampilotFunctionHandler } from "@teampilot/sdk"
 import { z } from "zod"
 import { fetchWikipediaArticle } from "~/client/examples/wikipedia/fetchWikipedia"
 
-export const { GET } = teampilotFunctionHandler({
+export const { GET, POST } = teampilotFunctionHandler({
   functions: [
     {
       nameForAI: "fetchWikipediaArticle",
