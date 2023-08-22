@@ -46,7 +46,9 @@ export const teampilotFunctionHandler = ({
       return {
         functions: descriptions,
       }
-    } else if (request.method === 'POST') {
+    }
+
+    if (request.method === 'POST') {
       const body = await request.json()
 
       const { functionName } = z
@@ -76,11 +78,11 @@ export const teampilotFunctionHandler = ({
       return {
         ...functionResult,
       }
-    } else {
-      return new Response('Method not allowed', {
-        status: 405,
-      })
     }
+
+    return new Response('Method not allowed', {
+      status: 405,
+    })
   })
 
   const overload: typeof handler & {
