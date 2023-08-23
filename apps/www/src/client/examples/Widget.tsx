@@ -3,6 +3,7 @@
 import { teampilotWidget } from "@teampilot/sdk"
 import { useEffect, useState } from "react"
 import { z } from "zod"
+import { Button } from "~/shadcn/components/ui/button"
 
 export const Widget = () => {
   const [color, setColor] = useState("#888888")
@@ -26,12 +27,35 @@ export const Widget = () => {
   return (
     <>
       <div
-        className="flex h-96 w-96 items-center justify-center rounded border text-3xl"
+        className="mb-2 flex h-72 w-72 items-center justify-center rounded border text-3xl"
         style={{
           backgroundColor: color,
         }}
       >
         {color}
+      </div>
+
+      <div className="flex flex-row gap-2 ">
+        <Button
+          className="flex-1"
+          onClick={() => {
+            teampilotWidget.sendMessage({
+              message: "Make the square blue",
+            })
+          }}
+        >
+          Blue
+        </Button>
+        <Button
+          className="flex-1"
+          onClick={() => {
+            teampilotWidget.sendMessage({
+              message: "Make the square red",
+            })
+          }}
+        >
+          Red
+        </Button>
       </div>
 
       <script
