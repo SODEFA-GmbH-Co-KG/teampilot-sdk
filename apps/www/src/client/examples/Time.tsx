@@ -28,7 +28,7 @@ export const Time = () => {
         </div>
         <div className="text-6xl font-bold">
           <span>{answer.hours}</span>
-          <span className="opacity-40">:</span>
+          <span className="text-primary">:</span>
           <span>{answer.minutes}</span>
         </div>
         <div>{answer.timezone}</div>

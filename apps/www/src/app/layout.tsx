@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                   <TeampilotLogo className="h-8 w-8" />
                   <div className="text-xl">
                     <strong>
-                      Teampilot <span className="text-[#F55E00]">SDK</span>
+                      Teampilot <span className="text-primary">SDK</span>
                     </strong>
                   </div>
                 </Link>

@@ -19,10 +19,10 @@ export const MultipleAssistants = () => {
   return (
     <>
       <div>
-        <strong>Default:</strong>
+        <strong className="text-primary">Default</strong>
         <div>{defaultAnswer}</div>
         <br />
-        <strong>Expert:</strong>
+        <strong className="text-primary">Expert</strong>
         <div>{expertAnswer}</div>
       </div>
     </>

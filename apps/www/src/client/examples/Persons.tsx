@@ -28,7 +28,8 @@ export const Persons = async () => {
         <Card key={idx}>
           <CardHeader>
             <CardTitle>
-              <span>{p.firstName}</span> <strong>{p.lastName}</strong>
+              <span>{p.firstName}</span>{" "}
+              <strong className="text-primary">{p.lastName}</strong>
             </CardTitle>
             <div className="font-mono">{p.dateOfBirth}</div>
           </CardHeader>
