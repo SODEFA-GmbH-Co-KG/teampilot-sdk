@@ -1,39 +1,28 @@
 "use client"
 
-import { transformZodToJsonSchema } from "@teampilot/sdk"
+import { teampilotWidget } from "@teampilot/sdk"
 import { useEffect, useState } from "react"
 import { z } from "zod"
 import { Heading } from "~/client/Heading"
 
 export default async function Page() {
-  const [color, setColor] = useState("firebrick")
+  const [color, setColor] = useState("#888888")
 
   useEffect(() => {
-    if (typeof window === "undefined") return
-    const widget = (window as any).teampilot
-
-    widget.registerFunction({
-      function: {
-        nameForAI: "changeColor",
-        descriptionForAI: "Change the color of the square using hex codes",
-        inputSchema: transformZodToJsonSchema(
-          z.object({
-            color: z.string(),
-          })
-        ),
-        execute: async ({ input }: any) => {
-          setColor(input.color)
-          return {
-            output: `Changed color to ${input.color}`,
-          }
-        },
+    return teampilotWidget.registerFunction({
+      nameForAI: "changeColor",
+      descriptionForAI: "Change the color of the square using hex codes",
+      inputSchema: z.object({
+        color: z.string(),
+      }),
+      execute: async ({ input }: any) => {
+        setColor(input.color)
+        return {
+          output: `Changed color to ${input.color}`,
+        }
       },
     })
-
-    return () => {
-      widget.unregisterFunction("changeColor")
-    }
-  })
+  }, [])
 
   return (
     <>
