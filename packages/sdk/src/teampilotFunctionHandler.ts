@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { TeampilotCustomFunction } from './fetchTeampilot'
+import { TeampilotCustomFunction } from './TeampilotCustomFunction'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
 const jsonHandler = (

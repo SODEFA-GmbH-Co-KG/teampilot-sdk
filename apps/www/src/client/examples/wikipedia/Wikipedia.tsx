@@ -14,7 +14,8 @@ export const Wikipedia = async () => {
           articleName: z.string(),
         }),
         execute: async (input) => {
-          return await fetchWikipediaArticle(input.articleName)
+          const output = await fetchWikipediaArticle(input.articleName)
+          return { output }
         },
       },
     ],
