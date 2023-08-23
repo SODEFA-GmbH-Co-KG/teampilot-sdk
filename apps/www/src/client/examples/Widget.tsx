@@ -15,7 +15,7 @@ export const Widget = () => {
       inputSchema: z.object({
         color: z.string(),
       }),
-      execute: async ({ input }: any) => {
+      execute: async ({ input }) => {
         setColor(input.color)
         return {
           output: `Changed color to ${input.color}`,

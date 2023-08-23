@@ -15,7 +15,9 @@ export type CustomWidgetFunction<T extends z.Schema> = {
   nameForAI: string
   descriptionForAI: string
   inputSchema: T
-  execute: (input: z.infer<T>) => Promise<undefined | { output: any }>
+  execute: (options: {
+    input: z.infer<T>
+  }) => Promise<undefined | { output: any }>
 }
 
 export const teampilotWidget = {
