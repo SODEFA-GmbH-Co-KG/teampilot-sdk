@@ -23,7 +23,7 @@ export const ShowCaseSideBySide = ({
         <ArrowDown className="h-8 w-8 self-center lg:-rotate-90" />
         <Card
           className={cn(
-            "flex flex-1 flex-col justify-center bg-accent p-4",
+            "flex flex-1 flex-col justify-center rounded bg-secondary p-4",
 
             {
               "items-center": align === "center",

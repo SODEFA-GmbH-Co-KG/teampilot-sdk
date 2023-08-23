@@ -27,7 +27,7 @@ export const Widget = () => {
   return (
     <>
       <div
-        className="flex h-72 w-72 items-center justify-center rounded-md border text-3xl"
+        className="flex h-80 w-80 items-center justify-center rounded-md border text-3xl"
         style={{
           backgroundColor: color,
         }}
@@ -37,6 +37,7 @@ export const Widget = () => {
 
       <div className="mt-2 flex flex-row gap-2">
         <Button
+          variant="outline"
           className="flex-1"
           onClick={() => {
             teampilotWidget.sendMessage({
@@ -47,6 +48,7 @@ export const Widget = () => {
           Blue as the sky
         </Button>
         <Button
+          variant="outline"
           className="flex-1"
           onClick={() => {
             teampilotWidget.sendMessage({
