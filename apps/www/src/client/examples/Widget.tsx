@@ -40,21 +40,21 @@ export const Widget = () => {
           className="flex-1"
           onClick={() => {
             teampilotWidget.sendMessage({
-              message: "Make the square blue",
+              message: "Make the square blue as the sky",
             })
           }}
         >
-          Blue
+          Blue as the sky
         </Button>
         <Button
           className="flex-1"
           onClick={() => {
             teampilotWidget.sendMessage({
-              message: "Make the square red",
+              message: "Make the square red like a flower",
             })
           }}
         >
-          Red
+          Red like a flower
         </Button>
       </div>
 
