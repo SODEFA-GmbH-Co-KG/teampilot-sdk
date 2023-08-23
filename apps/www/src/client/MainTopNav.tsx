@@ -26,6 +26,10 @@ const entries = [
     name: "Media",
     href: "/media",
   },
+  {
+    name: "Widget",
+    href: "/widget",
+  },
   // {
   //   name: "Todo",
   //   href: "/todo-app",
