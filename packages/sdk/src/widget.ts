@@ -5,7 +5,7 @@ const getWidget = async (): Promise<any> => {
   if (typeof window === 'undefined') return
   const widget = (window as any).teampilot
   if (!widget) {
-    await new Promise((res) => setTimeout(res, 100))
+    await new Promise((res) => setTimeout(res, 0))
     return await getWidget()
   }
   return widget

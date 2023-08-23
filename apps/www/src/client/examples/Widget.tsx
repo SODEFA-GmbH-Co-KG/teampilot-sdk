@@ -27,7 +27,7 @@ export const Widget = () => {
   return (
     <>
       <div
-        className="mb-2 flex h-72 w-72 items-center justify-center rounded border text-3xl"
+        className="flex h-72 w-72 items-center justify-center rounded-md border text-3xl"
         style={{
           backgroundColor: color,
         }}
@@ -35,7 +35,7 @@ export const Widget = () => {
         {color}
       </div>
 
-      <div className="flex flex-row gap-2 ">
+      <div className="mt-2 flex flex-row gap-2">
         <Button
           className="flex-1"
           onClick={() => {
