@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 import { TeampilotCustomFunction } from './TeampilotCustomFunction'
+import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
 const DEFAULT_MAX_CUSTOM_FUNCTION_EXECUTIONS = 10
 
@@ -179,7 +179,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
       throw new Error(`Function Input Schema Error: ${inputParsed.error}`)
     }
     const functionResult = await customFunction
-      .execute(inputParsed.data)
+      .execute({ input: inputParsed.data })
       .catch((error) => ({
         error: error?.message ?? error?.toString() ?? 'Unknown Error',
       }))

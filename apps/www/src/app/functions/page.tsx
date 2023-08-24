@@ -98,7 +98,7 @@ export const Wikipedia = async () => {
         inputSchema: z.object({
           articleName: z.string(),
         }),
-        execute: async (input) => {
+        execute: async ({ input }) => {
           const output = await fetchWikipediaArticle(input.articleName)
           return { output }
         },
