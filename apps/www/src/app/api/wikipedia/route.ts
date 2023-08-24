@@ -10,7 +10,7 @@ export const { GET, POST } = teampilotFunctionHandler({
       inputSchema: z.object({
         articleName: z.string(),
       }),
-      execute: async (input) => {
+      execute: async ({ input }) => {
         return await fetchWikipediaArticle(input.articleName)
       },
     },

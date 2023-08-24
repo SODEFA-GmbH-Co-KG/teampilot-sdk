@@ -31,10 +31,12 @@ export default async function Page() {
           city: z.string(),
         }),
         execute: async () => {
-          throw new Error("Not so sunny")
+          // throw new Error("Not so sunny")
           return {
-            temperature: "20",
-            description: "Sunny",
+            output: {
+              temperature: "20",
+              description: "Sunny",
+            },
           }
         },
       },

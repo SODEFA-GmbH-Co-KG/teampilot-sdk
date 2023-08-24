@@ -9,12 +9,13 @@ export const Wikipedia = async () => {
     customFunctions: [
       {
         nameForAI: "fetchWikipediaArticle",
-        descriptionForAI: "Fetches a Wikipedia article",
+        descriptionForAI: "Fetch a Wikipedia article",
         inputSchema: z.object({
           articleName: z.string(),
         }),
-        execute: async (input) => {
-          return await fetchWikipediaArticle(input.articleName)
+        execute: async ({ input }) => {
+          const output = await fetchWikipediaArticle(input.articleName)
+          return { output }
         },
       },
     ],

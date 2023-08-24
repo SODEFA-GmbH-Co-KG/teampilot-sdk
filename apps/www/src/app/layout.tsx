@@ -38,7 +38,9 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                 <Link href="/" className="flex flex-row items-center gap-3">
                   <TeampilotLogo className="h-8 w-8" />
                   <div className="text-xl">
-                    <strong>Teampilot SDK</strong>
+                    <strong>
+                      Teampilot <span className="text-primary">SDK</span>
+                    </strong>
                   </div>
                 </Link>
                 <div className="hidden flex-1 xl:flex">

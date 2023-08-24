@@ -1,21 +1,8 @@
 import { z } from 'zod'
+import { TeampilotCustomFunction } from './TeampilotCustomFunction'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
 const DEFAULT_MAX_CUSTOM_FUNCTION_EXECUTIONS = 10
-
-// type LocalizedString = string | { en: string; de: string }
-export type TeampilotCustomFunction<T extends z.Schema> = {
-  nameForAI: string
-  descriptionForAI: string
-  inputSchema: T
-  // emoji?: string
-  // nameForHuman?: LocalizedString
-  // descriptionForHuman?: LocalizedString
-  // releaseStatus?: string
-  // categories?: string[]
-
-  execute: (input: z.infer<T>) => Promise<any>
-}
 
 export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   launchpadSlugId?: string
@@ -192,8 +179,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
       throw new Error(`Function Input Schema Error: ${inputParsed.error}`)
     }
     const functionResult = await customFunction
-      .execute(inputParsed.data)
-      .then((data) => ({ data: JSON.stringify(data, null, 2) }))
+      .execute({ input: inputParsed.data })
       .catch((error) => ({
         error: error?.message ?? error?.toString() ?? 'Unknown Error',
       }))
@@ -204,14 +190,14 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
       customFunctionsMaxExecutions: customFunctionsMaxExecutions - 1,
       chatroomId: parsed.data.chatroom.id,
       message:
-        'data' in functionResult
-          ? functionResult.data
-          : JSON.stringify(functionResult.error),
+        'error' in functionResult
+          ? JSON.stringify(functionResult.error, null, 2)
+          : JSON.stringify(functionResult.output, null, 2),
       functionExecution: {
         name: customFunction.nameForAI,
         error:
           'error' in functionResult
-            ? JSON.stringify(functionResult.error)
+            ? JSON.stringify(functionResult.error, null, 2)
             : undefined,
       },
     })

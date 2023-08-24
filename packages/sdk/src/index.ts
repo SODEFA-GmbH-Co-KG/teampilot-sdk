@@ -1,3 +1,4 @@
+export { type TeampilotCustomFunction } from './TeampilotCustomFunction'
 export {
   fetchTeampilot,
   fetchTeampilotData,
@@ -6,3 +7,4 @@ export {
 export { createTeampilotClient } from './proxy'
 export { teampilotFunctionHandler } from './teampilotFunctionHandler'
 export { transformZodToJsonSchema } from './transformZodToJsonSchema'
+export { teampilotWidget } from './widget'

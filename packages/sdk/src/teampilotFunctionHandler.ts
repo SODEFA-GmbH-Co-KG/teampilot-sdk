@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { TeampilotCustomFunction } from './fetchTeampilot'
+import { TeampilotCustomFunction } from './TeampilotCustomFunction'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
 const jsonHandler = (
@@ -69,7 +69,7 @@ export const teampilotFunctionHandler = ({
         .parse(body)
 
       const functionResult = await fn
-        .execute(input)
+        .execute({ input })
         .then((data) => ({ output: JSON.stringify(data, null, 2) }))
         .catch((error) => ({
           error: error?.message ?? error?.toString() ?? 'Unknown Error',
