@@ -62,9 +62,9 @@ export const Widget = () => {
 
       <script
         defer
-        src="http://localhost:3000/widget.js"
+        src="https://teampilot.ai/widget.js"
         data-launchpad-slug-id={
-          process.env.NEXT_PUBLIC_LAUNCHPAD_SLUG_ID_LOCAL!
+          process.env.NEXT_PUBLIC_TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID!
         }
       />
     </>
