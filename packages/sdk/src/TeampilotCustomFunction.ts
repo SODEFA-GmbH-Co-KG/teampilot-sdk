@@ -11,5 +11,5 @@ export type TeampilotCustomFunction<T extends z.Schema> = {
   // releaseStatus?: string
   // categories?: string[]
 
-  execute: (input: z.infer<T>) => Promise<{ output: any }>
+  execute: (options: { input: z.infer<T> }) => Promise<{ output: any }>
 }
