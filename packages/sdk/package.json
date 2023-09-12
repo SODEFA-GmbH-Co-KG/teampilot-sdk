@@ -9,7 +9,8 @@
   "homepage": "https://sdk.teampilot.ai/",
   "repository": "https://github.com/SODEFA-GmbH-Co-KG/teampilot-sdk",
   "scripts": {
-    "build": "tsup ./src/index.ts --format esm,cjs --dts",
+    "dev": "tsup --watch",
+    "build": "tsup",
     "build-and-publish": "pnpm run build && cp ../../README.md README.md && npm publish --access public"
   },
   "keywords": [],
