@@ -1,7 +1,14 @@
 import { type z } from 'zod'
 
 export type OpenAIFunctionParameters = {
-  type: 'object' | 'array' | 'string' | 'undefined' | 'number' | 'null'
+  type:
+    | 'object'
+    | 'array'
+    | 'string'
+    | 'undefined'
+    | 'number'
+    | 'null'
+    | 'boolean'
   description?: string
   enum?: string[]
   properties?: Record<string, OpenAIFunctionParameters>
@@ -33,6 +40,9 @@ const isZodEnum = (schema: z.Schema<unknown>): schema is z.ZodEnum<any> => {
 }
 const isZodArray = (schema: z.Schema<unknown>): schema is z.ZodArray<any> => {
   return getZodType(schema) === 'ZodArray'
+}
+const isZodBoolean = (schema: z.Schema<unknown>): schema is z.ZodBoolean => {
+  return getZodType(schema) === 'ZodBoolean'
 }
 const isZodOptional = (
   schema: z.Schema<unknown>
@@ -84,6 +94,11 @@ export function transformZodToJsonSchema(
   } else if (isZodNumber(schema)) {
     return {
       type: 'number',
+      description: schema.description,
+    }
+  } else if (isZodBoolean(schema)) {
+    return {
+      type: 'boolean',
       description: schema.description,
     }
   } else if (isZodDefault(schema) || isZodOptional(schema)) {
