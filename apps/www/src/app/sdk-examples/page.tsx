@@ -42,7 +42,7 @@ export default function Page() {
       <ReactMarkdown>{customfunctionsMarkdown}</ReactMarkdown>
 
       <ShowCase
-        file="/src/client/examples/Wikipedia//Wikipedia.tsx"
+        file="/src/client/examples/wikipedia/Wikipedia.tsx"
         layout="side-by-side"
       >
         <Wikipedia />
