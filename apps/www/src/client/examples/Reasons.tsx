@@ -13,6 +13,7 @@ export const Reasons = async () => {
       })
     ),
   })
+
   return (
     <ul className="space-y-4">
       {reasons.map((reason, idx) => (
