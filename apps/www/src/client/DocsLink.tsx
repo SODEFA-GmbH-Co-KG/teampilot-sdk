@@ -71,7 +71,7 @@ export const DocsLinksGrid = ({
   destinations: (typeof docPages)[number]["href"][]
 }) => {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
       {destinations.map((destination) => (
         <DocsLink key={destination} destination={destination} />
       ))}

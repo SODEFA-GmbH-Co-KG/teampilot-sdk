@@ -35,10 +35,7 @@ export function MainSideNav({
 
   return (
     <nav
-      className={cn(
-        "sticky top-8 flex min-w-[120px] flex-col gap-3",
-        className
-      )}
+      className={cn("sticky top-8 flex flex-col gap-3", className)}
       {...props}
     >
       {docPagesCategorized.map((category) => (
