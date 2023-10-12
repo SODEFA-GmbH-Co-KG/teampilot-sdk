@@ -16,7 +16,7 @@ For example you could use Teampilot to generate a text for your web page or gene
 ## Integrate your product into Teampilot
 In Teampilot, there are things called **functions**. Functions are like small programs that Teampilot can use. For example, GPT isn't good at maths, so there's a function called **calculator** that GPT can use to do the math. Or a function that can visit a website.
 
-With the Teampilot SDK, you can create and connect your own functions to Teampilot. So, for example, you could make a function that can get user data from your database and give it to Teampilot. Then, your Support team could ask Teampilot when a user named "John Doh" last paid. Teampilot would then call your function, your function would find the data from your database and give it back to Teampilot. Teampilot would then answer the question using the info from your function.
+With the Teampilot SDK, you can create and connect your own functions to Teampilot. So, for example, you could make a function that can get user data from your database and give it to Teampilot. Then, your Support team could ask Teampilot when a user named "John Doe" last paid. Teampilot would then call your function, your function would find the data from your database and give it back to Teampilot. Teampilot would then answer the question using the info from your function.
 `
 
 export default function Page() {

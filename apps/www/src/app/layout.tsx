@@ -3,7 +3,7 @@ import { Github } from "lucide-react"
 import Link from "next/link"
 import { type ReactNode } from "react"
 import { DarkModeToggle } from "~/client/DarkModeToggle"
-import { MainSideNav } from "~/client/MainSideNav"
+import { MainSideNav, MainSideNavMobile } from "~/client/MainSideNav"
 import { MainTopNav } from "~/client/MainTopNav"
 import { SuspenseLoader } from "~/client/SuspenseLoader"
 import { TeampilotLogo } from "~/client/TeampilotLogo"
@@ -57,6 +57,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                     </Button>
                   </Link>
                   <DarkModeToggle />
+                  <MainSideNavMobile />
                 </div>
               </div>
               {/* <div className="container flex pb-6 xl:hidden 2xl:max-w-[2000px]">

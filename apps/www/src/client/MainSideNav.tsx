@@ -1,7 +1,11 @@
 "use client"
 
+import { Menu } from "lucide-react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
+import { Button } from "~/shadcn/components/ui/button"
+import { Sheet, SheetContent, SheetTrigger } from "~/shadcn/components/ui/sheet"
 import { cn } from "~/shadcn/utils"
 import { docPages } from "./DocsLink"
 
@@ -27,17 +31,11 @@ const docPagesCategorized: {
   },
 ]
 
-export function MainSideNav({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLElement>) {
+const SideNavCore = ({}) => {
   const pathname = usePathname()
 
   return (
-    <nav
-      className={cn("sticky top-8 flex flex-col gap-3", className)}
-      {...props}
-    >
+    <div>
       {docPagesCategorized.map((category) => (
         <div key={category.categoryName}>
           <div className="py-1 text-sm font-medium">
@@ -64,26 +62,41 @@ export function MainSideNav({
           </div>
         </div>
       ))}
-      {/* {docPages.map((entry) => {
-        const isActive =
-          // @ts-expect-error href can be "/" in the future
-          entry.href === "/"
-            ? // @ts-expect-error href can be "/" in the future
-              pathname === entry.href
-            : pathname?.startsWith(entry.href)
-        return (
-          <Link
-            key={entry.href}
-            href={entry.href}
-            className={cn(
-              "text-sm font-medium transition-colors hover:text-primary",
-              !isActive && "text-muted-foreground"
-            )}
-          >
-            {entry.name}
-          </Link>
-        )
-      })} */}
+    </div>
+  )
+}
+
+export function MainSideNav({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLElement>) {
+  return (
+    <nav className={cn("flex flex-col gap-3", className)} {...props}>
+      <SideNavCore />
     </nav>
+  )
+}
+
+export const MainSideNavMobile = ({}) => {
+  const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname, searchParams])
+
+  return (
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger>
+        <Button className="md:hidden" variant={"ghost"} size="icon">
+          <Menu />
+        </Button>
+      </SheetTrigger>
+      <SheetContent>
+        <nav className={cn("sticky top-8 flex flex-col gap-3")}>
+          <SideNavCore />
+        </nav>
+      </SheetContent>
+    </Sheet>
   )
 }
