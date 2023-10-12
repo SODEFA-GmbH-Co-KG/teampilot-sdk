@@ -22,6 +22,12 @@ export const docPages = [
     description: "What happens when you fetch Teampilot.",
   },
   {
+    name: "Caching",
+    href: "/caching",
+    description:
+      "Teampilot has build in caching to speed up your duplicated requests and reduce your costs.",
+  },
+  {
     name: "Fetching via API",
     href: "/fetching-via-api",
     description: "How to fetch Teampilot via the API.",

@@ -1,6 +1,7 @@
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { CodeBlock } from "~/client/CodeBlock"
+import { DocsLinksGrid } from "~/client/DocsLink"
 import { CopyNpmCommandButton } from "~/shadcn/components/copy-button"
 
 const markdown = `
@@ -10,11 +11,11 @@ The Teampilot SDK is a wrapper around the API and makes working with it in Types
 The core of the SDK is the **fetchTeampilot** function. This is the primary gateway to Teampilot, it handles every request.
 Then there are 3 sub functions that provide a nicer output depending on your needs.
 There is **fetchTeampilotData** which just returns the data you requested in the specified format (specified by the schema you passed in).
-Then we have **fetchTeampilotText** which returns the text.
+Then we have **fetchTeampilotText** which only returns the text Teampilot has generated.
 And then there is **fetchTeampilotMedia** which returns the first media attachment.
 
 So if you really only care about the generated result such as the text or the data, you can use one of the sub functions.
-If you care about any additional information such as the chatroom or the usage, you can use the main function.
+If you care about any additional information such as the generated chatroomId or the usage, you can use the main function.
 
 The input parameters are all the same for the main function and the sub functions.
 
@@ -51,6 +52,8 @@ export default function Page() {
       />
       <div className="h-6" />
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+
+      <DocsLinksGrid destinations={["/sdk-examples"]} />
     </div>
   )
 }
