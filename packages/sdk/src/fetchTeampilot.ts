@@ -51,6 +51,7 @@ const createResponseSchema = <T extends z.Schema = z.ZodUndefined>(
       id: z.string(),
       url: z.string(),
     }),
+    cachedAt: z.string().optional(),
   })
 }
 
