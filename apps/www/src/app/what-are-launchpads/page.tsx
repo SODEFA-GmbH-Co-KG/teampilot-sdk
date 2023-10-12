@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown"
+import { DocsLinksGrid } from "~/client/DocsLink"
 
 const markdown = `
 # Understanding Launchpads in Teampilot
@@ -35,6 +36,8 @@ export default function Page() {
   return (
     <div className="prose max-w-none dark:prose-invert">
       <ReactMarkdown>{markdown}</ReactMarkdown>
+
+      <DocsLinksGrid destinations={["/fetching-teampilot"]} />
     </div>
   )
 }

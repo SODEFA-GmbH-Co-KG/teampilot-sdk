@@ -3,37 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "~/shadcn/utils"
-
-const entries = [
-  {
-    name: "Getting started",
-    href: "/introduction",
-  },
-  {
-    name: "Into your Product",
-    href: "/teampilot-into-your-product",
-  },
-  {
-    name: "Launchpads",
-    href: "/what-are-launchpads",
-  },
-  {
-    name: "Fetching Teampilot",
-    href: "/fetching-teampilot",
-  },
-  {
-    name: "Fetching via API",
-    href: "/fetching-via-api",
-  },
-  {
-    name: "Fetching via SDK",
-    href: "/fetching-via-sdk",
-  },
-  {
-    name: "SDK Examples",
-    href: "/sdk-examples",
-  },
-]
+import { docPages } from "./DocsLink"
 
 export function MainSideNav({
   className,
@@ -49,10 +19,12 @@ export function MainSideNav({
       )}
       {...props}
     >
-      {entries.map((entry) => {
+      {docPages.map((entry) => {
         const isActive =
+          // @ts-expect-error href can be "/" in the future
           entry.href === "/"
-            ? pathname === entry.href
+            ? // @ts-expect-error href can be "/" in the future
+              pathname === entry.href
             : pathname?.startsWith(entry.href)
         return (
           <Link

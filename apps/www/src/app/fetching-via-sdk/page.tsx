@@ -23,7 +23,7 @@ The input parameters are all the same for the main function and the sub function
 | --- | --- | --- | --- |
 | launchpadSlugId | Specified in the env vars by setting TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID | The ID of the launchpad you want to use | Yes (unless default is set) |
 | message | | The message that gets sent to the AI | Yes |
-| schema | | The Zod schema for the response | No |
+| schema | | The Zod schema which defines in which format you want the response | No |
 | cacheTtlSeconds | Specified in the env vars by setting TEAMPILOT_DEFAULT_CACHE_TTL_SECONDS or forever | The time in seconds results should be cached. The results are cached by your request parameters, so if you send the same request twice, the cache is triggered. Setting to 0 disables caching. Can also be set to 'forever' | No |
 | chatroomId | | If not set, a new chat is created. If you specify an existing chat, the message will be sent in that chat | No |
 | accessLevel | TEAM | If a new chat is generated, this sets the access level. Options are 'TEAM' (only team members can view the chat), 'LINK_READ' (anyone with the link can read the chat), and 'LINK_WRITE' (anyone with the link can read and write in the chat) | No |

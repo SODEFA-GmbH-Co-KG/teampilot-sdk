@@ -1,10 +1,11 @@
 import ReactMarkdown from "react-markdown"
+import { DocsLinksGrid } from "~/client/DocsLink"
 const markdown = `
 # **Welcome to Teampilot**
 
 Teampilot is like ChatGPT, but it comes with more cool stuff like documents, functions, and multiplayer features. 
 
-# What can I do with the Teampilot SDK?
+## What can I do with the Teampilot SDK?
 The Teampilot SDK can be broken down into 2 parts:
 **Integrate Teampilot into your product** and **Integrate your product into Teampilot**
 
@@ -22,6 +23,8 @@ export default function Page() {
   return (
     <div className="prose max-w-none dark:prose-invert">
       <ReactMarkdown className="w-full">{markdown}</ReactMarkdown>
+
+      <DocsLinksGrid destinations={["/teampilot-into-your-product"]} />
     </div>
   )
 }

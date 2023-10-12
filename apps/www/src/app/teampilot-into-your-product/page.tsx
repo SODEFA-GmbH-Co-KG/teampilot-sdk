@@ -1,9 +1,9 @@
 import ReactMarkdown from "react-markdown"
+import { DocsLinksGrid } from "~/client/DocsLink"
 import { ShowCase } from "~/client/ShowCase"
 import { Reasons } from "~/client/examples/Reasons"
 
-const markdown = 
-`
+const markdown = `
 # **Integrating Teampilot into Your Product**
 
 Integrating Teampilot into your product implies the extraction of data from Teampilot and leveraging it within your own product.
@@ -13,15 +13,14 @@ For better understanding, let's consider an example. We will prompt Teampilot to
 
 export default function Page() {
   return (
-      <div className="prose dark:prose-invert max-w-none">
-        <ReactMarkdown>{markdown}</ReactMarkdown>
+    <div className="prose max-w-none dark:prose-invert">
+      <ReactMarkdown>{markdown}</ReactMarkdown>
 
-        <ShowCase
-          file="/src/client/examples/Reasons.tsx"
-          layout="side-by-side"
-        >
-          <Reasons />
-        </ShowCase>
-      </div>
+      <ShowCase file="/src/client/examples/Reasons.tsx" layout="side-by-side">
+        <Reasons />
+      </ShowCase>
+
+      <DocsLinksGrid destinations={["/what-are-launchpads"]} />
+    </div>
   )
 }
