@@ -17,12 +17,14 @@ const docPagesCategorized: {
     categoryName: "Teampilot for Developers",
     pages: [
       "/introduction",
+      "/your-product-into-teampilot",
       "/teampilot-into-your-product",
       "/what-are-launchpads",
       "/fetching-teampilot",
       "/caching",
       "/fetching-via-api",
       "/fetching-via-sdk",
+      "/custom-functions",
     ],
   },
   {

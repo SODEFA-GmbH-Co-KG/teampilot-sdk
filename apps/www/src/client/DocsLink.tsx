@@ -7,7 +7,12 @@ export const docPages = [
     description: "What is Teampilot and what can you do with it?",
   },
   {
-    name: "Into your Product",
+    name: "Your Product into Teampilot",
+    href: "/your-product-into-teampilot",
+    description: "How to integrate your product into Teampilot.",
+  },
+  {
+    name: "Teampilot into your Product",
     href: "/teampilot-into-your-product",
     description: "How to integrate Teampilot into your product.",
   },
@@ -36,6 +41,11 @@ export const docPages = [
     name: "Fetching via SDK",
     href: "/fetching-via-sdk",
     description: "How to fetch Teampilot via the SDK.",
+  },
+  {
+    name: "Custom Functions",
+    href: "/custom-functions",
+    description: "Give Teampilot access to your data and functions.",
   },
   {
     name: "SDK Examples",

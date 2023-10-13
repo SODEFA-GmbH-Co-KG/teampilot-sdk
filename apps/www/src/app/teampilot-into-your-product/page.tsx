@@ -4,7 +4,7 @@ import { ShowCase } from "~/client/ShowCase"
 import { Reasons } from "~/client/examples/Reasons"
 
 const markdown = `
-# **Integrating Teampilot into Your Product**
+# Integrating Teampilot into Your Product
 
 Integrating Teampilot into your product implies the extraction of data from Teampilot and leveraging it within your own product.
 
