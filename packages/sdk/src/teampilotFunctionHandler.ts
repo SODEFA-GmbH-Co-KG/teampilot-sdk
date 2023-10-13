@@ -30,16 +30,19 @@ const jsonHandler = (
 
 export const teampilotFunctionHandler = ({
   functions,
-  apiKey,
+  functionSecret,
   checkAuthorization,
 }: {
   functions: TeampilotCustomFunction<any>[]
-  apiKey?: string
+  functionSecret?: string
   checkAuthorization?: (request: Request) => Promise<boolean>
 }) => {
   const handler = jsonHandler(async (request: Request) => {
     const authorizationChecker = async () => {
-      if (apiKey && request.headers.get('x-api-key') !== apiKey) {
+      if (
+        functionSecret &&
+        request.headers.get('x-function-secret') !== functionSecret
+      ) {
         return false
       }
 
