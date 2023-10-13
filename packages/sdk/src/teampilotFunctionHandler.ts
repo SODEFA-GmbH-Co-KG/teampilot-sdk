@@ -39,29 +39,33 @@ export const teampilotFunctionHandler = ({
 }) => {
   const handler = jsonHandler(async (request: Request) => {
     const authorizationChecker = async () => {
-      if (checkAuthorization) {
-        return await checkAuthorization(request)
+      if (apiKey && request.headers.get('x-api-key') !== apiKey) {
+        return false
       }
 
-      if (apiKey) {
-        return request.headers.get('x-api-key') === apiKey
+      if (checkAuthorization) {
+        const allowed = await checkAuthorization(request)
+        if (!allowed) {
+          return false
+        }
       }
 
       return true
     }
 
-    const forbiddenResponse = new Response('Forbidden', {
-      status: 403,
-    })
+    const forbiddenResponse = () =>
+      new Response('Forbidden', {
+        status: 403,
+      })
 
     try {
       const allowed = await authorizationChecker()
       if (!allowed) {
-        return forbiddenResponse
+        return forbiddenResponse()
       }
     } catch (error) {
       console.log('Error while checking the authorization', error)
-      return forbiddenResponse
+      return forbiddenResponse()
     }
 
     if (request.method === 'GET') {
