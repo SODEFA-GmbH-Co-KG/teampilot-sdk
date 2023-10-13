@@ -102,9 +102,11 @@ export const teampilotFunctionHandler = ({
         })
         .parse(body)
 
-      const functionResult = await fn.execute({ input }).catch((error) => ({
-        error: error?.message ?? error?.toString() ?? 'Unknown Error',
-      }))
+      const functionResult = await fn
+        .execute({ input, request })
+        .catch((error) => ({
+          error: error?.message ?? error?.toString() ?? 'Unknown Error',
+        }))
 
       return {
         ...functionResult,

@@ -20,5 +20,8 @@ export type TeampilotCustomFunction<T extends z.Schema> = {
 
   inputSchema: T
 
-  execute: (options: { input: z.infer<T> }) => Promise<{ output: any }>
+  execute: (options: {
+    input: z.infer<T>
+    request?: Request
+  }) => Promise<{ output: any }>
 }
