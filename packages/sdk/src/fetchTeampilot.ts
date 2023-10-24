@@ -122,8 +122,11 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     cacheTtlSeconds = 'forever'
   }
 
-  // const url = `http://localhost:3000/api/rest/message`
-  const url = overrideUrl || `https://teampilot.ai/api/rest/message`
+  const url =
+    overrideUrl ||
+    process.env.TEAMPILOT_DEFAULT_URL ||
+    process.env.NEXT_PUBLIC_TEAMPILOT_DEFAULT_URL ||
+    `https://teampilot.ai/api/rest/message`
 
   const response = await fetch(url, {
     method: 'POST',
