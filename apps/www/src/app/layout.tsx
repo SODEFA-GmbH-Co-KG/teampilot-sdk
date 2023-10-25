@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
               <hr />
               <div className="flex flex-row">
                 <div className="relative border-r px-6 py-8 max-md:hidden">
-                  <div className="w-48">
+                  <div className="sticky top-8 w-48 ">
                     <MainSideNav />
                   </div>
                 </div>

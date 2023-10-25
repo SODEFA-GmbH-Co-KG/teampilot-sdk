@@ -95,7 +95,7 @@ export const MainSideNavMobile = ({}) => {
         </Button>
       </SheetTrigger>
       <SheetContent>
-        <nav className={cn("sticky top-8 flex flex-col gap-3")}>
+        <nav className={cn("flex flex-col gap-3")}>
           <SideNavCore />
         </nav>
       </SheetContent>

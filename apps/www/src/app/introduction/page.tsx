@@ -24,7 +24,12 @@ export default function Page() {
     <div className="prose max-w-none dark:prose-invert">
       <ReactMarkdown className="w-full">{markdown}</ReactMarkdown>
 
-      <DocsLinksGrid destinations={["/teampilot-into-your-product"]} />
+      <DocsLinksGrid
+        destinations={[
+          "/teampilot-into-your-product",
+          "/your-product-into-teampilot",
+        ]}
+      />
     </div>
   )
 }
