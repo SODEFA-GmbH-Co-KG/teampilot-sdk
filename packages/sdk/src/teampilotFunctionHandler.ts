@@ -30,10 +30,47 @@ const jsonHandler = (
 
 export const teampilotFunctionHandler = ({
   functions,
+  functionSecret,
+  checkAuthorization,
 }: {
   functions: TeampilotCustomFunction<any>[]
+  functionSecret?: string
+  checkAuthorization?: (request: Request) => Promise<boolean>
 }) => {
   const handler = jsonHandler(async (request: Request) => {
+    const authorizationChecker = async () => {
+      if (
+        functionSecret &&
+        request.headers.get('x-function-secret') !== functionSecret
+      ) {
+        return false
+      }
+
+      if (checkAuthorization) {
+        const allowed = await checkAuthorization(request)
+        if (!allowed) {
+          return false
+        }
+      }
+
+      return true
+    }
+
+    const forbiddenResponse = () =>
+      new Response('Forbidden', {
+        status: 403,
+      })
+
+    try {
+      const allowed = await authorizationChecker()
+      if (!allowed) {
+        return forbiddenResponse()
+      }
+    } catch (error) {
+      console.log('Error while checking the authorization', error)
+      return forbiddenResponse()
+    }
+
     if (request.method === 'GET') {
       const descriptions = functions.map((fn) => {
         return {
@@ -68,9 +105,11 @@ export const teampilotFunctionHandler = ({
         })
         .parse(body)
 
-      const functionResult = await fn.execute({ input }).catch((error) => ({
-        error: error?.message ?? error?.toString() ?? 'Unknown Error',
-      }))
+      const functionResult = await fn
+        .execute({ input, request })
+        .catch((error) => ({
+          error: error?.message ?? error?.toString() ?? 'Unknown Error',
+        }))
 
       return {
         ...functionResult,
