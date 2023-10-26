@@ -11,6 +11,7 @@ export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   url?: string
   cacheTtlSeconds?: number | 'forever'
   chatroomId?: string
+  previousMessageId?: string
   accessLevel?: 'TEAM' | 'LINK_READ' | 'LINK_WRITE'
   customFunctions?: TeampilotCustomFunction<any>[]
   customFunctionsMaxExecutions?: number
@@ -31,6 +32,7 @@ const createResponseSchema = <T extends z.Schema = z.ZodUndefined>(
 ) => {
   return z.object({
     message: z.object({
+      id: z.string(),
       functionName: z.string().optional(),
       content: z.string().optional(),
       data: schema ?? z.undefined(),
@@ -80,6 +82,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     url: overrideUrl,
     cacheTtlSeconds,
     chatroomId,
+    previousMessageId,
     accessLevel,
     customFunctions,
     customFunctionsMaxExecutions = DEFAULT_MAX_CUSTOM_FUNCTION_EXECUTIONS,
@@ -119,8 +122,11 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     cacheTtlSeconds = 'forever'
   }
 
-  // const url = `http://localhost:3000/api/rest/message`
-  const url = overrideUrl || `https://teampilot.ai/api/rest/message`
+  const url =
+    overrideUrl ||
+    process.env.TEAMPILOT_DEFAULT_URL ||
+    process.env.NEXT_PUBLIC_TEAMPILOT_DEFAULT_URL ||
+    `https://teampilot.ai/api/rest/message`
 
   const response = await fetch(url, {
     method: 'POST',
@@ -134,6 +140,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
       schema: schema ? transformZodToJsonSchema(schema) : null,
       cacheTtlSeconds,
       chatroomId,
+      previousMessageId,
       accessLevel: chatroomId ? undefined : accessLevel,
       customFunctions: customFunctions?.map((customFunction) => ({
         ...customFunction,
@@ -190,6 +197,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
       ...options,
       customFunctionsMaxExecutions: customFunctionsMaxExecutions - 1,
       chatroomId: parsed.data.chatroom.id,
+      previousMessageId: parsed.data.message.id,
       message:
         'error' in functionResult
           ? JSON.stringify(functionResult.error, null, 2)
