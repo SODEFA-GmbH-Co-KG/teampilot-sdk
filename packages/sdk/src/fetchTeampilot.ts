@@ -132,6 +132,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'x-sdk-version': '0.0.20', // used to break next.js cache when the zod schema changes
       ...requestOptions.headers,
     },
     body: JSON.stringify({
