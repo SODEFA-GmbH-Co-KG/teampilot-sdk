@@ -24,7 +24,10 @@ const config = {
   },
 
   images: {
-    domains: ["teampilot.s3.eu-central-1.amazonaws.com"],
+    domains: [
+      "teampilot.s3.eu-central-1.amazonaws.com",
+      "d39ob9hwkmfin1.cloudfront.net",
+    ],
   },
 }
 
