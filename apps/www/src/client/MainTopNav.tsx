@@ -20,7 +20,7 @@ const entries = [
   },
   {
     name: "Functions",
-    href: "/functions",
+    href: "/functions-examples",
   },
   {
     name: "Media",

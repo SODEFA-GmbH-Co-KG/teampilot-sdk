@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { CodeBlock } from "~/client/CodeBlock"
-import { DocsLinksGrid } from "~/client/DocsLink"
+import { DocsLinksGrid, getPageByHref } from "~/client/DocsLink"
 import { CopyNpmCommandButton } from "~/shadcn/components/copy-button"
 
 const customFunctionType = `
@@ -32,6 +32,17 @@ export type TeampilotCustomFunction<T extends z.Schema> = {
 
 const markdown = `
 # Custom Functions
+Teampilot can call [**functions**](${
+  getPageByHref("/functions")?.href
+}) to do things it can't do itself. Teampilot already ships with many tight integrated and helpful functions, but you can also create your own functions and connect them to Teampilot.
+
+Custom functions let you run your own code on your own Servers and give Teampilot access to your data and functions.
+To help you with that, we provide an Typescript SDK that you can use to create your own functions and connect them to Teampilot.
+If you don't use Typescript you can connect them as well, we currently don't have a documentation for that, but you can hop onto our Discord and our engineers will help you out.
+
+## How to create a custom function via the SDK and Next.js
+
+
 `
 
 export default function Page() {
@@ -55,7 +66,7 @@ export default function Page() {
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
       <CodeBlock language="ts" value={customFunctionType} lightMode="dark" />
 
-      <DocsLinksGrid destinations={["/sdk-examples"]} />
+      <DocsLinksGrid destinations={["/sdk-examples", "/functions"]} />
     </div>
   )
 }

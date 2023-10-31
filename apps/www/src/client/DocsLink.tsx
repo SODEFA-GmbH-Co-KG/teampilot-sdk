@@ -22,6 +22,11 @@ export const docPages = [
     description: "What are Launchpads and how do they work?",
   },
   {
+    name: "Functions",
+    href: "/functions",
+    description: "What are Functions and what do they do?",
+  },
+  {
     name: "Fetching Teampilot",
     href: "/fetching-teampilot",
     description: "What happens when you fetch Teampilot.",
@@ -53,6 +58,9 @@ export const docPages = [
     description: "Examples of using the SDK.",
   },
 ] as const
+
+export const getPageByHref = (href: (typeof docPages)[number]["href"]) =>
+  docPages.find((page) => page.href === href)
 
 export const DocsLink = ({
   destination,

@@ -20,6 +20,7 @@ const docPagesCategorized: {
       "/your-product-into-teampilot",
       "/teampilot-into-your-product",
       "/what-are-launchpads",
+      "/functions",
       "/fetching-teampilot",
       "/caching",
       "/fetching-via-api",
@@ -47,7 +48,7 @@ const SideNavCore = ({}) => {
             {category.pages.map((page) => {
               const isActive =
                 // @ts-expect-error href can be "/" in the future
-                page === "/" ? pathname === page : pathname?.startsWith(page)
+                page === "/" ? pathname === page : pathname === page
               return (
                 <Link
                   key={page}
