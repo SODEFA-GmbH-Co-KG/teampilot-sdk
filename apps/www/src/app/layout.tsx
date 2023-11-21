@@ -64,13 +64,13 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                 <MainTopNav />
               </div> */}
               <hr />
-              <div className="flex flex-row">
-                <div className="relative border-r px-6 py-8 max-md:hidden">
+              <div className="container mx-auto flex flex-row 2xl:max-w-[2000px]">
+                <div className="relative border-r py-8 pr-6 max-md:hidden">
                   <div className="sticky top-8 w-48 ">
                     <MainSideNav />
                   </div>
                 </div>
-                <div className="container flex flex-col gap-8 py-8 2xl:max-w-[2000px]">
+                <div className="flex flex-col gap-8 py-8 pl-6">
                   <SuspenseLoader>{children}</SuspenseLoader>
                 </div>
               </div>
