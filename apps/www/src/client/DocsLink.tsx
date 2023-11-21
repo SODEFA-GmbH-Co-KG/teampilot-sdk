@@ -3,7 +3,7 @@ import Link from "next/link"
 export const docPages = [
   {
     name: "Getting started",
-    href: "/introduction",
+    href: "/",
     description: "What is Teampilot and what can you do with it?",
   },
   {
@@ -56,6 +56,36 @@ export const docPages = [
     name: "SDK Examples",
     href: "/sdk-examples",
     description: "Examples of using the SDK.",
+  },
+  {
+    name: "Schema",
+    href: "/schema",
+    description: "Examples of using Schemas with the SDK.",
+  },
+  {
+    name: "Interactive",
+    href: "/interactive",
+    description: "Examples of using Interactive with the SDK.",
+  },
+  {
+    name: "Functions",
+    href: "/functions-examples",
+    description: "Examples of using Functions with the SDK.",
+  },
+  {
+    name: "Media",
+    href: "/media",
+    description: "Examples of using Media with the SDK.",
+  },
+  {
+    name: "SEO",
+    href: "/seo",
+    description: "Examples of using SEO with the SDK.",
+  },
+  {
+    name: "Future™️",
+    href: "/future",
+    description: "Examples of what the future could be.",
   },
 ] as const
 

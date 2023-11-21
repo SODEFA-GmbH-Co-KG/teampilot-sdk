@@ -82,7 +82,8 @@ export const Form = () => {
         <Form />
       </ShowCase>
       <ShowCase
-        title="Custom Functions"
+        title="Passing custom functions"
+        description="You can pass custom functions to the SDK that the AI can call. In this example we pass it a function that can fetch articles from Wikipedia, but you can pass any function you want. For example you could pass a function that fetches data from your database, or a function that mutates things on your side."
         code={`import { fetchTeampilotText } from "@teampilot/sdk"
 import { z } from "zod"
 import { fetchWikipediaArticle } from "./fetchWikipedia"

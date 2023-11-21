@@ -16,7 +16,7 @@ const docPagesCategorized: {
   {
     categoryName: "Teampilot for Developers",
     pages: [
-      "/introduction",
+      "/",
       "/your-product-into-teampilot",
       "/teampilot-into-your-product",
       "/what-are-launchpads",
@@ -30,7 +30,14 @@ const docPagesCategorized: {
   },
   {
     categoryName: "SDK Examples",
-    pages: ["/sdk-examples"],
+    pages: [
+      "/schema",
+      "/interactive",
+      "/functions-examples",
+      "/media",
+      "/seo",
+      "/future",
+    ],
   },
 ]
 
@@ -47,7 +54,6 @@ const SideNavCore = ({}) => {
           <div className="flex flex-col gap-1">
             {category.pages.map((page) => {
               const isActive =
-                // @ts-expect-error href can be "/" in the future
                 page === "/" ? pathname === page : pathname === page
               return (
                 <Link
