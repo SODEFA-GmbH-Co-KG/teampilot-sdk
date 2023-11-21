@@ -65,7 +65,7 @@ export const docPages = [
   {
     name: "Interactive",
     href: "/interactive",
-    description: "Examples of using Interactive with the SDK.",
+    description: "Interactive examples with the SDK.",
   },
   {
     name: "Functions",
@@ -75,12 +75,12 @@ export const docPages = [
   {
     name: "Media",
     href: "/media",
-    description: "Examples of using Media with the SDK.",
+    description: "Media Examples using the SDK.",
   },
   {
     name: "SEO",
     href: "/seo",
-    description: "Examples of using SEO with the SDK.",
+    description: "SEO Examples using the SDK.",
   },
   {
     name: "Future™️",

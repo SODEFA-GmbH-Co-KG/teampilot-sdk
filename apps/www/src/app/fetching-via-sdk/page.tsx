@@ -53,7 +53,7 @@ export default function Page() {
       <div className="h-6" />
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
 
-      <DocsLinksGrid destinations={["/custom-functions", "/sdk-examples"]} />
+      <DocsLinksGrid destinations={["/custom-functions", "/schema"]} />
     </div>
   )
 }

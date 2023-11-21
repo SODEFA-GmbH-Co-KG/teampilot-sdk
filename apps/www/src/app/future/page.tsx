@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { DocsLinksGrid } from "~/client/DocsLink"
 import { ShowCase } from "~/client/ShowCase"
 import sidebar from "../../../public/examples/sidebar.png"
 
@@ -34,6 +35,8 @@ export default function Page() {
       >
         <Image src={sidebar} alt="Sidebar" />
       </ShowCase>
+
+      <DocsLinksGrid destinations={["/"]} />
     </>
   )
 }

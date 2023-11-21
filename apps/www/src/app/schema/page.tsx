@@ -1,3 +1,4 @@
+import { DocsLinksGrid } from "~/client/DocsLink"
 import { Persons } from "~/client/examples/Persons"
 import { ShowCase } from "~/client/ShowCase"
 
@@ -12,6 +13,8 @@ The format ca be specified with a zod schema."
       >
         <Persons />
       </ShowCase>
+
+      <DocsLinksGrid destinations={["/interactive", "/functions-examples"]} />
     </>
   )
 }

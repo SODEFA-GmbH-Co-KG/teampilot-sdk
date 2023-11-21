@@ -1,3 +1,4 @@
+import { DocsLinksGrid } from "~/client/DocsLink"
 import { Form } from "~/client/examples/Form"
 import { Time } from "~/client/examples/Time"
 import { Wikipedia } from "~/client/examples/wikipedia/Wikipedia"
@@ -112,6 +113,8 @@ export const Wikipedia = async () => {
       >
         <Wikipedia />
       </ShowCase>
+
+      <DocsLinksGrid destinations={["/functions", "/media"]} />
     </>
   )
 }

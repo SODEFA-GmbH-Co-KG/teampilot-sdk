@@ -1,3 +1,4 @@
+import { DocsLinksGrid } from "~/client/DocsLink"
 import { ShowCase } from "~/client/ShowCase"
 import { ChatExample } from "~/client/examples/ChatExample"
 import { DayInHistorySelector } from "~/client/examples/DayInHistory"
@@ -19,6 +20,8 @@ export default function Page() {
       >
         <ChatExample />
       </ShowCase>
+
+      <DocsLinksGrid destinations={["/functions-examples", "/media"]} />
     </>
   )
 }
