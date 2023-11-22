@@ -1,3 +1,4 @@
+import { DocsLinksGrid } from "~/client/DocsLink"
 import { ImageExample } from "~/client/examples/ImageExample"
 import { ShowCase } from "~/client/ShowCase"
 
@@ -18,6 +19,8 @@ export default function Page() {
       >
         <AudioExample />
       </ShowCase> */}
+
+      <DocsLinksGrid destinations={["/seo", "/future"]} />
     </>
   )
 }

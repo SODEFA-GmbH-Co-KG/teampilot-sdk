@@ -3,6 +3,7 @@ import { Github } from "lucide-react"
 import Link from "next/link"
 import { type ReactNode } from "react"
 import { DarkModeToggle } from "~/client/DarkModeToggle"
+import { MainSideNav, MainSideNavMobile } from "~/client/MainSideNav"
 import { MainTopNav } from "~/client/MainTopNav"
 import { SuspenseLoader } from "~/client/SuspenseLoader"
 import { TeampilotLogo } from "~/client/TeampilotLogo"
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
         </head>
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased"
+            "min-h-[100dvh] bg-background font-sans antialiased"
             // font.className
           )}
         >
@@ -56,14 +57,22 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                     </Button>
                   </Link>
                   <DarkModeToggle />
+                  <MainSideNavMobile />
                 </div>
               </div>
-              <div className="container flex pb-6 xl:hidden 2xl:max-w-[2000px]">
+              {/* <div className="container flex pb-6 xl:hidden 2xl:max-w-[2000px]">
                 <MainTopNav />
-              </div>
+              </div> */}
               <hr />
-              <div className="container flex flex-col gap-8 py-8 2xl:max-w-[2000px]">
-                <SuspenseLoader>{children}</SuspenseLoader>
+              <div className="container mx-auto flex flex-row 2xl:max-w-[2000px]">
+                <div className="relative border-r py-8 pr-6 max-md:hidden">
+                  <div className="sticky top-8 w-48 ">
+                    <MainSideNav />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-8 py-8 md:pl-6">
+                  <SuspenseLoader>{children}</SuspenseLoader>
+                </div>
               </div>
             </>
           </ThemeProvider>
