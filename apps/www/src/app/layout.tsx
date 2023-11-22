@@ -70,7 +70,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                     <MainSideNav />
                   </div>
                 </div>
-                <div className="flex flex-col gap-8 py-8 pl-6">
+                <div className="flex flex-col gap-8 py-8 md:pl-6">
                   <SuspenseLoader>{children}</SuspenseLoader>
                 </div>
               </div>
