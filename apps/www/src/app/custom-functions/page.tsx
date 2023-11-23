@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { type PropsWithChildren } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { CodeBlock } from "~/client/CodeBlock"
@@ -6,6 +7,14 @@ import { DocsLinksGrid, getPageByHref } from "~/client/DocsLink"
 
 const DocImage = (props: Parameters<typeof Image>[0]) => {
   return <Image {...props} className="rounded shadow-md shadow-black/5" />
+}
+
+const InlineCode = ({ children }: PropsWithChildren) => {
+  return (
+    <span className="rounded bg-gray-200 dark:bg-gray-600 p-1 font-mono text-sm">
+      {children}
+    </span>
+  )
 }
 
 const customFunctionType = `
@@ -205,11 +214,8 @@ export default function Page() {
         <span className="font-bold">TypeScript or JavaScript</span> code and use
         any package from <span className="font-bold">npm or Deno</span>.
         There&apos;s no need for a package.json, thanks to npm imports being
-        prefixed with{" "}
-        <span className="rounded bg-gray-200 dark:bg-gray-600 p-1 font-mono">
-          npm:
-        </span>
-        , simplifying your code management process.
+        prefixed with <InlineCode>npm:</InlineCode>, simplifying your code
+        management process.
       </p>
 
       <p>
@@ -259,6 +265,21 @@ export default teampilotFunctionHandler({
           lightMode="dark"
         />
         <div>
+          <ul>
+            <li>
+              <InlineCode>inputSchema</InlineCode>
+              <ul>
+                <li>
+                  The input schema is used to validate the input that is coming
+                  from the AI.
+                </li>
+                <li>
+                  If the input is not valid, <InlineCode>execute</InlineCode>{" "}
+                  will not be called and the AI will receive an error message.
+                </li>
+              </ul>
+            </li>
+          </ul>
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {`
 - First we import the Teampilot SDK (// TODO: Link)
