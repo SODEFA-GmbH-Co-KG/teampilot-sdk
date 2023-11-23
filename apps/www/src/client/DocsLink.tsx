@@ -9,12 +9,12 @@ export const docPages = [
   {
     name: "Your Product into Teampilot",
     href: "/your-product-into-teampilot",
-    description: "How to integrate your product into Teampilot.",
+    description: "How to integrate Your Product into Teampilot.",
   },
   {
-    name: "Teampilot into your Product",
+    name: "Teampilot into Your Product",
     href: "/teampilot-into-your-product",
-    description: "How to integrate Teampilot into your product.",
+    description: "How to integrate Teampilot into Your Product.",
   },
   {
     name: "Launchpads",
