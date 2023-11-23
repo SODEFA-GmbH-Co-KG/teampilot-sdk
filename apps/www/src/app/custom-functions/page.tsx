@@ -1,7 +1,12 @@
+import Image from "next/image"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { CodeBlock } from "~/client/CodeBlock"
 import { DocsLinksGrid, getPageByHref } from "~/client/DocsLink"
+
+const DocImage = (props: Parameters<typeof Image>[0]) => {
+  return <Image {...props} className="rounded shadow-md shadow-black/5" />
+}
 
 const customFunctionType = `
 import { z } from 'zod'
@@ -118,25 +123,84 @@ export default function Page() {
       </div>
 
       <h1 id="hosted-functions">Hosted Functions</h1>
+
+      <div className="rounded border-primary border py-1 px-2">
+        This feature is currently in alpha (apply here // TODO: Add link)
+      </div>
+
+      <p>
+        As a TypeScript / JavaScript developer, you can leverage our Hosted
+        Functions feature.{" "}
+        <span className="font-bold">We host your functions</span>, allowing you
+        to concentrate on the business logic. You have nothing todo with
+        servers, scaling, or security. Just provide the code and we take care of
+        the rest.
+      </p>
+
+      <h2>How to setup?</h2>
+
+      <ol>
+        <li>
+          Goto{" "}
+          <a href="https://teampilot.ai/start/settings/integrations">
+            Integrations
+          </a>{" "}
+          and add a new integration
+          <DocImage
+            src="/docs/add-integration.jpg"
+            width={257}
+            height={174}
+            alt="Add Integration"
+          />
+        </li>
+        <li>
+          Select &quot;Hosted Functions&quot;
+          {/* TODO: Redo screenshot with beta */}
+          tag
+          <DocImage
+            src="/docs/select-hosted-functions.jpg"
+            width={540}
+            height={447}
+            alt="Select Hosted Functions"
+          />
+        </li>
+        <li>
+          Enter your code (checkout the detailed walkthrough of the example code{" "}
+          <a href="#walkthrough">below</a>)
+        </li>
+        <li>Click &quot;Create&quot;</li>
+        <li>
+          Start a new chat
+          <DocImage
+            src="/docs/start-new-chat.jpg"
+            width={420}
+            height={225}
+            alt="Start a new chat"
+          />
+        </li>
+        <li>Select your function under &quot;Expert Functions&quot;</li>
+      </ol>
+
+      <h2 id="walkthrough">Let&apos;s walk through an example code</h2>
+      <p>
+        We are using <span className="font-bold">Deno</span> to run your code.
+        You can deploy either{" "}
+        <span className="font-bold">TypeScript or JavaScript</span> code and use
+        any package from <span className="font-bold">npm or Deno</span>.
+        There&apos;s no need for a package.json, thanks to npm imports being
+        prefixed with{" "}
+        <span className="rounded bg-gray-200 dark:bg-gray-600 p-1 font-mono">
+          npm:
+        </span>
+        , simplifying your code management process.
+      </p>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{`
-- Currently in beta (apply here // TODO: Add link)
-- You write the code, we deploy it
-- How to
-  - Goto [Integrations](https://teampilot.ai/start/settings/integrations) and add a new integration
-    ![Add Integration](docs/add-integration.jpg)
-  - Select "Hosted Functions"
-    ![Select Hosted Functions](docs/select-hosted-functions.jpg)
-    // TODO: Redo screenshot with beta tag
-  - Enter Code
-    - We are using Deno to run your code
-      - Benefit: You can deploy Typescript or Javascript code
-      - Benefit: You can use any npm package or Deno Package
-      - Benefit: No need for a package.json
-      - This is why the imports that are coming from npm are prefixed with \`npm:\`
-    - The Code Editor tries to load types from unpkg.com. In sometimes and for Deno packages this currently doesn't work. You can still use the packages, but you won't get any types. Please let us know if this happens in our discord. // TODO: Link
+
+
+The code editor **automatically loads TypeScript types** from unpkg.com. So you can use autocomplete & type checking.  
+Sometimes and for Deno packages this currently doesn't work. You can still use the packages & deploy your code, but you won't get any type hints in the editor. Please let us know if this happens in our discord. // TODO: Link
       `}</ReactMarkdown>
 
-      <h2>Let's walk through the code</h2>
       <div className="flex flex-col lg:flex-row gap-8">
         <CodeBlock
           language="ts"
