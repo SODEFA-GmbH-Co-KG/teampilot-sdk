@@ -266,6 +266,7 @@ export default teampilotFunctionHandler({
         />
         <div>
           <ul>
+            <li>First we import the Teampilot SDK (// TODO: Link)</li>
             <li>
               <InlineCode>inputSchema</InlineCode>
               <ul>
