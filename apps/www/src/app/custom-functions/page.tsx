@@ -84,7 +84,15 @@ export default function Page() {
       `}</ReactMarkdown>
 
       <h1>Custom Functions Overview</h1>
-      <p>When you need to </p>
+      <p>
+        Custom Functions are a developer-oriented feature that enables you to
+        expand the capabilities of the AI by{" "}
+        <span className="font-bold">writing your own functions</span>. It
+        empowers you to personalize and fine-tune the AI functionalities
+        according to your needs. This feature allows the AI to perform tasks
+        that go beyond its inherent capabilities, making it a more flexible and
+        adaptable tool.
+      </p>
       <p>We have multiple ways to create custom function:</p>
       <div className="flex flex-col md:flex-row gap-8  my-6">
         <a
@@ -178,7 +186,16 @@ export default function Page() {
             alt="Start a new chat"
           />
         </li>
-        <li>Select your function under &quot;Expert Functions&quot;</li>
+        <li>
+          Select your function under &quot;Expert Functions&quot;
+          <DocImage
+            src="/docs/select-expert-functions.jpg"
+            width={465}
+            height={412}
+            alt="Select your function"
+          />
+        </li>
+        <li>Tell the AI to use the function</li>
       </ol>
 
       <h2 id="walkthrough">Let&apos;s walk through an example code</h2>
@@ -194,12 +211,23 @@ export default function Page() {
         </span>
         , simplifying your code management process.
       </p>
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{`
 
+      <p>
+        The code editor{" "}
+        <span className="font-bold">automatically loads TypeScript types</span>{" "}
+        from unpkg.com. So you can use{" "}
+        <span className="font-bold">autocomplete & type checking.</span>
+      </p>
 
-The code editor **automatically loads TypeScript types** from unpkg.com. So you can use autocomplete & type checking.  
-Sometimes and for Deno packages this currently doesn't work. You can still use the packages & deploy your code, but you won't get any type hints in the editor. Please let us know if this happens in our discord. // TODO: Link
-      `}</ReactMarkdown>
+      <p className="rounded border-primary border py-1 px-2">
+        Sometimes and for Deno packages this currently doesn&apos;t work. You
+        can still use the packages & deploy your code, but you won&apos;t get
+        any type hints in the editor. Please let us know if this happens in our
+        Discord.
+        {/* // TODO: Link */}
+      </p>
+
+      <p>Let&apos;s jump into the code:</p>
 
       <div className="flex flex-col lg:flex-row gap-8">
         <CodeBlock
