@@ -1,4 +1,3 @@
-import Link from "next/link"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { CodeBlock } from "~/client/CodeBlock"
@@ -29,26 +28,6 @@ export type TeampilotCustomFunction<T extends z.Schema> = {
 
   execute: (options: { input: z.infer<T> }) => Promise<{ output: any }>
 }`
-
-const markdown = `
-
-# Hosted Functions
-- Currently in beta (apply here // TODO: Add link)
-- You write the code, we deploy it
-- How to
-  - Goto [Integrations](https://teampilot.ai/start/settings/integrations) and add a new integration
-    ![Add Integration](docs/add-integration.jpg)
-  - Select "Hosted Functions"
-    ![Select Hosted Functions](docs/select-hosted-functions.jpg)
-    // TODO: Redo screenshot with beta tag
-  - Enter Code
-    - We are using Deno to run your code
-      - Benefit: You can deploy Typescript or Javascript code
-      - Benefit: You can use any npm package or Deno Package
-      - Benefit: No need for a package.json
-      - This is why the imports that are coming from npm are prefixed with \`npm:\`
-    - The Code Editor tries to load types from unpkg.com. In sometimes and for Deno packages this currently doesn't work. You can still use the packages, but you won't get any types. Please let us know if this happens in our discord. // TODO: Link
-`
 
 const rest = `
   - Env Vars
@@ -100,44 +79,62 @@ export default function Page() {
       `}</ReactMarkdown>
 
       <h1>Custom Functions Overview</h1>
+      <p>When you need to </p>
       <p>We have multiple ways to create custom function:</p>
       <div className="flex flex-col md:flex-row gap-8  my-6">
-        <Link
-          href="//TODO: Link"
+        <a
+          href="#hosted-functions"
           className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
         >
-          <div className="text-lg w-[200px] font-medium leading-snug text-sky-600 group-hover:text-inherit">
+          <div className="text-lg w-[200px] font-medium leading-snug text-primary group-hover:text-inherit">
             Hosted Functions
           </div>
           <div className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">
             Hosted on Teampilot
           </div>
-        </Link>
-        <Link
+        </a>
+        <a
           href="//TODO: Link"
           className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
         >
-          <div className="text-lg w-[200px] font-medium leading-snug text-sky-600 group-hover:text-inherit">
+          <div className="text-lg w-[200px] font-medium leading-snug text-primary group-hover:text-inherit">
             HTTP Functions
           </div>
           <div className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">
             Hosted on your own servers
           </div>
-        </Link>
-        <Link
+        </a>
+        <a
           href="//TODO: Link"
           className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
         >
-          <div className="text-lg w-[200px] font-medium leading-snug text-sky-600 group-hover:text-inherit">
+          <div className="text-lg w-[200px] font-medium leading-snug text-primary group-hover:text-inherit">
             Widget Functions
           </div>
           <div className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">
             As part of the widget
           </div>
-        </Link>
+        </a>
       </div>
 
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+      <h1 id="hosted-functions">Hosted Functions</h1>
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{`
+- Currently in beta (apply here // TODO: Add link)
+- You write the code, we deploy it
+- How to
+  - Goto [Integrations](https://teampilot.ai/start/settings/integrations) and add a new integration
+    ![Add Integration](docs/add-integration.jpg)
+  - Select "Hosted Functions"
+    ![Select Hosted Functions](docs/select-hosted-functions.jpg)
+    // TODO: Redo screenshot with beta tag
+  - Enter Code
+    - We are using Deno to run your code
+      - Benefit: You can deploy Typescript or Javascript code
+      - Benefit: You can use any npm package or Deno Package
+      - Benefit: No need for a package.json
+      - This is why the imports that are coming from npm are prefixed with \`npm:\`
+    - The Code Editor tries to load types from unpkg.com. In sometimes and for Deno packages this currently doesn't work. You can still use the packages, but you won't get any types. Please let us know if this happens in our discord. // TODO: Link
+      `}</ReactMarkdown>
 
       <h2>Let's walk through the code</h2>
       <div className="flex flex-col lg:flex-row gap-8">
