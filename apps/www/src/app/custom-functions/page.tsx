@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { type PropsWithChildren } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
@@ -16,32 +17,6 @@ const InlineCode = ({ children }: PropsWithChildren) => {
     </span>
   )
 }
-
-const customFunctionType = `
-import { z } from 'zod'
-
-type LocalizedString = string | { en: string; de: string }
-
-export type TeampilotCustomFunction<T extends z.Schema> = {
-  nameForAI: string
-  descriptionForAI: string
-
-  emoji?: string
-
-  releaseStatus?: string
-
-  nameForHuman?: LocalizedString
-  descriptionForHuman?: LocalizedString
-  textLoading?: LocalizedString
-  textSuccess?: LocalizedString
-  textError?: LocalizedString
-
-  categories?: string[]
-
-  inputSchema: T
-
-  execute: (options: { input: z.infer<T> }) => Promise<{ output: any }>
-}`
 
 const rest = `
   - Env Vars
@@ -268,7 +243,12 @@ export default teampilotFunctionHandler({
         />
         <div>
           <ul>
-            <li>First we import the Teampilot SDK (// TODO: Link)</li>
+            <li>
+              First we import the{" "}
+              <Link href="https://www.npmjs.com/package/@teampilot/sdk">
+                Teampilot SDK
+              </Link>{" "}
+            </li>
             <li>
               <InlineCode>inputSchema</InlineCode>
               <ul>
@@ -360,8 +340,6 @@ export default teampilotFunctionHandler({
           </ul>
         </div>
       </div>
-
-      <CodeBlock language="ts" value={customFunctionType} lightMode="dark" />
 
       <DocsLinksGrid destinations={["/sdk-examples", "/functions"]} />
     </div>
