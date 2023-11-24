@@ -247,8 +247,10 @@ const inputSchema = z.object({
 })
 
 const func: TeampilotCustomFunction<typeof inputSchema> = {
-  nameForAI: 'lavender-voluminous-pigeon',
-  descriptionForAI: '',
+  nameForAI: 'helloWorld',
+  descriptionForAI: 'says hello to the world',
+  emoji: '👋',
+  releaseStatus: 'alpha',
   inputSchema,
   execute: async ({ input }) => {
     return {
@@ -271,37 +273,91 @@ export default teampilotFunctionHandler({
               <InlineCode>inputSchema</InlineCode>
               <ul>
                 <li>
-                  The input schema is used to validate the input that is coming
-                  from the AI.
+                  The input schema is translated into JSON and will be sent to
+                  the AI. So the{" "}
+                  <span className="font-bold">
+                    AI knows the arguments of your function
+                  </span>
+                  .
                 </li>
                 <li>
-                  If the input is not valid, <InlineCode>execute</InlineCode>{" "}
-                  will not be called and the AI will receive an error message.
+                  TODO: Explain how the schema behaves, how deep, what zod
+                  functions can be used, etc.
+                </li>
+                <li>
+                  The input schema is used to{" "}
+                  <span className="font-bold">validate the input</span> that is
+                  coming from the AI.
+                </li>
+                <li>
+                  Sometimes the AI makes errors while calling your function. If
+                  the input is not valid, <InlineCode>execute</InlineCode> will
+                  not be called and the AI will receive an error message.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <InlineCode>nameForAI</InlineCode>
+              <ul>
+                <li>
+                  Every function needs an{" "}
+                  <span className="font-bold">unique name</span> in your team.
+                </li>
+                <li>
+                  We automatically generated a random name for the function.
+                </li>
+                <li>
+                  The AI uses the name to understand the purpose of the
+                  function. It is therefore{" "}
+                  <span className="font-bold">
+                    important to choose a good name.
+                  </span>
+                </li>
+                <li>
+                  Feel free to choose a better naming{" "}
+                  <span role="img" aria-label="Smile">
+                    😁
+                  </span>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <InlineCode>descriptionForAI</InlineCode>
+              <ul>
+                <li>
+                  If the name is not sufficiently self-explanatory, you can tell
+                  the AI exactly what the function does here.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <InlineCode>inputSchema</InlineCode>,{" "}
+              <InlineCode>nameForAI</InlineCode> &{" "}
+              <InlineCode>descriptionForAI</InlineCode> are all counting towards
+              the AIs input context. So they are billed and should be as concise
+              as possible.
+            </li>
+            <li>
+              <InlineCode>execute</InlineCode>
+              <ul>
+                <li>This is where the magic happens ✨</li>
+                <li>
+                  The function receives the fully typed input from the AI and
+                  returns the output as a string.
+                </li>
+              </ul>
+            </li>
+            <li>
+              We add the function to the{" "}
+              <InlineCode>teampilotFunctionHandler</InlineCode>.
+              <ul>
+                <li>
+                  For more advanced use cases: Add more than one function to the
+                  handler.
                 </li>
               </ul>
             </li>
           </ul>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {`
-- First we import the Teampilot SDK (// TODO: Link)
-- \`inputSchema\`
-  - The input schema is used to validate the input that is coming from the AI.
-  -  If the input is not valid, \`execute\` will not be called and the AI will receive an error message.
-- \`name\`
-  - Every function needs an unique name in your team.
-  - We automatically generated a random name for the function.
-  - Feel free to choose a better naming 😁
-- \`descriptionForAI\`
-  - Sometimes its helpful to tell the AI what the function does in detail.
-  - Example: The name is not self-explanatory.
-- \`execute\`
-  - This is where the magic happens ✨
-  - The function receives the input from the AI and returns the output.
-- See the Typescript Types or our API documentation (//TODO: Add API docs somewhere and link to it) for more information on the \`TeampilotCustomFunction\`.
-- We add the function to the \`teampilotFunctionHandler\`.
-  - For more advanced use cases: Add more than one function to the handler.
-`}
-          </ReactMarkdown>
         </div>
       </div>
 
