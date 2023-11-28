@@ -1,4 +1,5 @@
 import { ZodSchema, z } from 'zod'
+import { getBaseUrl } from './getBaseUrl'
 
 const defaultMetadataSchema = z.any()
 
@@ -11,6 +12,8 @@ export const initTeampilotCollection = <
   collectionSecret?: string
   metadataSchema?: T
 }) => {
+  const url = `${getBaseUrl()}/api/rest/collection`
+
   // Check if collectionSecret is provided
   if (!collectionSecret) {
     collectionSecret =
@@ -39,7 +42,7 @@ export const initTeampilotCollection = <
       metadata: metadataSchema,
     })
     const parsed = items.map((item) => schema.parse(item))
-    await fetch('https://teampilot.ai/api/rest/collection', {
+    await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
         collectionSecret,
@@ -63,8 +66,7 @@ export const initTeampilotCollection = <
     if (limit) {
       params.set('limit', `${limit}`)
     }
-    const url = `https://teampilot.ai/api/rest/collection?${params}`
-    const response = await fetch(url).then((res) => res.json())
+    const response = await fetch(`${url}?${params}`).then((res) => res.json())
     const schema = z.object({
       results: z.array(
         z.object({
@@ -84,16 +86,14 @@ export const initTeampilotCollection = <
       collectionSecret: collectionSecret!,
       itemId,
     })
-    const url = `https://teampilot.ai/api/rest/collection?${params}`
-    await fetch(url, { method: 'DELETE' })
+    await fetch(`${url}?${params}`, { method: 'DELETE' })
   }
 
   const deleteAll = async () => {
     const params = new URLSearchParams({
       collectionSecret: collectionSecret!,
     })
-    const url = `https://teampilot.ai/api/rest/collection?${params}`
-    await fetch(url, { method: 'DELETE' })
+    await fetch(`${url}?${params}`, { method: 'DELETE' })
   }
 
   return {
