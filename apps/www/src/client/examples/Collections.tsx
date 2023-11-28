@@ -1,14 +1,38 @@
 import { initTeampilotCollection } from "@teampilot/sdk"
+import { revalidatePath } from "next/cache"
+import { Button } from "~/shadcn/components/ui/button"
 
 const collection = initTeampilotCollection({})
 
 export const Collections = async () => {
-  const results = await collection.searchItems({
+  const { results } = await collection.searchItems({
     searchQuery: "earth",
   })
+
+  const redo = async () => {
+    "use server"
+    const collection = initTeampilotCollection({})
+    await collection.upsertItems({
+      items: [
+        {
+          id: "my-id-1",
+          text: "Hello",
+        },
+        {
+          id: "my-id-2",
+          text: "World",
+        },
+      ],
+    })
+    revalidatePath("/collections")
+  }
+
   return (
     <>
-      <pre>{JSON.stringify(results, null, 2)}</pre>
+      <pre className="mb-4 text-xs">{JSON.stringify(results, null, 2)}</pre>
+      <form action={redo}>
+        <Button type="submit">Redo</Button>
+      </form>
     </>
   )
 }
