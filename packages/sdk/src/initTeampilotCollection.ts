@@ -42,13 +42,21 @@ export const initTeampilotCollection = <
       metadata: metadataSchema,
     })
     const parsed = items.map((item) => schema.parse(item))
-    await fetch(url, {
+    const response = await fetch(url, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         collectionSecret,
         items: parsed,
       }),
     })
+    if (!response.ok) {
+      throw new Error(`Upserting items failed: ${await response.text()}`)
+    }
+    const json = await response.json()
+    console.log('Upserted items', parsed, json)
   }
 
   // Search Items
@@ -66,7 +74,10 @@ export const initTeampilotCollection = <
     if (limit) {
       params.set('limit', `${limit}`)
     }
-    const response = await fetch(`${url}?${params}`).then((res) => res.json())
+    const response = await fetch(`${url}?${params}`)
+    if (!response.ok) {
+      throw new Error(`Searching items failed: ${await response.text()}`)
+    }
     const schema = z.object({
       results: z.array(
         z.object({
@@ -77,7 +88,7 @@ export const initTeampilotCollection = <
         })
       ),
     })
-    const parsed = schema.parse(response)
+    const parsed = schema.parse(await response.json())
     return parsed
   }
 
@@ -86,14 +97,20 @@ export const initTeampilotCollection = <
       collectionSecret: collectionSecret!,
       itemId,
     })
-    await fetch(`${url}?${params}`, { method: 'DELETE' })
+    const response = await fetch(`${url}?${params}`, { method: 'DELETE' })
+    if (!response.ok) {
+      throw new Error(`Deleting item failed: ${await response.text()}`)
+    }
   }
 
   const deleteAll = async () => {
     const params = new URLSearchParams({
       collectionSecret: collectionSecret!,
     })
-    await fetch(`${url}?${params}`, { method: 'DELETE' })
+    const response = await fetch(`${url}?${params}`, { method: 'DELETE' })
+    if (!response.ok) {
+      throw new Error(`Deleting all items failed: ${await response.text()}`)
+    }
   }
 
   return {

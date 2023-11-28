@@ -17,10 +17,12 @@ export const Collections = async () => {
         {
           id: "my-id-1",
           text: "Hello",
+          metadata: {},
         },
         {
           id: "my-id-2",
           text: "World",
+          metadata: {},
         },
       ],
     })
