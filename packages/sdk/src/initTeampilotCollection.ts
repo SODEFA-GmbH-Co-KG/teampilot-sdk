@@ -12,7 +12,7 @@ export const initTeampilotCollection = <
   collectionSecret?: string
   metadataSchema?: T
 }) => {
-  const url = `${getBaseUrl()}/api/rest/collection`
+  const url = `${getBaseUrl()}/api/rest/collection/items`
 
   // Check if collectionSecret is provided
   if (!collectionSecret) {
