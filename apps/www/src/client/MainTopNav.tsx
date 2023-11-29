@@ -35,6 +35,10 @@ const entries = [
   //   href: "/todo-app",
   // },
   {
+    name: "Collections",
+    href: "/collections",
+  },
+  {
     name: "SEO",
     href: "/seo",
   },
