@@ -106,6 +106,7 @@ export const initTeampilotCollection = <
   const deleteAll = async () => {
     const params = new URLSearchParams({
       collectionSecret: collectionSecret!,
+      allItems: 'true',
     })
     const response = await fetch(`${url}?${params}`, { method: 'DELETE' })
     if (!response.ok) {
