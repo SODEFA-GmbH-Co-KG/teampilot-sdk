@@ -12,7 +12,9 @@ export const initTeampilotCollection = <
   collectionSecret?: string
   metadataSchema?: T
 }) => {
-  const url = `${getBaseUrl()}/api/rest/collection/items`
+  const urlCollection = `${getBaseUrl()}/api/rest/collection`
+  const urlInfo = `${urlCollection}/info`
+  const urlItems = `${urlCollection}/items`
 
   // Check if collectionSecret is provided
   if (!collectionSecret) {
@@ -24,6 +26,27 @@ export const initTeampilotCollection = <
     throw new Error(
       'Provide a collectionSecret in the function call or in the environment variables via TEAMPILOT_COLLECTION_SECRET or NEXT_PUBLIC_TEAMPILOT_COLLECTION_SECRET'
     )
+  }
+
+  // Get Collection Info
+  const getInfo = async ({ cache }: { cache?: RequestCache } = {}) => {
+    const params = new URLSearchParams({
+      collectionSecret: collectionSecret!,
+    })
+    const response = await fetch(`${urlInfo}?${params}`, {
+      cache,
+    })
+    if (!response.ok) {
+      throw new Error(`Error getting collection info: ${await response.text()}`)
+    }
+    const schema = z.object({
+      id: z.string(),
+      name: z.string(),
+      itemCount: z.number(),
+      url: z.string(),
+    })
+    const parsed = schema.parse(await response.json())
+    return parsed
   }
 
   // Upsert Items
@@ -42,7 +65,7 @@ export const initTeampilotCollection = <
       metadata: metadataSchema,
     })
     const parsed = items.map((item) => schema.parse(item))
-    const response = await fetch(url, {
+    const response = await fetch(urlItems, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -80,7 +103,7 @@ export const initTeampilotCollection = <
     if (limit) {
       params.set('limit', `${limit}`)
     }
-    const response = await fetch(`${url}?${params}`, {
+    const response = await fetch(`${urlItems}?${params}`, {
       cache,
     })
     if (!response.ok) {
@@ -105,7 +128,7 @@ export const initTeampilotCollection = <
       collectionSecret: collectionSecret!,
       itemId,
     })
-    const response = await fetch(`${url}?${params}`, {
+    const response = await fetch(`${urlItems}?${params}`, {
       method: 'DELETE',
       cache: 'no-cache',
     })
@@ -119,7 +142,7 @@ export const initTeampilotCollection = <
       collectionSecret: collectionSecret!,
       allItems: 'true',
     })
-    const response = await fetch(`${url}?${params}`, {
+    const response = await fetch(`${urlItems}?${params}`, {
       method: 'DELETE',
       cache: 'no-cache',
     })
@@ -129,6 +152,7 @@ export const initTeampilotCollection = <
   }
 
   return {
+    getInfo,
     upsertItems,
     searchItems,
     deleteOne,
