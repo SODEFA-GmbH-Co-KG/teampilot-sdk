@@ -16,7 +16,7 @@ export const Collections = async () => {
   })
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col items-center gap-4">
       {/* SEARCH */}
       <>
         <>Searching for &quot;{searchQuery}&quot;</>
@@ -31,7 +31,7 @@ export const Collections = async () => {
                 Similarity: {result.similarityScore.toFixed(3)}
               </div>
             </div>
-            <div className="italic">&ldquo;{result.text}&rdquo;</div>
+            <div className="italic">{`"${result.text}"`}</div>
             <div className="text-xs">
               {new Date(result.metadata.myDate).toUTCString()}
             </div>
