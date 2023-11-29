@@ -10,14 +10,16 @@ const collection = initTeampilotCollection({
 })
 
 export const Collections = async () => {
+  const searchQuery = "earth"
   const { results } = await collection.searchItems({
-    searchQuery: "earth",
+    searchQuery,
   })
 
   return (
     <div className="flex flex-col gap-4">
       {/* SEARCH */}
       <>
+        <>Searching for &quot;{searchQuery}&quot;</>
         {results.map((result) => (
           <div key={result.id}>
             <div className="font-mono text-xs opacity-60">{result.id}</div>
