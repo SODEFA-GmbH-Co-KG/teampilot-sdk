@@ -31,7 +31,7 @@ export const initTeampilotCollection = <
     items,
   }: {
     items: {
-      id: string
+      id?: string
       text: string
       metadata?: z.infer<T>
     }[]
@@ -56,7 +56,10 @@ export const initTeampilotCollection = <
       throw new Error(`Upserting items failed: ${await response.text()}`)
     }
     const json = await response.json()
-    console.log('Upserted items', parsed, json)
+    const responseSchema = z.object({
+      items: z.array(z.object({ id: z.string() })),
+    })
+    return responseSchema.parse(json)
   }
 
   // Search Items
