@@ -14,35 +14,66 @@ export const Collections = async () => {
     searchQuery: "earth",
   })
 
-  const update = async () => {
-    "use server"
-    await collection.upsertItems({
-      items: [
-        {
-          id: "my-id-1",
-          text: "Hello",
-          metadata: {
-            myDate: new Date().toISOString(),
-          },
-        },
-        {
-          id: "my-id-2",
-          text: "World",
-          metadata: {
-            myDate: new Date().toISOString(),
-          },
-        },
-      ],
-    })
-    revalidatePath("/collections")
-  }
-
   return (
-    <>
-      <pre className="mb-4 text-xs">{JSON.stringify(results, null, 2)}</pre>
-      <form action={update}>
-        <Button type="submit">Update</Button>
+    <div className="flex flex-col gap-4">
+      {/* SEARCH */}
+      <>
+        {results.map((result) => (
+          <div key={result.id}>
+            <div className="font-mono text-xs opacity-60">{result.id}</div>
+            <div>{result.text}</div>
+            <div className="text-xs">
+              myDate: {new Date(result.metadata.myDate).toUTCString()}
+            </div>
+            <div className="font-mono text-xs opacity-60">
+              Similarity: {result.similarityScore}
+            </div>
+          </div>
+        ))}
+      </>
+
+      {/* UPSERT */}
+      <form
+        action={async () => {
+          "use server"
+          await collection.upsertItems({
+            items: [
+              {
+                id: "my-id-1",
+                text: "Hello",
+                metadata: {
+                  myDate: new Date().toISOString(),
+                },
+              },
+              {
+                id: "my-id-2",
+                text: "World",
+                metadata: {
+                  myDate: new Date().toISOString(),
+                },
+              },
+            ],
+          })
+          revalidatePath("/collections")
+        }}
+      >
+        <Button type="submit">Upsert</Button>
       </form>
-    </>
+
+      {/* DELETE */}
+      <form
+        action={async () => {
+          "use server"
+          await collection.deleteOne({
+            itemId: "my-id-2",
+          })
+          revalidatePath("/collections")
+        }}
+      >
+        <Button type="submit" variant="destructive">
+          Delete my-id-2
+        </Button>
+      </form>
+    </div>
   )
 }
