@@ -51,6 +51,7 @@ export const initTeampilotCollection = <
         collectionSecret,
         items: parsed,
       }),
+      cache: 'no-cache',
     })
     if (!response.ok) {
       throw new Error(`Upserting items failed: ${await response.text()}`)
@@ -66,9 +67,11 @@ export const initTeampilotCollection = <
   const searchItems = async ({
     searchQuery,
     limit,
+    cache,
   }: {
     searchQuery: string
     limit?: number
+    cache?: RequestCache
   }) => {
     const params = new URLSearchParams({
       collectionSecret: collectionSecret!,
@@ -77,7 +80,9 @@ export const initTeampilotCollection = <
     if (limit) {
       params.set('limit', `${limit}`)
     }
-    const response = await fetch(`${url}?${params}`)
+    const response = await fetch(`${url}?${params}`, {
+      cache,
+    })
     if (!response.ok) {
       throw new Error(`Searching items failed: ${await response.text()}`)
     }
@@ -100,7 +105,10 @@ export const initTeampilotCollection = <
       collectionSecret: collectionSecret!,
       itemId,
     })
-    const response = await fetch(`${url}?${params}`, { method: 'DELETE' })
+    const response = await fetch(`${url}?${params}`, {
+      method: 'DELETE',
+      cache: 'no-cache',
+    })
     if (!response.ok) {
       throw new Error(`Deleting item failed: ${await response.text()}`)
     }
@@ -111,7 +119,10 @@ export const initTeampilotCollection = <
       collectionSecret: collectionSecret!,
       allItems: 'true',
     })
-    const response = await fetch(`${url}?${params}`, { method: 'DELETE' })
+    const response = await fetch(`${url}?${params}`, {
+      method: 'DELETE',
+      cache: 'no-cache',
+    })
     if (!response.ok) {
       throw new Error(`Deleting all items failed: ${await response.text()}`)
     }
