@@ -37,7 +37,7 @@ export const initTeampilotCollection = <
     }[]
   }) => {
     const schema = z.object({
-      id: z.string(),
+      id: z.string().optional(),
       text: z.string(),
       metadata: metadataSchema,
     })
