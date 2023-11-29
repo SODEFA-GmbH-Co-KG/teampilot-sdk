@@ -21,14 +21,19 @@ export const Collections = async () => {
       <>
         <>Searching for &quot;{searchQuery}&quot;</>
         {results.map((result) => (
-          <div key={result.id}>
-            <div className="font-mono text-xs opacity-60">{result.id}</div>
-            <div>{result.text}</div>
-            <div className="text-xs">
-              myDate: {new Date(result.metadata.myDate).toUTCString()}
+          <div
+            key={result.id}
+            className="flex flex-col items-center gap-4 rounded border border-border p-2"
+          >
+            <div className="flex flex-row gap-6 font-mono text-xs opacity-60">
+              <div className="flex-1">{result.id}</div>
+              <div className="">
+                Similarity: {result.similarityScore.toFixed(3)}
+              </div>
             </div>
-            <div className="font-mono text-xs opacity-60">
-              Similarity: {result.similarityScore}
+            <div className="italic">&ldquo;{result.text}&rdquo;</div>
+            <div className="text-xs">
+              {new Date(result.metadata.myDate).toUTCString()}
             </div>
           </div>
         ))}
