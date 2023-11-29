@@ -40,7 +40,7 @@ export const Collections = async () => {
                 Similarity: {result.similarityScore.toFixed(3)}
               </div>
             </div>
-            <div className="italic">{\`"${result.text}"\`}</div>
+            <div className="italic">{\`"\${result.text}"\`}</div>
             <div className="text-xs">
               {new Date(result.metadata.myDate).toUTCString()}
             </div>
