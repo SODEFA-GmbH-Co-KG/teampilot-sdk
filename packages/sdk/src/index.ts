@@ -1,4 +1,7 @@
-export { type TeampilotCustomFunction } from './TeampilotCustomFunction'
+export {
+  createTeampilotCustomFunction,
+  type TeampilotCustomFunction,
+} from './TeampilotCustomFunction'
 export {
   fetchTeampilot,
   fetchTeampilotData,
