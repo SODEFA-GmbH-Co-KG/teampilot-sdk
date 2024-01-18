@@ -62,7 +62,7 @@ Here is an example on how to use the API to fetch data from Teampilot.
 
 export default function Page() {
   return (
-    <div className="prose max-w-none dark:prose-invert">
+    <div className="prose max-w-[inherit] dark:prose-invert">
       <ReactMarkdown>{markdown}</ReactMarkdown>
 
       <div className="flex flex-col gap-8 lg:flex-row">

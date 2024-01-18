@@ -35,7 +35,7 @@ The input parameters are all the same for the main function and the sub function
 
 export default function Page() {
   return (
-    <div className="prose max-w-none dark:prose-invert">
+    <div className="prose max-w-[inherit] dark:prose-invert">
       <CodeBlock
         language="bash"
         lightMode="dark"

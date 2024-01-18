@@ -13,7 +13,7 @@ For better understanding, let's consider an example. We will prompt Teampilot to
 
 export default function Page() {
   return (
-    <div className="prose max-w-none dark:prose-invert">
+    <div className="prose max-w-[inherit] dark:prose-invert">
       <ReactMarkdown>{markdown}</ReactMarkdown>
 
       <ShowCase file="/src/client/examples/Reasons.tsx" layout="side-by-side">

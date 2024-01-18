@@ -26,7 +26,7 @@ For example you could pass a function that fetches data from your database, or a
 
 export default function Page() {
   return (
-    <div className="prose max-w-none dark:prose-invert">
+    <div className="prose max-w-[inherit] dark:prose-invert">
       <ReactMarkdown>{personsMarkdown}</ReactMarkdown>
 
       <ShowCase file="/src/client/examples/Persons.tsx">

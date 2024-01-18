@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <>
-              <div className="container flex flex-row items-center justify-between gap-6 py-6 2xl:max-w-[2000px]">
+              <div className="container flex flex-row items-center justify-between gap-6 py-6">
                 <Link href="/" className="flex flex-row items-center gap-3">
                   <TeampilotLogo className="h-8 w-8" />
                   <div className="text-xl">
@@ -60,17 +60,14 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                   <MainSideNavMobile />
                 </div>
               </div>
-              {/* <div className="container flex pb-6 xl:hidden 2xl:max-w-[2000px]">
-                <MainTopNav />
-              </div> */}
               <hr />
-              <div className="container mx-auto flex flex-row 2xl:max-w-[2000px]">
+              <div className="container mx-auto flex flex-row justify-center">
                 <div className="relative border-r py-8 pr-6 max-md:hidden">
                   <div className="sticky top-8 w-48 ">
                     <MainSideNav />
                   </div>
                 </div>
-                <div className="flex flex-col gap-8 py-8 md:pl-6">
+                <div className="flex flex-1 flex-col flex-wrap gap-8 py-8 md:pl-6 lg:max-w-screen-lg">
                   <SuspenseLoader>{children}</SuspenseLoader>
                 </div>
               </div>

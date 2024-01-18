@@ -11,7 +11,7 @@ Mutating data, for example a function that can update user data in your database
 
 export default function Page() {
   return (
-    <div className="prose max-w-none dark:prose-invert">
+    <div className="prose max-w-[inherit] dark:prose-invert">
       <ReactMarkdown>{markdown}</ReactMarkdown>
 
       <DocsLinksGrid destinations={["/custom-functions"]} />

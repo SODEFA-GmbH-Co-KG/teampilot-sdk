@@ -35,7 +35,7 @@ The possibilities are endless with what kind of functions you can develop and in
 
 export default function Page() {
   return (
-    <div className="prose dark:prose-invert max-w-none">
+    <div className="prose dark:prose-invert max-w-[inherit]">
       <ReactMarkdown className="w-full">{markdown}</ReactMarkdown>
 
       <DocsLinksGrid

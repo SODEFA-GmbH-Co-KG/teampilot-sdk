@@ -11,7 +11,7 @@ Consider, for instance, a function designed to perform complex mathematical calc
 
 export default function Page() {
   return (
-    <div className="prose max-w-none dark:prose-invert">
+    <div className="prose max-w-[inherit] dark:prose-invert">
       <ReactMarkdown className="w-full">{markdown}</ReactMarkdown>
 
       <DocsLinksGrid

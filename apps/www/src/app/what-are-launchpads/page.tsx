@@ -34,7 +34,7 @@ Congratulations! You've successfully created your first launchpad. You can now u
 
 export default function Page() {
   return (
-    <div className="prose max-w-none dark:prose-invert">
+    <div className="prose max-w-[inherit] dark:prose-invert">
       <ReactMarkdown>{markdown}</ReactMarkdown>
 
       <DocsLinksGrid destinations={["/fetching-teampilot"]} />

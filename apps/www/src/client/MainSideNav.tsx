@@ -2,11 +2,12 @@
 
 import { Menu } from "lucide-react"
 import Link from "next/link"
-import { usePathname, useSearchParams } from "next/navigation"
+import { useParams, usePathname, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import { Button } from "~/shadcn/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "~/shadcn/components/ui/sheet"
 import { cn } from "~/shadcn/utils"
+import { TOPICS } from "~/utils/navTopics"
 import { docPages } from "./DocsLink"
 
 const docPagesCategorized: {
@@ -42,35 +43,82 @@ const docPagesCategorized: {
 ]
 
 const SideNavCore = ({}) => {
-  const pathname = usePathname()
+  const params = useParams()
+  const classicPathname = usePathname()
+
+  const [pathname, setPathname] = useState<string>()
+
+  useEffect(() => {
+    const href = window.location.href
+    const containsHash = href.includes("#")
+    const pathnameWithHash = containsHash
+      ? `/${window.location.href.split("/").slice(-1)[0]}`
+      : classicPathname ?? "/"
+    setPathname(pathnameWithHash)
+  }, [classicPathname, params])
 
   return (
     <div>
-      {docPagesCategorized.map((category) => (
-        <div key={category.categoryName}>
-          <div className="py-1 text-sm font-medium">
-            {category.categoryName}
+      {TOPICS.map((topic) => {
+        const firstLevelSlug = topic.slug
+        const isActive = pathname === firstLevelSlug
+        return (
+          <div key={topic.title}>
+            <Link
+              shallow
+              className={cn(
+                "py-1 text-base font-semibold hover:text-primary",
+                isActive && "text-primary"
+              )}
+              href={topic.slug}
+            >
+              {topic.title}
+            </Link>
+            <div className="flex flex-col gap-1">
+              {topic.subTopics.map((topic) => {
+                const { slug, title } = topic
+                const secondLevelSlug = `${firstLevelSlug}${slug}`
+                const isActive = pathname === secondLevelSlug
+                return (
+                  <div key={secondLevelSlug}>
+                    <Link
+                      shallow
+                      href={secondLevelSlug}
+                      className={cn(
+                        "py-1 pl-2 block text-sm text-muted-foreground transition-colors hover:text-primary",
+                        isActive && "text-primary"
+                      )}
+                    >
+                      {title}
+                    </Link>
+                    <div>
+                      {topic.subTopics?.map((topic) => {
+                        const { slug, title } = topic
+                        const thirdLevelSlug = `${secondLevelSlug}${slug}`
+                        const isActive = pathname === thirdLevelSlug
+                        return (
+                          <div key={thirdLevelSlug}>
+                            <Link
+                              shallow
+                              href={thirdLevelSlug}
+                              className={cn(
+                                "py-1 pl-4 text-xs block text-muted-foreground transition-colors hover:text-primary",
+                                isActive && "text-primary"
+                              )}
+                            >
+                              {title}
+                            </Link>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </div>
-          <div className="flex flex-col gap-1">
-            {category.pages.map((page) => {
-              const isActive =
-                page === "/" ? pathname === page : pathname === page
-              return (
-                <Link
-                  key={page}
-                  href={page}
-                  className={cn(
-                    "py-1 pl-2 text-sm text-muted-foreground transition-colors hover:text-primary",
-                    isActive && "text-primary"
-                  )}
-                >
-                  {docPages.find((docPage) => docPage.href === page)!.name}
-                </Link>
-              )
-            })}
-          </div>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }
