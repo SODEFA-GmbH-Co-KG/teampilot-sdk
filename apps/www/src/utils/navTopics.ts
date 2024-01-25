@@ -266,9 +266,11 @@ export const TOPICS = [
 type ExtractSlug<T> = T extends { slug: infer Slug } ? Slug : never
 type HasSubTopics<T> = T extends { subTopics: any } ? T : never
 
-type FirstLevelSlug = ExtractSlug<(typeof TOPICS)[number]>
-type SecondLevelSlug = ExtractSlug<(typeof TOPICS)[number]["subTopics"][number]>
-type ThirdLevelSlug = ExtractSlug<
+export type FirstLevelSlug = ExtractSlug<(typeof TOPICS)[number]>
+export type SecondLevelSlug = ExtractSlug<
+  (typeof TOPICS)[number]["subTopics"][number]
+>
+export type ThirdLevelSlug = ExtractSlug<
   HasSubTopics<
     (typeof TOPICS)[number]["subTopics"][number]
   >["subTopics"][number]
@@ -304,4 +306,19 @@ export const getAllSubTopicsForCardsBySlug = (slug: SlugWithSubTopic) => {
   })
 
   return parsedTopics.filter(Boolean) as SubTopicWithBadges[]
+}
+
+export const getIdForTopic = ({
+  secondLevelSlug,
+  thirdLevelSlug,
+}: {
+  secondLevelSlug: SecondLevelSlug
+  thirdLevelSlug?: ThirdLevelSlug
+}) => {
+  const trimmedSecondLevelSlug = secondLevelSlug.replace("#", "")
+  const trimmedThirdLevelSlug = thirdLevelSlug?.replace("#", "")
+  if (thirdLevelSlug) {
+    return `${trimmedSecondLevelSlug}${trimmedThirdLevelSlug}`
+  }
+  return `${trimmedSecondLevelSlug}`
 }

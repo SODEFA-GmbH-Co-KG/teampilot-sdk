@@ -35,35 +35,37 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <>
-              <div className="container flex flex-row items-center justify-between gap-6 py-6">
-                <Link href="/" className="flex flex-row items-center gap-3">
-                  <TeampilotLogo className="h-8 w-8" />
-                  <div className="text-xl">
-                    <strong>
-                      Teampilot <span className="text-primary">SDK</span>
-                    </strong>
-                  </div>
-                </Link>
-                <div className="hidden flex-1 xl:flex">
-                  <MainTopNav />
-                </div>
-                <div className="flex flex-row">
-                  <Link
-                    href="https://github.com/sodefa-gmbh-co-kg/teampilot-sdk"
-                    target="_blank"
-                  >
-                    <Button variant={"ghost"} size="icon">
-                      <Github />
-                    </Button>
+              <div className="sticky top-0 w-full z-10">
+                <div className="container flex flex-row items-center justify-between gap-6 py-6 bg-background w-full mx-auto">
+                  <Link href="/" className="flex flex-row items-center gap-3">
+                    <TeampilotLogo className="h-8 w-8" />
+                    <div className="text-xl">
+                      <strong>
+                        Teampilot <span className="text-primary">SDK</span>
+                      </strong>
+                    </div>
                   </Link>
-                  <DarkModeToggle />
-                  <MainSideNavMobile />
+                  <div className="hidden flex-1 xl:flex">
+                    <MainTopNav />
+                  </div>
+                  <div className="flex flex-row">
+                    <Link
+                      href="https://github.com/sodefa-gmbh-co-kg/teampilot-sdk"
+                      target="_blank"
+                    >
+                      <Button variant={"ghost"} size="icon">
+                        <Github />
+                      </Button>
+                    </Link>
+                    <DarkModeToggle />
+                    <MainSideNavMobile />
+                  </div>
                 </div>
               </div>
               <hr />
               <div className="container mx-auto flex flex-row justify-center">
-                <div className="relative border-r py-8 pr-6 max-md:hidden">
-                  <div className="sticky top-8 w-48 ">
+                <div className="border-r max-md:hidden">
+                  <div className="w-48 top-[89px] sticky max-h-[calc(100dvh-89px)] py-8 pr-6 overflow-y-auto">
                     <MainSideNav />
                   </div>
                 </div>
