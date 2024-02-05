@@ -5,6 +5,7 @@ import { type ReactNode } from "react"
 import { DarkModeToggle } from "~/client/DarkModeToggle"
 import { MainSideNav, MainSideNavMobile } from "~/client/MainSideNav"
 import { MainTopNav } from "~/client/MainTopNav"
+import { NavigationContextProvider } from "~/client/NavigationContext"
 import { SuspenseLoader } from "~/client/SuspenseLoader"
 import { TeampilotLogo } from "~/client/TeampilotLogo"
 import { ThemeProvider } from "~/shadcn/components/theme-provider"
@@ -34,46 +35,48 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <>
-              <div className="sticky top-0 w-full z-10">
-                <div className="container flex flex-row items-center justify-between gap-6 py-6 bg-background w-full mx-auto">
-                  <Link href="/" className="flex flex-row items-center gap-3">
-                    <TeampilotLogo className="h-8 w-8" />
-                    <div className="text-xl">
-                      <strong>
-                        Teampilot <span className="text-primary">SDK</span>
-                      </strong>
-                    </div>
-                  </Link>
-                  <div className="hidden flex-1 xl:flex">
-                    <MainTopNav />
-                  </div>
-                  <div className="flex flex-row">
-                    <Link
-                      href="https://github.com/sodefa-gmbh-co-kg/teampilot-sdk"
-                      target="_blank"
-                    >
-                      <Button variant={"ghost"} size="icon">
-                        <Github />
-                      </Button>
+            <NavigationContextProvider>
+              <>
+                <div className="sticky top-0 w-full z-10">
+                  <div className="container flex flex-row items-center justify-between gap-6 py-6 bg-background w-full mx-auto">
+                    <Link href="/" className="flex flex-row items-center gap-3">
+                      <TeampilotLogo className="h-8 w-8" />
+                      <div className="text-xl">
+                        <strong>
+                          Teampilot <span className="text-primary">SDK</span>
+                        </strong>
+                      </div>
                     </Link>
-                    <DarkModeToggle />
-                    <MainSideNavMobile />
+                    <div className="hidden flex-1 xl:flex">
+                      <MainTopNav />
+                    </div>
+                    <div className="flex flex-row">
+                      <Link
+                        href="https://github.com/sodefa-gmbh-co-kg/teampilot-sdk"
+                        target="_blank"
+                      >
+                        <Button variant={"ghost"} size="icon">
+                          <Github />
+                        </Button>
+                      </Link>
+                      <DarkModeToggle />
+                      <MainSideNavMobile />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <hr />
-              <div className="container mx-auto flex flex-row justify-center">
-                <div className="border-r max-md:hidden">
-                  <div className="w-48 top-[89px] sticky max-h-[calc(100dvh-89px)] py-8 pr-6 overflow-y-auto">
-                    <MainSideNav />
+                <hr />
+                <div className="container mx-auto flex flex-row justify-center">
+                  <div className="border-r max-md:hidden">
+                    <div className="w-48 top-[89px] sticky max-h-[calc(100dvh-89px)] py-8 pr-6 overflow-y-auto">
+                      <MainSideNav />
+                    </div>
+                  </div>
+                  <div className="flex flex-1 flex-col flex-wrap gap-8 py-8 md:pl-6 lg:max-w-screen-lg">
+                    <SuspenseLoader>{children}</SuspenseLoader>
                   </div>
                 </div>
-                <div className="flex flex-1 flex-col flex-wrap gap-8 py-8 md:pl-6 lg:max-w-screen-lg">
-                  <SuspenseLoader>{children}</SuspenseLoader>
-                </div>
-              </div>
-            </>
+              </>
+            </NavigationContextProvider>
           </ThemeProvider>
           <Analytics />
         </body>

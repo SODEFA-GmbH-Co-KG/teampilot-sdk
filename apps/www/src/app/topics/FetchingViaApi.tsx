@@ -1,6 +1,9 @@
 import { ArrowDown } from "lucide-react"
 import ReactMarkdown from "react-markdown"
+import { AnchorDiv } from "~/client/AnchorDiv"
 import { CodeBlock } from "~/client/CodeBlock"
+import { IntersectionChecker } from "~/client/IntersectionChecker"
+import { getIdForTopic } from "~/utils/navTopics"
 
 const input = `fetch('https://teampilot.ai/api/rest/message', {
   method: "POST",
@@ -60,9 +63,14 @@ The Teampilot API currently offers one endpoint. You can find the OpenAPI specif
 Here is an example on how to use the API to fetch data from Teampilot.
 `
 
-export default function Page() {
+export const FetchingViaApi = () => {
+  const fetchingViaApiId = getIdForTopic({
+    secondLevelSlug: "#fetching-via-api-sdk",
+  })
   return (
     <div className="prose max-w-[inherit] dark:prose-invert">
+      <IntersectionChecker topic={"/topics#fetching-via-api-sdk"} />
+      <AnchorDiv id={fetchingViaApiId} />
       <ReactMarkdown>{markdown}</ReactMarkdown>
 
       <div className="flex flex-col gap-8 lg:flex-row">

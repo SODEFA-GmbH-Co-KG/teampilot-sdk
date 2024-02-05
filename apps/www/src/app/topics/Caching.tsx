@@ -1,5 +1,7 @@
 import ReactMarkdown from "react-markdown"
-import { DocsLinksGrid } from "~/client/DocsLink"
+import { AnchorDiv } from "~/client/AnchorDiv"
+import { IntersectionChecker } from "~/client/IntersectionChecker"
+import { getIdForTopic } from "~/utils/navTopics"
 
 const markdown = `
 # Caching
@@ -17,14 +19,15 @@ If you use the SDK and really don't want caching, you can either set cacheTtlSec
 If both are set, TEAMPILOT_DEFAULT_CACHE_TTL_SECONDS will be used.
 `
 
-export default function Page() {
+export const Caching = () => {
+  const cachingId = getIdForTopic({
+    secondLevelSlug: "#caching",
+  })
   return (
     <div className="prose max-w-none dark:prose-invert">
+      <IntersectionChecker topic={"/topics#caching"} />
+      <AnchorDiv id={cachingId} />
       <ReactMarkdown>{markdown}</ReactMarkdown>
-
-      <DocsLinksGrid
-        destinations={["/fetching-via-sdk", "/fetching-via-api"]}
-      />
     </div>
   )
 }

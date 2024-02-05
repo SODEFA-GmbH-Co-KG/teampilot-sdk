@@ -3,8 +3,11 @@ import Link from "next/link"
 import { type PropsWithChildren } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import { AnchorDiv } from "~/client/AnchorDiv"
 import { CodeBlock } from "~/client/CodeBlock"
-import { DocsLinksGrid, getPageByHref } from "~/client/DocsLink"
+import { getPageByHref } from "~/client/DocsLink"
+import { IntersectionChecker } from "~/client/IntersectionChecker"
+import { getIdForTopic } from "~/utils/navTopics"
 
 const DocImage = (props: Parameters<typeof Image>[0]) => {
   return <Image {...props} className="rounded shadow-md shadow-black/5" />
@@ -36,7 +39,23 @@ If you don't use Typescript you can connect them as well, we currently don't hav
 
 ## How to create a custom function via the SDK and Next.js`
 
-export default function Page() {
+const customFunctionSection1 = `
+# Custom Functions: Extending LLM Capabilities
+Functions are a fundamental component in Teampilot, designed to enhance the capabilities of Large Language Models (LLMs) like GPT. 
+
+In many ways, functions in Teampilot mirror those found in programming languages such as Python or Javascript. They accept specified inputs, process them through a series of coded instructions, and yield an output.
+
+Consider, for instance, a function designed to perform complex mathematical calculations. Given that current versions of GPT are not particularly adept at math, this function could take a mathematical expression as an input, evaluate it, and return the computed result. In such a scenario, if the LLM needs to execute a complicated calculation, it can simply invoke this function and delegate the mathematical heavy lifting to it.
+`
+
+export const CustomFunctions = () => {
+  const customFunctionsId = getIdForTopic({
+    secondLevelSlug: "#custom-functions",
+  })
+  const hostedFunctionsId = getIdForTopic({
+    secondLevelSlug: "#custom-functions",
+    thirdLevelSlug: "-hosted-functions",
+  })
   return (
     <div className="prose max-w-[inherit] dark:prose-invert">
       {/* <CodeBlock
@@ -54,6 +73,12 @@ export default function Page() {
         }
       />
       <div className="h-6" /> */}
+
+      <AnchorDiv id={customFunctionsId} />
+      <IntersectionChecker topic={"/topics#custom-functions"} />
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        {customFunctionSection1}
+      </ReactMarkdown>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{`
 # What are functions?
 - Functions can be called by our AI
@@ -114,6 +139,7 @@ export default function Page() {
         </a>
       </div>
 
+      <AnchorDiv id={hostedFunctionsId} />
       <h1 id="hosted-functions">Hosted Functions</h1>
 
       <div className="rounded border-primary border py-1 px-2">
@@ -340,8 +366,6 @@ export default teampilotFunctionHandler({
           </ul>
         </div>
       </div>
-
-      <DocsLinksGrid destinations={["/sdk-examples", "/functions"]} />
     </div>
   )
 }

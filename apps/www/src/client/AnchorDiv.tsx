@@ -1,3 +1,4 @@
+"use client"
 import { type HtmlHTMLAttributes } from "react"
 
 export const AnchorDiv = (props: HtmlHTMLAttributes<HTMLDivElement>) => {

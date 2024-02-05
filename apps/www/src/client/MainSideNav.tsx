@@ -2,13 +2,15 @@
 
 import { Menu } from "lucide-react"
 import Link from "next/link"
-import { useParams, usePathname, useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { usePathname, useSearchParams } from "next/navigation"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { Button } from "~/shadcn/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "~/shadcn/components/ui/sheet"
 import { cn } from "~/shadcn/utils"
 import { TOPICS } from "~/utils/navTopics"
+import useHash from "~/utils/useHash"
 import { docPages } from "./DocsLink"
+import { useNavigationContext } from "./NavigationContext"
 
 const docPagesCategorized: {
   categoryName: string
@@ -43,28 +45,44 @@ const docPagesCategorized: {
 ]
 
 const SideNavCore = ({}) => {
-  const params = useParams()
   const classicPathname = usePathname()
 
-  const [pathname, setPathname] = useState<string>()
+  const { selectedTopic } = useNavigationContext()
+  const hash = useHash()
 
-  useEffect(() => {
-    const href = window.location.href
-    const containsHash = href.includes("#")
-    const pathnameWithHash = containsHash
-      ? `/${window.location.href.split("/").slice(-1)[0]}`
-      : classicPathname ?? "/"
-    setPathname(pathnameWithHash)
-  }, [classicPathname, params])
+  useLayoutEffect(() => {
+    const handleScroll = () => {
+      if (hash) {
+        const targetElement = document.getElementById(hash)
+
+        if (targetElement) {
+          const targetOffsetTop = targetElement.offsetTop
+          window.scrollTo({ top: targetOffsetTop - 89, behavior: "smooth" })
+        }
+      }
+    }
+
+    handleScroll()
+  }, [hash])
+
+  // useEffect(() => {
+  //   const href = window.location.href
+  //   const containsHash = href.includes("#")
+  //   const pathnameWithHash = containsHash
+  //     ? `/${window.location.href.split("/").slice(-1)[0]}`
+  //     : classicPathname ?? "/"
+  //   setSelectedTopic(pathnameWithHash)
+  // }, [classicPathname, params, setSelectedTopic])
 
   return (
     <div>
       {TOPICS.map((topic) => {
         const firstLevelSlug = topic.slug
-        const isActive = pathname === firstLevelSlug
+        const isActive = selectedTopic === firstLevelSlug
         return (
           <div key={topic.title}>
             <Link
+              onClick={(e) => e.preventDefault()}
               shallow
               className={cn(
                 "py-1 text-base font-semibold hover:text-primary",
@@ -78,7 +96,7 @@ const SideNavCore = ({}) => {
               {topic.subTopics.map((topic) => {
                 const { slug, title } = topic
                 const secondLevelSlug = `${firstLevelSlug}${slug}`
-                const isActive = pathname === secondLevelSlug
+                const isActive = selectedTopic === secondLevelSlug
                 return (
                   <div key={secondLevelSlug}>
                     <Link
@@ -95,7 +113,7 @@ const SideNavCore = ({}) => {
                       {topic.subTopics?.map((topic) => {
                         const { slug, title } = topic
                         const thirdLevelSlug = `${secondLevelSlug}${slug}`
-                        const isActive = pathname === thirdLevelSlug
+                        const isActive = selectedTopic === thirdLevelSlug
                         return (
                           <div key={thirdLevelSlug}>
                             <Link

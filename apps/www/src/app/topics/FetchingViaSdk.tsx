@@ -1,11 +1,9 @@
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { CodeBlock } from "~/client/CodeBlock"
-import { DocsLinksGrid } from "~/client/DocsLink"
 import { CopyNpmCommandButton } from "~/shadcn/components/copy-button"
 
 const markdown = `
-# Fetching Teampilot via SDK
 The Teampilot SDK is a wrapper around the API and makes working with it in Typescript a bit nicer.
 
 The core of the SDK is the **fetchTeampilot** function. This is the primary gateway to Teampilot, it handles every request.
@@ -33,9 +31,10 @@ The input parameters are all the same for the main function and the sub function
 | functionExecution | | | No |
 `
 
-export default function Page() {
+export const FetchingViaSdk = () => {
   return (
     <div className="prose max-w-[inherit] dark:prose-invert">
+      <h1>Fetching Teampilot via SDK</h1>
       <CodeBlock
         language="bash"
         lightMode="dark"
@@ -52,8 +51,6 @@ export default function Page() {
       />
       <div className="h-6" />
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
-
-      <DocsLinksGrid destinations={["/custom-functions", "/schema"]} />
     </div>
   )
 }
