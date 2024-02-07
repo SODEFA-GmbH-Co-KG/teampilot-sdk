@@ -8,7 +8,7 @@ The fastest way to get started with Teampilot is to provide a public launchpad. 
 ## What is a Public Launchpad?
 
 A public launchpad is similar to the well known Custom GPT's from OpenAI. Once created it can be made accessible via a public URL and can be used by anyone.
-At its core it is providing a Chat UI to interact with the configured AI. 
+At its core it is providing a Chat UI to interact with the configured AI. You can learn more about launchpads in the [Launchpads](/topics#launchpads) section. 
 
 ## Let's setup a Public Launchpad for an actual use case
 
@@ -47,6 +47,10 @@ If not given, ask the user for the necessary information to generate the lesson.
 ## Example output
 
 ![Example Output](/docs/example-output.png)
+
+## Extend your Launchpad further
+
+You can extend your launchpad further by adding custom functions, documents, and more. You can learn more about these in the [Topics](/topics) section.
 `
 
 export default function Page() {

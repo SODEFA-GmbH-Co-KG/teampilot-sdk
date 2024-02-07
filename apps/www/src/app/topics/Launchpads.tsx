@@ -42,6 +42,8 @@ Follow these steps to create your first launchpad:
 7. **Copy the ID:** After saving, an ID will appear below the "Public" switch. Copy this ID for future use. (If you don't need it right away, you can always come back to this page and copy it again)
 
 Congratulations! You've successfully created your first launchpad. You can now use it to create new chats via the SDK.
+
+Also checkout our [Getting Started](/getting-started/provide-a-public-launchpad) guide to setup a public launchpad step by step for an actual use case.
 `}</ReactMarkdown>
     </div>
   )
