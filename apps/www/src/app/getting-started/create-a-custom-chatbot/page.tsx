@@ -69,7 +69,7 @@ export default function Page() {
       <Script
         defer
         src="https://teampilot.ai/widget.js"
-        data-launchpad-slug-id="my-chatbot-674ea0f69899a7db7dd6c995fc113cf6"
+        data-launchpad-slug-id="my-chatbot-20ee457cee3b099cca3b762da5ca7105"
       />
       <div className="prose max-w-[inherit] dark:prose-invert">
         <ReactMarkdown>{markdown}</ReactMarkdown>
