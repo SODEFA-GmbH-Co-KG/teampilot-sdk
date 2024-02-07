@@ -51,7 +51,6 @@ const SideNavCore = ({}) => {
         return (
           <div key={topic.title}>
             <Link
-              shallow
               scroll={false}
               className={cn(
                 "py-1 text-base font-semibold hover:text-primary",
@@ -69,7 +68,6 @@ const SideNavCore = ({}) => {
                 return (
                   <div key={secondLevelSlug}>
                     <Link
-                      shallow
                       scroll={false}
                       href={secondLevelSlug}
                       className={cn(
@@ -87,7 +85,6 @@ const SideNavCore = ({}) => {
                         return (
                           <div key={thirdLevelSlug}>
                             <Link
-                              shallow
                               scroll={false}
                               href={thirdLevelSlug}
                               className={cn(
