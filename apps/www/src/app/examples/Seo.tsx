@@ -1,13 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
-import { DocsLinksGrid } from "~/client/DocsLink"
+import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { ShowCase } from "~/client/ShowCase"
 import details from "../../../public/examples/seo-details.png"
 import overview from "../../../public/examples/seo-overview.png"
 
-export default function Page() {
+export const Seo = () => {
   return (
     <>
+      <IntersectionChecker topic="/examples#seo" />
       <ShowCase
         title="Overview Page"
         file="/src/app/cities/page.tsx"
@@ -26,8 +27,6 @@ export default function Page() {
           <Image src={details} alt="Sidebar" />
         </Link>
       </ShowCase>
-
-      <DocsLinksGrid destinations={["/future", "/"]} />
     </>
   )
 }

@@ -4,7 +4,7 @@ import { DocsLinksGrid } from "~/client/DocsLink"
 import { ShowCase } from "~/client/ShowCase"
 import sidebar from "../../../public/examples/sidebar.png"
 
-export default function Page() {
+export const Future = () => {
   return (
     <>
       <ShowCase

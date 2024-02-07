@@ -7,47 +7,15 @@ import { useEffect, useLayoutEffect, useState } from "react"
 import { Button } from "~/shadcn/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "~/shadcn/components/ui/sheet"
 import { cn } from "~/shadcn/utils"
-import { TOPICS } from "~/utils/navTopics"
+import { TOPICS, type TopicsArray } from "~/utils/navTopics"
 import useHash from "~/utils/useHash"
-import { docPages } from "./DocsLink"
 import { useNavigationContext } from "./NavigationContext"
-
-const docPagesCategorized: {
-  categoryName: string
-  pages: (typeof docPages)[number]["href"][]
-}[] = [
-  {
-    categoryName: "Teampilot for Developers",
-    pages: [
-      "/",
-      "/your-product-into-teampilot",
-      "/teampilot-into-your-product",
-      "/what-are-launchpads",
-      "/functions",
-      "/fetching-teampilot",
-      "/caching",
-      "/fetching-via-api",
-      "/fetching-via-sdk",
-      "/custom-functions",
-    ],
-  },
-  {
-    categoryName: "SDK Examples",
-    pages: [
-      "/schema",
-      "/interactive",
-      "/functions-examples",
-      "/media",
-      "/seo",
-      "/future",
-    ],
-  },
-]
 
 const SideNavCore = ({}) => {
   const classicPathname = usePathname()
+  const params = useSearchParams()
 
-  const { selectedTopic } = useNavigationContext()
+  const { selectedTopic, setSelectedTopic } = useNavigationContext()
   const hash = useHash()
 
   useLayoutEffect(() => {
@@ -65,24 +33,24 @@ const SideNavCore = ({}) => {
     handleScroll()
   }, [hash])
 
-  // useEffect(() => {
-  //   const href = window.location.href
-  //   const containsHash = href.includes("#")
-  //   const pathnameWithHash = containsHash
-  //     ? `/${window.location.href.split("/").slice(-1)[0]}`
-  //     : classicPathname ?? "/"
-  //   setSelectedTopic(pathnameWithHash)
-  // }, [classicPathname, params, setSelectedTopic])
+  useEffect(() => {
+    const href = window.location.href
+    const containsHash = href.includes("#")
+    const pathnameWithHash = containsHash
+      ? `/${window.location.href.split("/").slice(-1)[0]}`
+      : classicPathname ?? "/"
+    setSelectedTopic(pathnameWithHash)
+  }, [classicPathname, params, setSelectedTopic])
 
   return (
     <div>
-      {TOPICS.map((topic) => {
+      {/* TODO: Fix typing */}
+      {(TOPICS as unknown as TopicsArray).map((topic) => {
         const firstLevelSlug = topic.slug
         const isActive = selectedTopic === firstLevelSlug
         return (
           <div key={topic.title}>
             <Link
-              onClick={(e) => e.preventDefault()}
               shallow
               className={cn(
                 "py-1 text-base font-semibold hover:text-primary",

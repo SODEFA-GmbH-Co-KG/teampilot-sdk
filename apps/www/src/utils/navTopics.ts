@@ -1,5 +1,30 @@
 import { z } from "zod"
 
+export type BadgeType =
+  | "Beginner"
+  | "Intermediate"
+  | "Advanced"
+  | "Expert"
+  | "Code"
+  | "No-Code"
+
+export type SubTopic = {
+  title: string
+  slug: string
+  icon?: string
+  description?: string
+  badges?: BadgeType[]
+  subTopics?: SubTopic[]
+}
+
+export type Topic = {
+  title: string
+  slug: string
+  subTopics: SubTopic[]
+}
+
+export type TopicsArray = readonly Topic[]
+
 export const TOPICS = [
   {
     title: "Getting Started",
@@ -208,6 +233,10 @@ export const TOPICS = [
       {
         title: "Media",
         slug: "#media" as const,
+      },
+      {
+        title: "Seo",
+        slug: "#seo" as const,
       },
     ] as const,
   },

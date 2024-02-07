@@ -1,10 +1,11 @@
-import { DocsLinksGrid } from "~/client/DocsLink"
 import { ImageExample } from "~/client/examples/ImageExample"
+import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { ShowCase } from "~/client/ShowCase"
 
-export default function Page() {
+export const Media = () => {
   return (
     <>
+      <IntersectionChecker topic="/examples#media" />
       <ShowCase
         title="Image"
         file="/src/client/examples/ImageExample.tsx"
@@ -19,8 +20,6 @@ export default function Page() {
       >
         <AudioExample />
       </ShowCase> */}
-
-      <DocsLinksGrid destinations={["/seo", "/future"]} />
     </>
   )
 }
