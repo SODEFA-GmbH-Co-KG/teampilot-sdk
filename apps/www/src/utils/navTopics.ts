@@ -113,10 +113,6 @@ export const TOPICS = [
         ] as const,
       },
       {
-        title: "Widget",
-        slug: "#widget" as const,
-      },
-      {
         title: "Caching",
         slug: "#caching" as const,
       },

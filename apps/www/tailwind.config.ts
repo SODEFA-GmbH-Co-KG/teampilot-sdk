@@ -16,6 +16,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        spaceGrotesk: ["var(--space-grotesk)"],
+        roboto: ["var(--roboto)"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/react"
 import { Github } from "lucide-react"
+import { Roboto, Space_Grotesk } from "next/font/google"
 import Link from "next/link"
 import { type ReactNode } from "react"
 import { DarkModeToggle } from "~/client/DarkModeToggle"
@@ -21,6 +22,19 @@ export const metadata = {
   title: "Teampilot SDK",
 }
 
+const spaceGrotesk = Space_Grotesk({
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--space-grotesk",
+})
+const roboto = Roboto({
+  display: "swap",
+  weight: ["900", "400", "500", "300"],
+  subsets: ["latin"],
+  variable: "--roboto",
+})
+
 export default function RootLayout({ children }: { children?: ReactNode }) {
   return (
     <>
@@ -30,7 +44,9 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
         </head>
         <body
           className={cn(
-            "min-h-[100dvh] bg-background font-sans antialiased"
+            "min-h-[100dvh] bg-background antialiased font-roboto",
+            spaceGrotesk.variable,
+            roboto.variable
             // font.className
           )}
         >

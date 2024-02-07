@@ -43,7 +43,7 @@ const SideNavCore = ({}) => {
   }, [classicPathname, params, setSelectedTopic])
 
   return (
-    <div>
+    <div className="font-spaceGrotesk">
       {/* TODO: Fix typing */}
       {(TOPICS as unknown as TopicsArray).map((topic) => {
         const firstLevelSlug = topic.slug
@@ -52,6 +52,7 @@ const SideNavCore = ({}) => {
           <div key={topic.title}>
             <Link
               shallow
+              scroll={false}
               className={cn(
                 "py-1 text-base font-semibold hover:text-primary",
                 isActive && "text-primary"
@@ -69,6 +70,7 @@ const SideNavCore = ({}) => {
                   <div key={secondLevelSlug}>
                     <Link
                       shallow
+                      scroll={false}
                       href={secondLevelSlug}
                       className={cn(
                         "py-1 pl-2 block text-sm text-muted-foreground transition-colors hover:text-primary",
@@ -86,6 +88,7 @@ const SideNavCore = ({}) => {
                           <div key={thirdLevelSlug}>
                             <Link
                               shallow
+                              scroll={false}
                               href={thirdLevelSlug}
                               className={cn(
                                 "py-1 pl-4 text-xs block text-muted-foreground transition-colors hover:text-primary",
