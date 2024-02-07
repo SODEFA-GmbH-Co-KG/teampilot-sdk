@@ -18,18 +18,18 @@ export default function Page() {
     <div className="prose dark:prose-invert max-w-[inherit]">
       <ReactMarkdown className="w-full">{markdown}</ReactMarkdown>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-8">
         {gettingStartedSubPages.map((subPage) => (
           <Link
-            className="group relative min-h-[210px] block rounded-md border border-neutral-400 p-4 pt-3 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
+            className="group relative min-h-[210px] block rounded-md border border-neutral-400 transition duration-200 hover:border-primary dark:hover:border-primary p-4 pt-3 no-underline shadow-md shadow-black/5 hover:shadow-lg dark:border-neutral-700"
             key={subPage.title}
             href={`${slug}/${subPage.slug}`}
           >
             <div className="flex flex-col space-y-3">
               <div className="flex flex-col gap-2">
-                <div className="text-2xl">{subPage.icon}</div>
+                <div className="text-3xl">{subPage.icon}</div>
                 <div className="">
-                  <span className="text-lg font-semibold">{subPage.title}</span>
+                  <span className="text-xl font-semibold">{subPage.title}</span>
                   <div className="absolute flex gap-2 top-4 right-4">
                     {subPage.badges.map((badge) => (
                       <Badge key={badge} color="">
@@ -39,7 +39,7 @@ export default function Page() {
                   </div>
                 </div>
               </div>
-              <div className="text-base text-neutral-500 dark:text-neutral-400">
+              <div className="text-base font-normal text-neutral-500 dark:text-neutral-400">
                 {subPage.description}
               </div>
             </div>

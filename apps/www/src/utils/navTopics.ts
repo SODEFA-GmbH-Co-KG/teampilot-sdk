@@ -41,7 +41,7 @@ export const TOPICS = [
         title: "Create a custom Chatbot",
         slug: "/create-a-custom-chatbot" as const,
         icon: "🤖",
-        description: "Integrating your product into Teampilot.",
+        description: "Integrating Teampilot into your product.",
         badges: ["Intermediate", "No-Code"],
       },
       {
