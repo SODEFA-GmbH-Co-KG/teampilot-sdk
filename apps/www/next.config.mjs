@@ -29,6 +29,16 @@ const config = {
       "d39ob9hwkmfin1.cloudfront.net",
     ],
   },
+
+  redirects: async () => {
+    return [
+      {
+        source: "/",
+        destination: "/getting-started",
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default config

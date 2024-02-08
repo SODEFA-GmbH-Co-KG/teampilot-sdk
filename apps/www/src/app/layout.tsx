@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { Github } from "lucide-react"
 import { Roboto, Space_Grotesk } from "next/font/google"
 import Link from "next/link"
+import Script from "next/script"
 import { type ReactNode } from "react"
 import { DarkModeToggle } from "~/client/DarkModeToggle"
 import { MainSideNav, MainSideNavMobile } from "~/client/MainSideNav"
@@ -50,6 +51,11 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
             // font.className
           )}
         >
+          <Script
+            defer
+            src="https://teampilot.ai/widget.js"
+            data-launchpad-slug-id="teampilot-docs-20ee457cee3b099cca3b762da5ca7105"
+          />
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <NavigationContextProvider>
               <>
@@ -58,8 +64,8 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                     <Link href="/" className="flex flex-row items-center gap-3">
                       <TeampilotLogo className="h-8 w-8" />
                       <div className="text-xl">
-                        <strong>
-                          Teampilot <span className="text-primary">SDK</span>
+                        <strong className="font-spaceGrotesk">
+                          Teampilot <span className="text-primary">Docs</span>
                         </strong>
                       </div>
                     </Link>
@@ -83,7 +89,7 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
                 <hr />
                 <div className="container mx-auto flex flex-row justify-center">
                   <div className="border-r max-md:hidden">
-                    <div className="w-48 top-[89px] sticky max-h-[calc(100dvh-89px)] py-8 pr-6 overflow-y-auto">
+                    <div className="w-48 top-[89px] sticky max-h-[calc(100dvh-89px)] py-8 pr-6 overflow-y-auto scrollbar-hide">
                       <MainSideNav />
                     </div>
                   </div>

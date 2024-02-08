@@ -29,10 +29,12 @@ export default function Page() {
               <div className="flex flex-col gap-2">
                 <div className="text-3xl">{subPage.icon}</div>
                 <div className="">
-                  <span className="text-xl font-semibold">{subPage.title}</span>
+                  <span className="text-xl font-semibold font-spaceGrotesk">
+                    {subPage.title}
+                  </span>
                   <div className="absolute flex gap-2 top-4 right-4">
                     {subPage.badges.map((badge) => (
-                      <Badge key={badge} color="">
+                      <Badge className="font-spaceGrotesk" key={badge} color="">
                         {badge}
                       </Badge>
                     ))}

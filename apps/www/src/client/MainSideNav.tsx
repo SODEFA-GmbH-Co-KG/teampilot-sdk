@@ -43,7 +43,7 @@ const SideNavCore = ({}) => {
   }, [classicPathname, params, setSelectedTopic])
 
   return (
-    <div className="font-spaceGrotesk">
+    <div className="font-spaceGrotesk scrollbar-hide">
       {/* TODO: Fix typing */}
       {(TOPICS as unknown as TopicsArray).map((topic) => {
         const firstLevelSlug = topic.slug

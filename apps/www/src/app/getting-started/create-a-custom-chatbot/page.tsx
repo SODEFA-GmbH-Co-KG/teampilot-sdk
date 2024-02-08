@@ -1,4 +1,3 @@
-import Script from "next/script"
 import ReactMarkdown from "react-markdown"
 
 const markdown = `
@@ -66,11 +65,6 @@ You can extend your chatbot further by adding custom functions, documents, and m
 export default function Page() {
   return (
     <>
-      <Script
-        defer
-        src="https://teampilot.ai/widget.js"
-        data-launchpad-slug-id="my-chatbot-20ee457cee3b099cca3b762da5ca7105"
-      />
       <div className="prose max-w-[inherit] dark:prose-invert">
         <ReactMarkdown>{markdown}</ReactMarkdown>
       </div>

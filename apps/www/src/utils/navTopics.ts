@@ -123,6 +123,50 @@ export const TOPICS = [
     ] as const,
   },
   {
+    title: "Examples",
+    slug: "/examples" as const,
+    subTopics: [
+      {
+        title: "Schema",
+        slug: "#schema" as const,
+      },
+      {
+        title: "Interaction",
+        slug: "#interaction" as const,
+      },
+      {
+        title: "Functions",
+        slug: "#functions" as const,
+        subTopics: [
+          {
+            title: "Time",
+            slug: "-time" as const,
+          },
+          {
+            title: "Form",
+            slug: "-form" as const,
+          },
+          {
+            title: "Passing Custom Functions",
+            slug: "-passing-custom-functions" as const,
+          },
+          {
+            title: "Calling a Function from Widget",
+            slug: "-calling-a-function-from-widget" as const,
+          },
+        ] as const,
+      },
+      {
+        title: "Media",
+        slug: "#media" as const,
+      },
+      {
+        title: "Seo",
+        slug: "#seo" as const,
+      },
+    ] as const,
+  },
+  {
     title: "SDK Docs",
     slug: "/sdk-docs" as const,
     subTopics: [
@@ -189,50 +233,6 @@ export const TOPICS = [
       {
         title: "DELETE /collection/items",
         slug: "#delete-collection-items" as const,
-      },
-    ] as const,
-  },
-  {
-    title: "Examples",
-    slug: "/examples" as const,
-    subTopics: [
-      {
-        title: "Schema",
-        slug: "#schema" as const,
-      },
-      {
-        title: "Interaction",
-        slug: "#interaction" as const,
-      },
-      {
-        title: "Functions",
-        slug: "#functions" as const,
-        subTopics: [
-          {
-            title: "Time",
-            slug: "-time" as const,
-          },
-          {
-            title: "Form",
-            slug: "-form" as const,
-          },
-          {
-            title: "Passing Custom Functions",
-            slug: "-passing-custom-functions" as const,
-          },
-          {
-            title: "Calling a Function from Widget",
-            slug: "-calling-a-function-from-widget" as const,
-          },
-        ] as const,
-      },
-      {
-        title: "Media",
-        slug: "#media" as const,
-      },
-      {
-        title: "Seo",
-        slug: "#seo" as const,
       },
     ] as const,
   },
