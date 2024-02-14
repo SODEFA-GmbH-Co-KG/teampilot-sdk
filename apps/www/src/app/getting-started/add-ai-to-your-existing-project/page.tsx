@@ -91,13 +91,13 @@ const markdown = `
   \`\`\`ts
   import { fetchTeampilot } from '@teampilot/sdk'
 
-  const response = await fetchTeampilot({
+  const imageResponse = await fetchTeampilot({
     launchpadSlugId: process.env.IMAGE_GENERATOR_LAUNCHPAD_ID,
     message: "Generate an Image of a cat flying on a donut in space",
     cacheTtlSeconds: 'forever',
   })
 
-  const imageUrl = data.mediaAttachments?.[0]?.url // "https://d39ob9hwkmfin1.cloudfront.net/af037574-207c-41df-b1a4-f9a82cfae70a.png?Expires=4070908800&Key-Pair-Id=K1J9Z1M14GSH74&Signature=lsHZkE2GvAnxLYKh-gXjqOFEd--HG~dGvSDkWAcG503RLCt4WonPBeMbX0K21kJYVtSu5n0xtY~KJWzuOuhTksNQ0-T7rpZY7hkzq6tkA3sYB5A5XUyRt-7EbLJCWkiBRYSfxr44Rvdp3kEkOtItNLnFlhDKi8Mp4iihF85Bko8fUHJYEatpB~3hGANLQuvHpKXgo88WkRMHVJLTOnly-CGNjkmd3QcXEQUMeCuMljQh4wLNKKLZ5Jz3YnV2YILtAeIia6-K2Rd89uHkNCwQOsS7oJFgB6eyYAaQqCm1hq1wXtnazjL9lFZuTn3YLCeEhl6gTuVSSOz8bVQTbd6zYQ__"
+  const imageUrl = imageResponse.mediaAttachments?.[0]?.url // "https://d39ob9hwkmfin1.cloudfront.net/af037574-207c-41df-b1a4-f9a82cfae70a.png?Expires=4070908800&Key-Pair-Id=K1J9Z1M14GSH74&Signature=lsHZkE2GvAnxLYKh-gXjqOFEd--HG~dGvSDkWAcG503RLCt4WonPBeMbX0K21kJYVtSu5n0xtY~KJWzuOuhTksNQ0-T7rpZY7hkzq6tkA3sYB5A5XUyRt-7EbLJCWkiBRYSfxr44Rvdp3kEkOtItNLnFlhDKi8Mp4iihF85Bko8fUHJYEatpB~3hGANLQuvHpKXgo88WkRMHVJLTOnly-CGNjkmd3QcXEQUMeCuMljQh4wLNKKLZ5Jz3YnV2YILtAeIia6-K2Rd89uHkNCwQOsS7oJFgB6eyYAaQqCm1hq1wXtnazjL9lFZuTn3YLCeEhl6gTuVSSOz8bVQTbd6zYQ__"
 
   const audioResponse = await fetchTeampilot({
     launchpadSlugId: process.env.AUDIO_GENERATOR_LAUNCHPAD_ID,
@@ -105,7 +105,7 @@ const markdown = `
     cacheTtlSeconds: 'forever',
   })
 
-  const audioUrl = data.mediaAttachments?.[0]?.url // "https://d39ob9hwkmfin1.cloudfront.net/c1005d12-7027-4d4a-8075-43cb3f07ded0.mpeg?Expires=4070908800&Key-Pair-Id=K1J9Z1M14GSH74&Signature=e9-HUUMLxzo7rKRs71UBzamjmuhvdEuSk-Z8TU4gBmn9FH50PQsee9oTelYluBo6JodFMm07XpLeyOZGPDp2Siu5ykxiPuAJiGxv3uk7flrETlq1B~A92qytgF-UsOAKOB-mPqD6yi-eiBHiMWprFliUhZJQyBvQ6feNp6AqysD0FWFqkT3qTgl765M3pfoqBEPr~Kf9ZWjf4J1SlOquWQCz7~ihWN8nJ2GYzTxtsrHesfU8P001128KDEyZLU94ZHAeqeaFQqblvxmIcFrpnY78NrbgI7IFqE9wZd6R0DG~NWnn6Y3MwYVbdCM3YOLrpmYqZODd0~HTyIXah7kObw__"
+  const audioUrl = audioResponse.mediaAttachments?.[0]?.url // "https://d39ob9hwkmfin1.cloudfront.net/c1005d12-7027-4d4a-8075-43cb3f07ded0.mpeg?Expires=4070908800&Key-Pair-Id=K1J9Z1M14GSH74&Signature=e9-HUUMLxzo7rKRs71UBzamjmuhvdEuSk-Z8TU4gBmn9FH50PQsee9oTelYluBo6JodFMm07XpLeyOZGPDp2Siu5ykxiPuAJiGxv3uk7flrETlq1B~A92qytgF-UsOAKOB-mPqD6yi-eiBHiMWprFliUhZJQyBvQ6feNp6AqysD0FWFqkT3qTgl765M3pfoqBEPr~Kf9ZWjf4J1SlOquWQCz7~ihWN8nJ2GYzTxtsrHesfU8P001128KDEyZLU94ZHAeqeaFQqblvxmIcFrpnY78NrbgI7IFqE9wZd6R0DG~NWnn6Y3MwYVbdCM3YOLrpmYqZODd0~HTyIXah7kObw__"
   \`\`\`
 `
 
