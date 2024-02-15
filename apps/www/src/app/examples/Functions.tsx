@@ -1,5 +1,6 @@
 import ReactMarkdown from "react-markdown"
 import { AnchorDiv } from "~/client/AnchorDiv"
+import { Form } from "~/client/examples/Form"
 import { Time } from "~/client/examples/Time"
 import { Wikipedia } from "~/client/examples/wikipedia/Wikipedia"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
@@ -47,13 +48,13 @@ export const Functions = async () => {
       <IntersectionChecker topic={`/examples#${formId}`} />
       <AnchorDiv id={formId} />
       {/* FIXME: The server action seems to break the other components. */}
-      {/* <ShowCase
+      <ShowCase
         title="Form"
         file="/src/client/examples/Form.tsx"
         layout="side-by-side"
       >
         <Form />
-      </ShowCase> */}
+      </ShowCase>
       <IntersectionChecker topic={`/examples#${passingCustomFuctionsId}`} />
       <AnchorDiv id={passingCustomFuctionsId} />
       <ShowCase

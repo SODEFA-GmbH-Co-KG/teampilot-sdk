@@ -1,17 +1,9 @@
 import { Send } from "lucide-react"
 import { Button } from "~/shadcn/components/ui/button"
 import { Input } from "~/shadcn/components/ui/input"
-import { teampilot } from "~/teampilot"
+import { submit } from "./notifyDiscord"
 
 export const Form = async () => {
-  const submit = async (data: FormData) => {
-    "use server"
-    const email = data.get("email")
-    await teampilot.functions.fetch({
-      message: `Notify me via discord that a new user has signed up with email: ${email}`,
-      cacheTtlSeconds: 0,
-    })
-  }
   return (
     <>
       <div className="mb-2 text-center font-bold">Register</div>
