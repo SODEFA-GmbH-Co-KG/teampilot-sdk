@@ -1,3 +1,4 @@
+import { Form } from "~/client/examples/Form"
 import { Time } from "~/client/examples/Time"
 import { Wikipedia } from "~/client/examples/wikipedia/Wikipedia"
 import { ShowCase } from "~/client/ShowCase"
@@ -78,7 +79,7 @@ export const Functions = async () => {
       </ShowCase>
       {/* <IntersectionChecker topic={`/examples#${formId}`} />
       <AnchorDiv id={formId} /> */}
-      {/* <ShowCase
+      <ShowCase
         title="Form"
         file="/src/client/examples/Form.tsx"
         //         code={`import { Send } from "lucide-react"
@@ -112,7 +113,7 @@ export const Functions = async () => {
       >
         <Form />
       </ShowCase>
-      <IntersectionChecker topic={`/examples#${passingCustomFuctionsId}`} />
+      {/* <IntersectionChecker topic={`/examples#${passingCustomFuctionsId}`} />
       <AnchorDiv id={passingCustomFuctionsId} /> */}
       <ShowCase
         title="Passing custom functions"
