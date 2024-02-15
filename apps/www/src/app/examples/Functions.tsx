@@ -1,3 +1,4 @@
+import { Form } from "~/client/examples/Form"
 import { Time } from "~/client/examples/Time"
 import { ShowCase } from "~/client/ShowCase"
 import { getIdForTopic } from "~/utils/navTopics"
@@ -76,7 +77,7 @@ export const Functions = async () => {
         <Time />
       </ShowCase>
       {/* <IntersectionChecker topic={`/examples#${formId}`} />
-      <AnchorDiv id={formId} />
+      <AnchorDiv id={formId} /> */}
       <ShowCase
         title="Form"
         file="/src/client/examples/Form.tsx"
@@ -111,7 +112,7 @@ export const Functions = async () => {
       >
         <Form />
       </ShowCase>
-      <IntersectionChecker topic={`/examples#${passingCustomFuctionsId}`} />
+      {/* <IntersectionChecker topic={`/examples#${passingCustomFuctionsId}`} />
       <AnchorDiv id={passingCustomFuctionsId} />
       <ShowCase
         title="Passing custom functions"
