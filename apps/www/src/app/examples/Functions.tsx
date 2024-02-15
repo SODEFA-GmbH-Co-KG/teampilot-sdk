@@ -1,9 +1,4 @@
-import ReactMarkdown from "react-markdown"
-import { AnchorDiv } from "~/client/AnchorDiv"
-import { Form } from "~/client/examples/Form"
 import { Time } from "~/client/examples/Time"
-import { Wikipedia } from "~/client/examples/wikipedia/Wikipedia"
-import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { ShowCase } from "~/client/ShowCase"
 import { getIdForTopic } from "~/utils/navTopics"
 
@@ -31,13 +26,13 @@ export const Functions = async () => {
   })
   return (
     <>
-      <IntersectionChecker topic="/examples#functions" />
+      {/* <IntersectionChecker topic="/examples#functions" />
       <AnchorDiv id={functionsId} />
       <div className="prose dark:prose-invert max-w-[inherit]">
         <ReactMarkdown>{markdown}</ReactMarkdown>
       </div>
       <IntersectionChecker topic={`/examples#${timeId}`} />
-      <AnchorDiv id={timeId} />
+      <AnchorDiv id={timeId} /> */}
       <ShowCase
         title="Time"
         file="/src/client/examples/Time.tsx"
@@ -80,7 +75,7 @@ export const Functions = async () => {
       >
         <Time />
       </ShowCase>
-      <IntersectionChecker topic={`/examples#${formId}`} />
+      {/* <IntersectionChecker topic={`/examples#${formId}`} />
       <AnchorDiv id={formId} />
       <ShowCase
         title="Form"
@@ -149,7 +144,7 @@ export const Functions = async () => {
         layout="side-by-side"
       >
         <Wikipedia />
-      </ShowCase>
+      </ShowCase> */}
     </>
   )
 }
