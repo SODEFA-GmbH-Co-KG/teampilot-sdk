@@ -1,6 +1,7 @@
 import ReactMarkdown from "react-markdown"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { Divider } from "~/shared/Divider"
+import { Functions } from "./Functions"
 import { Interaction } from "./Interaction"
 import { Schema } from "./Schema"
 
@@ -20,9 +21,9 @@ export default function Page() {
       <Schema />
       <Divider />
       <Interaction />
-      {/* <Divider />
-      <Functions />
       <Divider />
+      <Functions />
+      {/* <Divider />
       <Media />
       <Divider />
       <Seo /> */}
