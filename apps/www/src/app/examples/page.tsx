@@ -1,11 +1,6 @@
 import ReactMarkdown from "react-markdown"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
-import { Divider } from "~/shared/Divider"
-import { Functions } from "./Functions"
-import { Interaction } from "./Interaction"
-import { Media } from "./Media"
 import { Schema } from "./Schema"
-import { Seo } from "./Seo"
 
 const markdown = `
 # Examples
@@ -21,14 +16,14 @@ export default function Page() {
         <ReactMarkdown>{markdown}</ReactMarkdown>
       </div>
       <Schema />
-      <Divider />
+      {/* <Divider />
       <Interaction />
       <Divider />
       <Functions />
       <Divider />
       <Media />
       <Divider />
-      <Seo />
+      <Seo /> */}
       {/* <Divider />
       <Future /> */}
     </div>
