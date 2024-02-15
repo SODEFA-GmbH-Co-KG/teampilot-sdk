@@ -5,7 +5,7 @@ import { ChatExample } from "~/client/examples/ChatExample"
 import { DayInHistorySelector } from "~/client/examples/DayInHistory"
 import { getIdForTopic } from "~/utils/navTopics"
 
-export const Interaction = () => {
+export const Interaction = async () => {
   const interactionId = getIdForTopic({ secondLevelSlug: "#interaction" })
   return (
     <>

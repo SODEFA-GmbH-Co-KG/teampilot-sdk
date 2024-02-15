@@ -2,7 +2,7 @@ import { ImageExample } from "~/client/examples/ImageExample"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { ShowCase } from "~/client/ShowCase"
 
-export const Media = () => {
+export const Media = async () => {
   return (
     <>
       <IntersectionChecker topic="/examples#media" />

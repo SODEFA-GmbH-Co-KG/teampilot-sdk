@@ -4,7 +4,7 @@ import { DocsLinksGrid } from "~/client/DocsLink"
 import { ShowCase } from "~/client/ShowCase"
 import sidebar from "../../../public/examples/sidebar.png"
 
-export const Future = () => {
+export const Future = async () => {
   return (
     <>
       <ShowCase

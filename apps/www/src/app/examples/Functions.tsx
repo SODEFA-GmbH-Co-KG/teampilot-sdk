@@ -11,7 +11,7 @@ const markdown = `
 # Functions
 `
 
-export const Functions = () => {
+export const Functions = async () => {
   const functionsId = getIdForTopic({ secondLevelSlug: "#functions" })
   const timeId = getIdForTopic({
     secondLevelSlug: "#functions",

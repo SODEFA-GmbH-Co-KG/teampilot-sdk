@@ -2,7 +2,7 @@ import { Persons } from "~/client/examples/Persons"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { ShowCase } from "~/client/ShowCase"
 
-export const Schema = () => {
+export const Schema = async () => {
   return (
     <>
       <IntersectionChecker topic="/examples#schema" />

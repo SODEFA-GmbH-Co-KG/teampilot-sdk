@@ -5,7 +5,7 @@ import { ShowCase } from "~/client/ShowCase"
 import details from "../../../public/examples/seo-details.png"
 import overview from "../../../public/examples/seo-overview.png"
 
-export const Seo = () => {
+export const Seo = async () => {
   return (
     <>
       <IntersectionChecker topic="/examples#seo" />
