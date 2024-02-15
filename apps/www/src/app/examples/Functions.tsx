@@ -1,5 +1,5 @@
-import { Form } from "~/client/examples/Form"
 import { Time } from "~/client/examples/Time"
+import { Wikipedia } from "~/client/examples/wikipedia/Wikipedia"
 import { ShowCase } from "~/client/ShowCase"
 import { getIdForTopic } from "~/utils/navTopics"
 
@@ -78,7 +78,7 @@ export const Functions = async () => {
       </ShowCase>
       {/* <IntersectionChecker topic={`/examples#${formId}`} />
       <AnchorDiv id={formId} /> */}
-      <ShowCase
+      {/* <ShowCase
         title="Form"
         file="/src/client/examples/Form.tsx"
         //         code={`import { Send } from "lucide-react"
@@ -112,8 +112,8 @@ export const Functions = async () => {
       >
         <Form />
       </ShowCase>
-      {/* <IntersectionChecker topic={`/examples#${passingCustomFuctionsId}`} />
-      <AnchorDiv id={passingCustomFuctionsId} />
+      <IntersectionChecker topic={`/examples#${passingCustomFuctionsId}`} />
+      <AnchorDiv id={passingCustomFuctionsId} /> */}
       <ShowCase
         title="Passing custom functions"
         description="You can pass custom functions to the SDK that the AI can call. In this example we pass it a function that can fetch articles from Wikipedia, but you can pass any function you want. For example you could pass a function that fetches data from your database, or a function that mutates things on your side."
@@ -145,7 +145,7 @@ export const Functions = async () => {
         layout="side-by-side"
       >
         <Wikipedia />
-      </ShowCase> */}
+      </ShowCase>
     </>
   )
 }
