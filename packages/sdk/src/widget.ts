@@ -17,10 +17,6 @@ export const teampilotWidget = {
     const widget = await getWidget()
     widget.setCustomStyle(options)
   },
-  setIframeStyle: async (options: { style: string }) => {
-    const widget = await getWidget()
-    widget.setIframeStyle(options)
-  },
   showChat: async () => {
     const widget = await getWidget()
     widget.showChat()
