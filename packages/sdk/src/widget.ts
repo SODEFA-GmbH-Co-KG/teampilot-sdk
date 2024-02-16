@@ -13,6 +13,10 @@ const getWidget = async (): Promise<any> => {
 }
 
 export const teampilotWidget = {
+  setCustomStyle: async (options: { style: string }) => {
+    const widget = await getWidget()
+    widget.setCustomStyle(options)
+  },
   showChat: async () => {
     const widget = await getWidget()
     widget.showChat()
