@@ -62,20 +62,20 @@ export const TOPICS = [
       },
     ] as const,
   },
-  {
-    title: "Important Concepts",
-    slug: "/important-concepts" as const,
-    subTopics: [
-      {
-        title: "Sequence Diagram",
-        slug: "#sequence-diagram" as const,
-      },
-      {
-        title: "Infrastructure",
-        slug: "#infrastructure" as const,
-      },
-    ] as const,
-  },
+  // {
+  //   title: "Important Concepts",
+  //   slug: "/important-concepts" as const,
+  //   subTopics: [
+  //     {
+  //       title: "Sequence Diagram",
+  //       slug: "#sequence-diagram" as const,
+  //     },
+  //     {
+  //       title: "Infrastructure",
+  //       slug: "#infrastructure" as const,
+  //     },
+  //   ] as const,
+  // },
   {
     title: "Topics",
     slug: "/topics" as const,
@@ -246,46 +246,46 @@ export const TOPICS = [
       },
     ] as const,
   },
-  {
-    title: "Capabilities",
-    slug: "/capabilities" as const,
-    subTopics: [
-      {
-        title: "Using AI everywhere",
-        slug: "#using-ai-everywhere" as const,
-      },
-      {
-        title: "Extending existing LLM's",
-        slug: "#extending-existing-llms" as const,
-      },
-      {
-        title: "Guaranteeing type safe JSON responses",
-        slug: "#guaranteeing-type-safe-json-responses" as const,
-      },
-      {
-        title: "Multimodality",
-        slug: "#multimodality" as const,
-      },
-    ] as const,
-  },
-  {
-    title: "Boundaries",
-    slug: "/boundaries" as const,
-    subTopics: [
-      {
-        title: "No streaming via SDK",
-        slug: "#no-streaming-via-sdk" as const,
-      },
-      {
-        title: "No media post via SDK",
-        slug: "#no-media-post-via-sdk" as const,
-      },
-      {
-        title: "No speech to text via SDK",
-        slug: "#no-speech-to-text-via-sdk" as const,
-      },
-    ] as const,
-  },
+  // {
+  //   title: "Capabilities",
+  //   slug: "/capabilities" as const,
+  //   subTopics: [
+  //     {
+  //       title: "Using AI everywhere",
+  //       slug: "#using-ai-everywhere" as const,
+  //     },
+  //     {
+  //       title: "Extending existing LLM's",
+  //       slug: "#extending-existing-llms" as const,
+  //     },
+  //     {
+  //       title: "Guaranteeing type safe JSON responses",
+  //       slug: "#guaranteeing-type-safe-json-responses" as const,
+  //     },
+  //     {
+  //       title: "Multimodality",
+  //       slug: "#multimodality" as const,
+  //     },
+  //   ] as const,
+  // },
+  // {
+  //   title: "Boundaries",
+  //   slug: "/boundaries" as const,
+  //   subTopics: [
+  //     {
+  //       title: "No streaming via SDK",
+  //       slug: "#no-streaming-via-sdk" as const,
+  //     },
+  //     {
+  //       title: "No media post via SDK",
+  //       slug: "#no-media-post-via-sdk" as const,
+  //     },
+  //     {
+  //       title: "No speech to text via SDK",
+  //       slug: "#no-speech-to-text-via-sdk" as const,
+  //     },
+  //   ] as const,
+  // },
 ] as const
 
 type ExtractSlug<T> = T extends { slug: infer Slug } ? Slug : never
