@@ -8,14 +8,52 @@ export const Media = async () => {
       <IntersectionChecker topic="/examples#media" />
       <ShowCase
         title="Image"
-        file="/src/client/examples/ImageExample.tsx"
+        code={`
+import { fetchTeampilotMedia } from "@teampilot/sdk/src/fetchTeampilot"
+import Image from "next/image"
+import { use } from "react"
+import { env } from "~/env.mjs"
+
+export const ImageExample = () => {
+  const media = use(
+    fetchTeampilotMedia({
+      launchpadSlugId: env.LAUNCHPAD_SLUG_ID_FUNCTIONS,
+      message: "Generate an Image of a flying elephant",
+      cacheTtlSeconds: 60 * 60 * 24, // 1 day
+    })
+  )
+
+  return (
+    <>
+      <Image src={media.url} height={500} width={500} alt="Flying Elephant" />
+    </>
+  )
+}
+`}
         layout="side-by-side"
       >
         <ImageExample />
       </ShowCase>
       {/* <ShowCase
         title="Audio"
-        file="/src/client/examples/AudioExample.tsx"
+        code={`
+import { fetchTeampilotMedia } from "@teampilot/sdk/src/fetchTeampilot"
+import { env } from "~/env.mjs"
+
+export const AudioExample = async () => {
+  const media = await fetchTeampilotMedia({
+    launchpadSlugId: env.LAUNCHPAD_SLUG_ID_WEBSITE_TO_VOICE,
+    message: "Read this Website to me: https://teampilot.ai",
+    cacheTtlSeconds: "forever",
+  })
+
+  return (
+    <>
+      <audio controls src={media.url} />
+    </>
+  )
+}
+`}
         layout="side-by-side"
       >
         <AudioExample />

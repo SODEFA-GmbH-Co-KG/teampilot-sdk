@@ -11,7 +11,22 @@ export const Seo = async () => {
       <IntersectionChecker topic="/examples#seo" />
       <ShowCase
         title="Overview Page"
-        file="/src/app/cities/page.tsx"
+        code={`
+import Link from "next/link"
+import { getAllCities } from "./getAllCities"
+export default async function OverviewPage() {
+  const cities = await getAllCities()
+  return (
+    <div className="grid grid-cols-3 gap-2 underline">
+      {cities.map((city) => (
+        <Link key={city.slug} href={\`/cities/$\{city.slug\}\`}>
+          {city.name}
+        </Link>
+      ))}
+    </div>
+  )
+}
+`}
         layout="side-by-side"
       >
         <Link href="/cities">
@@ -20,7 +35,39 @@ export const Seo = async () => {
       </ShowCase>
       <ShowCase
         title="Details Page"
-        file="/src/app/cities/[slug]/page.tsx"
+        code={`
+import { z } from "zod"
+import { teampilot } from "~/teampilot"
+import { getAllCities } from "../getAllCities"
+
+export async function generateStaticParams() {
+  const cities = await getAllCities()
+  return cities.map((city) => ({
+    slug: city.slug,
+  }))
+}
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  const city = await teampilot.default.fetchData({
+    message: \`Generate the City Analysis for: $\{params.slug\}\`,
+    schema: z.object({
+      name: z.string(),
+      population: z.number(),
+      whyThisCityIsAwesome: z.string(),
+      // ...
+    }),
+  })
+  return (
+    <>
+      <h1 className="text-3xl">{city.name}</h1>
+      <div className="text-mono">
+        Population: {city.population.toLocaleString()}
+      </div>
+      <div>{city.whyThisCityIsAwesome}</div>
+    </>
+  )
+}
+`}
         layout="side-by-side"
       >
         <Link href="/cities/berlin">
