@@ -140,6 +140,7 @@ export const CustomFunctions = () => {
       </div>
 
       <AnchorDiv id={hostedFunctionsId} />
+      <IntersectionChecker topic="/topics#custom-functions-hosted-functions" />
       <h1 id="hosted-functions">Hosted Functions</h1>
 
       <div className="rounded border-primary border py-1 px-2">

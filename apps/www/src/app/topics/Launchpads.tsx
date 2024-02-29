@@ -2,10 +2,19 @@ import ReactMarkdown from "react-markdown"
 import { AnchorDiv } from "~/client/AnchorDiv"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { getIdForTopic } from "~/utils/navTopics"
+import { WidgetShowcase } from "./WidgetShowcase"
 
 export const Launchpads = () => {
   const launchpadsId = getIdForTopic({
     secondLevelSlug: "#launchpads",
+  })
+  const whatAreLaunchpadsId = getIdForTopic({
+    secondLevelSlug: "#launchpads",
+    thirdLevelSlug: "-what-are-launchpads",
+  })
+  const widgetId = getIdForTopic({
+    secondLevelSlug: "#launchpads",
+    thirdLevelSlug: "-widget",
   })
 
   return (
@@ -17,6 +26,8 @@ export const Launchpads = () => {
 
 Launchpads are a fundamental element in integrating teampilot into your product. They serve as a collection of settings that provide instructions for the AI's behavior, its functionality, and data access.
 `}</ReactMarkdown>
+      <IntersectionChecker topic={`/topics#${whatAreLaunchpadsId}`} />
+      <AnchorDiv id={whatAreLaunchpadsId} />
       <ReactMarkdown>{`
 ## What are Launchpads?
 
@@ -45,6 +56,9 @@ Congratulations! You've successfully created your first launchpad. You can now u
 
 Also checkout our [Getting Started](/getting-started/provide-a-public-launchpad) guide to setup a public launchpad step by step for an actual use case.
 `}</ReactMarkdown>
+      <IntersectionChecker topic={`/topics#${widgetId}`} />
+      <AnchorDiv id={widgetId} />
+      <WidgetShowcase />
     </div>
   )
 }

@@ -85,8 +85,8 @@ export const TOPICS = [
         slug: "#launchpads" as const,
         subTopics: [
           {
-            title: "Settings",
-            slug: "-settings" as const,
+            title: "What are Launchpads",
+            slug: "-what-are-launchpads" as const,
           },
           {
             title: "Widget",

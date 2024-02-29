@@ -1,7 +1,7 @@
 import { Widget } from "~/client/examples/Widget"
 import { ShowCase } from "~/client/ShowCase"
 
-export default function Page() {
+export const WidgetShowcase = () => {
   return (
     <>
       <ShowCase
