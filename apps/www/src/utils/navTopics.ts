@@ -52,14 +52,14 @@ export const TOPICS = [
           "Take what you need to enhance your current business processes.",
         badges: ["Advanced", "Code"],
       },
-      {
-        title: "SDK: Create a new AI Project from scratch",
-        slug: "/create-a-new-ai-project-from-scratch" as const,
-        icon: "🎉",
-        description:
-          "An in depth Walkthrough through our Teampilot Starter Repository.",
-        badges: ["Expert", "Code"],
-      },
+      // {
+      //   title: "SDK: Create a new AI Project from scratch",
+      //   slug: "/create-a-new-ai-project-from-scratch" as const,
+      //   icon: "🎉",
+      //   description:
+      //     "An in depth Walkthrough through our Teampilot Starter Repository.",
+      //   badges: ["Expert", "Code"],
+      // },
     ] as const,
   },
   // {
@@ -214,38 +214,38 @@ export const TOPICS = [
     title: "API Docs",
     slug: "/api-docs" as const,
     subTopics: [
-      {
-        title: "POST /message",
-        slug: "#post-message" as const,
-      },
-      {
-        title: "GET /collection/info",
-        slug: "#get-collection-info" as const,
-      },
-      {
-        title: "POST /collection/items",
-        slug: "#post-collection-items" as const,
-      },
-      {
-        title: "GET /collection/items",
-        slug: "#get-collection-items" as const,
-      },
-      {
-        title: "DELETE /collection/items",
-        slug: "#delete-collection-items" as const,
-      },
+      // {
+      //   title: "POST /message",
+      //   slug: "#post-message" as const,
+      // },
+      // {
+      //   title: "GET /collection/info",
+      //   slug: "#get-collection-info" as const,
+      // },
+      // {
+      //   title: "POST /collection/items",
+      //   slug: "#post-collection-items" as const,
+      // },
+      // {
+      //   title: "GET /collection/items",
+      //   slug: "#get-collection-items" as const,
+      // },
+      // {
+      //   title: "DELETE /collection/items",
+      //   slug: "#delete-collection-items" as const,
+      // },
     ] as const,
   },
-  {
-    title: "Recipes",
-    slug: "/recipes" as const,
-    subTopics: [
-      {
-        title: "FAQ bot via Embeddings",
-        slug: "#faq-bot-via-embeddings" as const,
-      },
-    ] as const,
-  },
+  // {
+  //   title: "Recipes",
+  //   slug: "/recipes" as const,
+  //   subTopics: [
+  //     {
+  //       title: "FAQ bot via Embeddings",
+  //       slug: "#faq-bot-via-embeddings" as const,
+  //     },
+  //   ] as const,
+  // },
   // {
   //   title: "Capabilities",
   //   slug: "/capabilities" as const,

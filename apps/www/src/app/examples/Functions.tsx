@@ -11,6 +11,10 @@ const markdown = `
 # Functions
 `
 
+const widgetFunctionsMarkdown = `
+## Calling a function from widget
+For more information on how to call a function from a widget, see the [custom functions widget functions](/topics#launchpads-widget).`
+
 export const Functions = async () => {
   const functionsId = getIdForTopic({ secondLevelSlug: "#functions" })
   const timeId = getIdForTopic({
@@ -160,14 +164,10 @@ export const Wikipedia = async () => {
       </ShowCase>
       <IntersectionChecker topic={`/examples#${callingAFuctionFromWidgetId}`} />
       <AnchorDiv id={callingAFuctionFromWidgetId} />
-      <ShowCase
-        title="Calling a function from widget"
-        description="You can call a function from a widget."
-        code={`TODO`}
-        layout="side-by-side"
-      >
-        <div>TODO</div>
-      </ShowCase>
+
+      <div className="prose max-w-[inherit] dark:prose-invert">
+        <ReactMarkdown>{widgetFunctionsMarkdown}</ReactMarkdown>
+      </div>
     </>
   )
 }
