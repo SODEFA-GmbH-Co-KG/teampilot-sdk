@@ -195,6 +195,10 @@ export const TOPICS = [
             slug: "-fetch-teampilot-text" as const,
           },
           {
+            title: ".fetchTeampilotMedia()",
+            slug: "-fetch-teampilot-media" as const,
+          },
+          {
             title: ".teampilotWidget()",
             slug: "-teampilot-widget" as const,
           },

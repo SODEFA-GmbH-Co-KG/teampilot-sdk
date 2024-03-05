@@ -20,6 +20,19 @@ export const ApiReference = () => {
     secondLevelSlug: "#api-reference",
     thirdLevelSlug: "-fetch-teampilot",
   })
+  const fetchTeampilotDataId = getIdForTopic({
+    secondLevelSlug: "#api-reference",
+    thirdLevelSlug: "-fetch-teampilot-data",
+  })
+  const fetchTeampilotTextId = getIdForTopic({
+    secondLevelSlug: "#api-reference",
+    thirdLevelSlug: "-fetch-teampilot-text",
+  })
+  const fetchTeampilotMediaId = getIdForTopic({
+    secondLevelSlug: "#api-reference",
+    thirdLevelSlug: "-fetch-teampilot-media",
+  })
+
   return (
     <div>
       <AnchorDiv id={apiReferenceId} />
@@ -103,7 +116,7 @@ Each of these proxy functions are explained more detailed in the following secti
   // Response is of type string`}
       />
       <AnchorDiv id={fetchTeampilotId} />
-      <IntersectionChecker topic="/sdk-docs#api-reference-fetch-teampilot" />
+      <IntersectionChecker topic={`/sdk-docs#${fetchTeampilotId}`} />
       <ReactMarkdown remarkPlugins={[remarkGfm]}>
         {`
 ## fetchTeampilot()
@@ -122,6 +135,33 @@ The fetchTeampilot function resembles the proxy function \`.fetch()\` from the t
 | customFunctions | | You can pass custom functions the AI should have access to | No |
 | customFunctionsMaxExecutions | 10 | Sets the max of how often custom functions can be called by the AI | No |
 | functionExecution | | | No |
+`}
+      </ReactMarkdown>
+      <AnchorDiv id={fetchTeampilotDataId} />
+      <IntersectionChecker topic={`/sdk-docs#${fetchTeampilotDataId}`} />
+      <ReactMarkdown>
+        {`
+## fetchTeampilotData()
+
+fetchTeampilotData is a wrapper function around fetchTeampilot. It takes the same parameters as fetchTeampilot, but only returns the data from the response. The function is useful if you don't want to deal with the complete response object and only want to work with the data.
+`}
+      </ReactMarkdown>
+      <AnchorDiv id={fetchTeampilotTextId} />
+      <IntersectionChecker topic={`/sdk-docs#${fetchTeampilotTextId}`} />
+      <ReactMarkdown>
+        {`
+## fetchTeampilotText()
+
+fetchTeampilotText is a wrapper function around fetchTeampilot. It takes the same parameters as fetchTeampilot, but only returns the text from the response. The function is useful if you don't want to deal with the complete response object and only want to work with the text.
+`}
+      </ReactMarkdown>
+      <AnchorDiv id={fetchTeampilotMediaId} />
+      <IntersectionChecker topic={`/sdk-docs#${fetchTeampilotMediaId}`} />
+      <ReactMarkdown>
+        {`
+## fetchTeampilotMedia()
+
+fetchTeampilotMedia is a wrapper function around fetchTeampilot. It takes the same parameters as fetchTeampilot, but only returns the first mediaAttachment from the response. The function is useful if you don't want to deal with the complete response object and only want to work with the media.
 `}
       </ReactMarkdown>
     </div>
