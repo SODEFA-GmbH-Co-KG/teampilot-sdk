@@ -6,6 +6,7 @@ export {
   fetchTeampilot,
   fetchTeampilotData,
   fetchTeampilotText,
+  type FetchTeampilotOptions,
 } from './fetchTeampilot'
 export { initTeampilotCollection } from './initTeampilotCollection'
 export { createTeampilotClient } from './proxy'
