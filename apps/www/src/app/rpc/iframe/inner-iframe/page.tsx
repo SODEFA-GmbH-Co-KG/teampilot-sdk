@@ -23,7 +23,9 @@ export default function Page() {
       <div>
         <Button
           onClick={() => {
-            rpc?.send("evalJs", { params: { code: 'alert("Bingo!")' } })
+            rpc?.send("evalJs", {
+              params: { code: 'alert("Hello from the inner most iframe 👋")' },
+            })
           }}
         >
           Alert on top level
