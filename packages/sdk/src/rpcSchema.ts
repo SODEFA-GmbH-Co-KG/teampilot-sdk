@@ -68,6 +68,7 @@ export const styledFunctionToChatRpc = createSingletonRPC<
     const rpc = createRPC<StyledFunctionRpcSchema, ChatRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
+        transportId: 'styledFunctionToChatRpc',
       }),
     })
     return rpc
@@ -85,6 +86,7 @@ export const chatToStyledFunctionRpc = createSingletonRPC<
     const rpc = createRPC<ChatRpcSchema, StyledFunctionRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
+        transportId: 'chatToStyledFunctionRpc',
       }),
     })
     return rpc
@@ -102,6 +104,7 @@ export const chatToWidgetRpc = createSingletonRPC<
     const rpc = createRPC<ChatRpcSchema, WidgetRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
+        transportId: 'chatToWidgetRpc',
       }),
     })
     return rpc
@@ -119,6 +122,7 @@ export const widgetToChatRpc = createSingletonRPC<
     const rpc = createRPC<WidgetRpcSchema, ChatRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
+        transportId: 'widgetToChatRpc',
       }),
     })
     return rpc
