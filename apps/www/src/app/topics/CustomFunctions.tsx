@@ -81,7 +81,7 @@ export const CustomFunctions = () => {
       </ReactMarkdown>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{`
 # What are functions?
-- Functions can be called by our AI
+- Functions can be called by the AI
 - AI provides inputs
 - Functions return output to AI
 - Example: Calculator
@@ -142,11 +142,6 @@ export const CustomFunctions = () => {
       <AnchorDiv id={hostedFunctionsId} />
       <IntersectionChecker topic="/topics#custom-functions-hosted-functions" />
       <h1 id="hosted-functions">Hosted Functions</h1>
-
-      <div className="rounded border-primary border py-1 px-2">
-        This feature is currently in alpha (apply here // TODO: Add link)
-      </div>
-
       <p>
         As a TypeScript / JavaScript developer, you can leverage our Hosted
         Functions feature.{" "}
@@ -183,55 +178,45 @@ export const CustomFunctions = () => {
             alt="Select Hosted Functions"
           />
         </li>
+        <li>Click &quot;Create&quot;</li>
+        <li>You are redirected to our function designer</li>
+        <DocImage
+          src="/docs/function-designer.png"
+          width={540}
+          height={447}
+          alt="Function Designer"
+        />
         <li>
           Enter your code (checkout the detailed walkthrough of the example code{" "}
           <a href="#walkthrough">below</a>)
         </li>
-        <li>Click &quot;Create&quot;</li>
         <li>
-          Start a new chat
-          <DocImage
-            src="/docs/start-new-chat.jpg"
-            width={420}
-            height={225}
-            alt="Start a new chat"
-          />
+          To test simply tell the AI to call the function in the chat window on
+          the right. Everything is set up for you!
         </li>
-        <li>
-          Select your function under &quot;Expert Functions&quot;
-          <DocImage
-            src="/docs/select-expert-functions.jpg"
-            width={465}
-            height={412}
-            alt="Select your function"
-          />
-        </li>
-        <li>Tell the AI to use the function</li>
       </ol>
-
       <h2 id="walkthrough">Let&apos;s walk through an example code</h2>
       <p>
         We are using <span className="font-bold">Deno</span> to run your code.
         You can deploy either{" "}
         <span className="font-bold">TypeScript or JavaScript</span> code and use
-        any package from <span className="font-bold">npm or Deno</span>.
-        There&apos;s no need for a package.json, thanks to npm imports being
-        prefixed with <InlineCode>npm:</InlineCode>, simplifying your code
-        management process.
+        any package from <span className="font-bold">npm or Deno</span>. To use
+        an external package just import them as you usually would, no need for a
+        package.json or install commands.
       </p>
 
       <p>
         The code editor{" "}
         <span className="font-bold">automatically loads TypeScript types</span>{" "}
-        from unpkg.com. So you can use{" "}
+        from esm.sh. So you can use{" "}
         <span className="font-bold">autocomplete & type checking.</span>
       </p>
 
       <p className="rounded border-primary border py-1 px-2">
-        Sometimes and for Deno packages this currently doesn&apos;t work. You
-        can still use the packages & deploy your code, but you won&apos;t get
-        any type hints in the editor. Please let us know if this happens in our
-        Discord.
+        Some packages and Deno packages might not work, due to different package
+        structures.You can still use the packages & deploy your code, but you
+        won&apos;t get any type hints in the editor. Please let us know if this
+        happens in our Discord so we can improve the experience.
         {/* // TODO: Link */}
       </p>
 
@@ -239,69 +224,48 @@ export const CustomFunctions = () => {
 
       <div className="flex flex-col lg:flex-row gap-8">
         <CodeBlock
+          className="lg:w-1/2"
           language="ts"
           value={`
-import { teampilotFunctionHandler, type TeampilotCustomFunction } from 'npm:@teampilot/sdk'
-import { z } from 'npm:zod'
-
-const inputSchema = z.object({
-  name: z.string(),
-})
-
-const func: TeampilotCustomFunction<typeof inputSchema> = {
-  nameForAI: 'helloWorld',
-  descriptionForAI: 'says hello to the world',
-  emoji: '👋',
-  releaseStatus: 'alpha',
-  inputSchema,
-  execute: async ({ input }) => {
-    return {
-      output: \`Hello \${input.name}! This is random: \${Math.random()}\`,
-    }
-  },
-}
+import {
+  teampilotFunctionHandler,
+  createTeampilotCustomFunction,
+} from '@teampilot/sdk'
+import { z } from 'zod'
 
 export default teampilotFunctionHandler({
   functions: [
-    func,
+    createTeampilotCustomFunction({
+      nameForAI: 'apricot-courageous-worm',
+      //tell the AI what this function does
+      descriptionForAI: '',
+      
+      //nameForHuman: 'short human readable name',
+      //descriptionForHuman: 'longer human readable description',
+      //emoji: '👋',
+
+      inputSchema: z.object({
+        name: z.string(),
+      }),
+      
+      execute: async ({ input }) => {
+        return {
+          output: \`Hello \${input.name}! This is random: \${Math.random()}\`,
+        }
+      },
+    }),
   ],
-})`}
+})
+`}
           lightMode="dark"
         />
-        <div>
+        <div className="lg:w-1/2">
           <ul>
             <li>
               First we import the{" "}
               <Link href="https://www.npmjs.com/package/@teampilot/sdk">
                 Teampilot SDK
               </Link>{" "}
-            </li>
-            <li>
-              <InlineCode>inputSchema</InlineCode>
-              <ul>
-                <li>
-                  The input schema is translated into JSON and will be sent to
-                  the AI. So the{" "}
-                  <span className="font-bold">
-                    AI knows the arguments of your function
-                  </span>
-                  .
-                </li>
-                <li>
-                  TODO: Explain how the schema behaves, how deep, what zod
-                  functions can be used, etc.
-                </li>
-                <li>
-                  The input schema is used to{" "}
-                  <span className="font-bold">validate the input</span> that is
-                  coming from the AI.
-                </li>
-                <li>
-                  Sometimes the AI makes errors while calling your function. If
-                  the input is not valid, <InlineCode>execute</InlineCode> will
-                  not be called and the AI will receive an error message.
-                </li>
-              </ul>
             </li>
             <li>
               <InlineCode>nameForAI</InlineCode>
@@ -338,6 +302,34 @@ export default teampilotFunctionHandler({
               </ul>
             </li>
             <li>
+              <InlineCode>inputSchema</InlineCode>
+              <ul>
+                <li>
+                  The input schema is translated into JSON and will be sent to
+                  the AI. So the{" "}
+                  <span className="font-bold">
+                    AI knows the arguments of your function
+                  </span>
+                  .
+                </li>
+                {/*                 <li>
+                  TODO: Explain how the schema behaves, how deep, what zod
+                  functions can be used, etc.
+                </li> */}
+                <li>
+                  The input schema is used to{" "}
+                  <span className="font-bold">validate the input</span> that is
+                  coming from the AI.
+                </li>
+                <li>
+                  Sometimes the AI makes errors while calling your function. If
+                  the input is not valid, <InlineCode>execute</InlineCode> will
+                  not be called and the AI will receive an error message.
+                </li>
+              </ul>
+            </li>
+
+            <li>
               <InlineCode>inputSchema</InlineCode>,{" "}
               <InlineCode>nameForAI</InlineCode> &{" "}
               <InlineCode>descriptionForAI</InlineCode> are all counting towards
@@ -367,6 +359,240 @@ export default teampilotFunctionHandler({
           </ul>
         </div>
       </div>
+      <h2>Hosted Styled Functions</h2>
+      <div className="rounded border-primary border py-1 px-2">
+        This feature is currently in beta
+      </div>
+      <div className="flex flex-row gap-2">
+        <p className="w-1/2">
+          In Hosted Functions you can also take advantage of the{" "}
+          <InlineCode>styled</InlineCode> property. The styled property acts as
+          a React component that get&apos;s rendered in the chat when the
+          function is called. This is useful for functions that return a visual
+          output, like a chart or a table. It has access to the{" "}
+          <InlineCode>input</InlineCode> and <InlineCode>output</InlineCode> of
+          the function. All while being fully typed.
+        </p>
+        <div className="w-1/2 h-[400px] relative">
+          <DocImage
+            style={{
+              objectFit: "contain",
+            }}
+            className="margin-0"
+            src="/docs/styled-function.png"
+            fill
+            alt="A Styled Function showing the weather"
+          />
+        </div>
+      </div>
+      <h2>Let&apos;s look at an example</h2>
+      <div className="flex flex-col lg:flex-row gap-8">
+        <CodeBlock
+          className="lg:w-1/2"
+          language="ts"
+          value={`
+import {
+  teampilotFunctionHandler,
+  createTeampilotCustomFunction,
+} from "@teampilot/sdk"
+import { z } from "zod"
+import { type FC } from "react"
+
+const fetchWeather = async (location: string) => {
+  const apiKey = Deno.env.get("OPENWEATHER_API_KEY")
+  const url = \`https://api.openweathermap.org/data/2.5/weather?q=\${location}&appid=\${apiKey}&units=metric\`
+
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new Error("Network response was not ok")
+  }
+  return response.json()
+}
+
+interface WeatherWidgetProps {
+  weather?: {
+    name: string
+    main: {
+      temp: string
+    }
+    weather: [
+      {
+        description: string
+        icon: string
+      }
+    ]
+  }
+}
+
+const WeatherWidget: FC<WeatherWidgetProps> = ({ weather }) => {
+  return (
+    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white p-5 text-black">
+      <div className="text-center flex items-center justify-center flex-col">
+        <div className="text-xl font-bold">{weather?.name}</div>
+        <img
+          src={\` https://openweathermap.org/img/wn/\${weather.weather[0].icon}@2x.png\`}
+        />
+        <div className="text-lg">{\`\${weather?.main.temp}°C\`}</div>
+        <div className="capitalize">{weather?.weather[0].description}</div>
+      </div>
+    </div>
+  )
+} 
+
+export default teampilotFunctionHandler({
+  functions: [
+    createTeampilotCustomFunction({
+      nameForAI: "getCurrentWeather",
+      //tell the AI what this function does
+      descriptionForAI: \`\`,
+
+      //nameForHuman: 'short human readable name',
+      //descriptionForHuman: 'longer human readable description',
+      //emoji: '👋',
+
+      inputSchema: z.object({
+        location: z.string(),
+      }),
+
+      execute: async ({ input }) => {
+        const weather = await fetchWeather(input.location)
+        return {
+          output: weather,
+        }
+      },
+      styled: ({ output }) => {
+        return (
+          <>
+            <script src="https://cdn.tailwindcss.com"></script>
+            <WeatherWidget weather={output} />
+          </>
+        )
+      },
+    }),
+  ],
+})
+
+`}
+          lightMode="dark"
+        />
+        <div className="lg:w-1/2">
+          <ul>
+            <li>
+              Most of the code is the same as the previous example. The only new
+              thing is the <InlineCode>styled</InlineCode> property. To keep the
+              code clean, we moved the <InlineCode>fetchWeather</InlineCode>{" "}
+              function and the <InlineCode>WeatherWidget</InlineCode> component
+              to the top of the file and out of the{" "}
+              <InlineCode>teampilotFunctionHandler</InlineCode>. You can also
+              write them inlined.
+            </li>
+            <li>
+              <InlineCode>fetchWeather</InlineCode>
+              <ul>
+                <li>
+                  This function fetches the weather data from the OpenWeatherMap
+                  API during the execution of the function.
+                </li>
+                <li>
+                  It uses the OpenWeatherMap API to get the current weather
+                </li>
+              </ul>
+            </li>
+            <li>
+              <InlineCode>WeatherWidget</InlineCode>
+              <ul>
+                <li>
+                  The WeatherWidget is a React component that takes the weather
+                  information and displays it in a nice way.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <InlineCode>styled</InlineCode>
+              <ul>
+                <>
+                  The <InlineCode>styled</InlineCode> property is the place
+                  where we define what should be rendered. It is a function that
+                  has access to the input and output of the function and returns
+                  a React component.
+                  <li>
+                    In this case we use the{" "}
+                    <InlineCode>WeatherWidget</InlineCode> component we defined
+                    above and pass the weather that we got from the function to
+                    it.
+                  </li>
+                  <li>
+                    We also import Tailwind CSS here to style the component.
+                  </li>
+                  <li>You can use any React Component or Library here</li>
+                </>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <h2>How to use custom functions with launchpads</h2>
+      <ol>
+        <li>
+          To enable your custom function in a launchpad you need to go to the
+          launchpad&apos;s{" "}
+          <a href="https://teampilot.ai/start/settings/launchpads">settings</a>{" "}
+          or create a new launchpad.
+        </li>
+        <DocImage
+          src="/docs/launchpad-settings.png"
+          width={340}
+          height={220}
+          alt="Launchpad settings"
+        />
+        <li>
+          Scroll all the way to the bottom, click the add button and select
+          &quot;Expert Functions&quot;
+        </li>
+        <DocImage
+          src="/docs/select-functions-launchpad.png"
+          width={540}
+          height={447}
+          alt="Select functions for launchpad"
+        />
+        <li>Search for your function and select it</li>
+        <DocImage
+          src="/docs/select-function.png"
+          width={540}
+          height={447}
+          alt="Select functions"
+        />
+        <li>You can now use your custom function</li>
+      </ol>
+      <h2>How to use custom functions in a chat</h2>
+      <ol>
+        <li>
+          Start a new chat
+          <DocImage
+            src="/docs/start-new-chat.jpg"
+            width={420}
+            height={225}
+            alt="Start a new chat"
+          />
+        </li>
+        <li>Click the add button and select &quot;Expert Functions&quot;</li>
+        <DocImage
+          src="/docs/select-expert-functions.jpg"
+          width={465}
+          height={412}
+          alt="Select your function"
+        />
+        <li>
+          Search for your function and select it
+          <DocImage
+            src="/docs/select-function.png"
+            width={540}
+            height={447}
+            alt="Select functions"
+          />
+        </li>
+        <li>Tell the AI to use the function</li>
+      </ol>
     </div>
   )
 }
