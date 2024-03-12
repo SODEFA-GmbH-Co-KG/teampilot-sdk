@@ -385,7 +385,7 @@ export default teampilotFunctionHandler({
           />
         </div>
       </div>
-      <h2>Let's look at an example</h2>
+      <h2>Let&apos;s look at an example</h2>
       <div className="flex flex-col lg:flex-row gap-8">
         <CodeBlock
           className="lg:w-1/2"
