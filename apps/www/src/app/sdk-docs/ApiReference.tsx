@@ -180,7 +180,7 @@ fetchTeampilotMedia is a wrapper function around fetchTeampilot. It takes the sa
         {`
 ## teampilotFunctionHandler()
 
-teampilotFunctionHandler is a function designed to streamline the handling of HTTP requests for custom function execution. It sets up the necessary GET and POST request handling for you. The function takes an object with the following parameters:
+teampilotFunctionHandler is a function designed to streamline the handling of HTTP requests for custom function execution. It sets up the necessary GET and POST request handling for you. This function should be used when you want to use [HTTP Functions](/topics#custom-functions-http-functions) within Teampilot. The function takes an object with the following parameters:
 
 | Name              | Default | Description                                                                                                                                     | Required                  |
 |-------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------|

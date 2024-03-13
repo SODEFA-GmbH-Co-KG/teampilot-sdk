@@ -52,6 +52,10 @@ export const CustomFunctions = () => {
   const customFunctionsId = getIdForTopic({
     secondLevelSlug: "#custom-functions",
   })
+  const httpFunctionsId = getIdForTopic({
+    secondLevelSlug: "#custom-functions",
+    thirdLevelSlug: "-http-functions",
+  })
   const hostedFunctionsId = getIdForTopic({
     secondLevelSlug: "#custom-functions",
     thirdLevelSlug: "-hosted-functions",
@@ -116,7 +120,7 @@ export const CustomFunctions = () => {
           </div>
         </a>
         <a
-          href="//TODO: Link"
+          href="#http-functions"
           className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
         >
           <div className="text-lg w-[200px] font-medium leading-snug text-primary group-hover:text-inherit">
@@ -138,7 +142,45 @@ export const CustomFunctions = () => {
           </div>
         </a>
       </div>
+      <AnchorDiv id={httpFunctionsId} />
+      <IntersectionChecker topic="/topics#custom-functions-http-functions" />
+      <h1>HTTP Functions</h1>
+      <p>
+        Using HTTP Functions you can host custom functions on your own
+        infrastructure, while still being able to use them within Teampilot. The
+        easiest way to implement a HTTP Function is by using the{" "}
+        <Link href="/sdk-docs#api-reference-teampilot-function-handler">
+          <InlineCode>teampilotFunctionHandler</InlineCode>
+        </Link>
+        .
+      </p>
+      <h2>How to setup?</h2>
 
+      <ol>
+        <li>
+          Goto{" "}
+          <a href="https://teampilot.ai/start/settings/integrations">
+            Integrations
+          </a>{" "}
+          and add a new integration
+          <DocImage
+            src="/docs/add-integration.jpg"
+            width={257}
+            height={174}
+            alt="Add Integration"
+          />
+        </li>
+        <li>
+          Select &quot;External Functions&quot; and enter the URL of your server
+          <DocImage
+            src="/docs/select-external-function.png"
+            width={540}
+            height={447}
+            alt="Select External Functions"
+          />
+        </li>
+        <li>Click &quot;Save&quot;</li>
+      </ol>
       <AnchorDiv id={hostedFunctionsId} />
       <IntersectionChecker topic="/topics#custom-functions-hosted-functions" />
       <h1 id="hosted-functions">Hosted Functions</h1>
