@@ -546,8 +546,8 @@ export default teampilotFunctionHandler({
           alt="Launchpad settings"
         />
         <li>
-          Scroll all the way to the bottom, click the add button and select
-          &quot;Expert Functions&quot;
+          At the top click on the quick select button and select
+          &quot;Functions&quot;
         </li>
         <DocImage
           src="/docs/select-functions-launchpad.png"
@@ -575,9 +575,9 @@ export default teampilotFunctionHandler({
             alt="Start a new chat"
           />
         </li>
-        <li>Click the add button and select &quot;Expert Functions&quot;</li>
+        <li>Click the add button and select &quot;Functions&quot;</li>
         <DocImage
-          src="/docs/select-expert-functions.jpg"
+          src="/docs/select-function-chat.png"
           width={465}
           height={412}
           alt="Select your function"

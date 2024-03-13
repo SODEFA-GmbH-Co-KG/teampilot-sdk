@@ -32,6 +32,14 @@ export const ApiReference = () => {
     secondLevelSlug: "#api-reference",
     thirdLevelSlug: "-fetch-teampilot-media",
   })
+  const fetchTeampilotFunctionHandlerId = getIdForTopic({
+    secondLevelSlug: "#api-reference",
+    thirdLevelSlug: "-teampilot-function-handler",
+  })
+  const transformZodToJsonSchema = getIdForTopic({
+    secondLevelSlug: "#api-reference",
+    thirdLevelSlug: "-transform-zod-to-json-schema",
+  })
 
   return (
     <div>
@@ -162,6 +170,33 @@ fetchTeampilotText is a wrapper function around fetchTeampilot. It takes the sam
 ## fetchTeampilotMedia()
 
 fetchTeampilotMedia is a wrapper function around fetchTeampilot. It takes the same parameters as fetchTeampilot, but only returns the first mediaAttachment from the response. The function is useful if you don't want to deal with the complete response object and only want to work with the media.
+`}
+      </ReactMarkdown>
+      <AnchorDiv id={fetchTeampilotFunctionHandlerId} />
+      <IntersectionChecker
+        topic={`/sdk-docs#${fetchTeampilotFunctionHandlerId}`}
+      />
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        {`
+## teampilotFunctionHandler()
+
+teampilotFunctionHandler is a function designed to streamline the handling of HTTP requests for custom function execution. It sets up the necessary GET and POST request handling for you. The function takes an object with the following parameters:
+
+| Name              | Default | Description                                                                                                                                     | Required                  |
+|-------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------|
+| functions         |         | An array of TeampilotCustomFunction<any>[] defining the functions available for execution with their input schemas and execute methods. | Yes                       |
+| functionSecret    |         | A secret key that must match in the request headers under 'x-function-secret' for the request to be authorized.                                | No (unless used for auth) |
+| checkAuthorization|         | An asynchronous function that takes a Request object and returns a boolean indicating whether the request is authorized.                  | No                        |
+
+`}
+      </ReactMarkdown>
+      <AnchorDiv id={transformZodToJsonSchema} />
+      <IntersectionChecker topic={`/sdk-docs#${transformZodToJsonSchema}`} />
+      <ReactMarkdown>
+        {`
+## transformZodToJsonSchema()
+
+transformZodToJsonSchema is a function that takes a Zod schema and returns a JSON schema.
 `}
       </ReactMarkdown>
     </div>

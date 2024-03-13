@@ -156,14 +156,14 @@ export const TOPICS = [
           },
         ] as const,
       },
-      {
+      /* {
         title: "Media",
         slug: "#media" as const,
       },
       {
         title: "Seo",
         slug: "#seo" as const,
-      },
+      }, */
     ] as const,
   },
   {
