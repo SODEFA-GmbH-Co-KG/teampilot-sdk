@@ -1,8 +1,5 @@
 import { Divider } from "~/shared/Divider"
-import { Caching } from "./Caching"
 import { CustomFunctions } from "./CustomFunctions"
-import { FetchingViaApi } from "./FetchingViaApi"
-import { FetchingViaSdk } from "./FetchingViaSdk"
 import { Launchpads } from "./Launchpads"
 
 export default function Page() {
@@ -11,12 +8,12 @@ export default function Page() {
       <Launchpads />
       <Divider />
       <CustomFunctions />
-      <Divider />
+      {/* <Divider />
       <Caching />
       <Divider />
       <FetchingViaApi />
       <Divider />
-      <FetchingViaSdk />
+      <FetchingViaSdk /> */}
     </div>
   )
 }

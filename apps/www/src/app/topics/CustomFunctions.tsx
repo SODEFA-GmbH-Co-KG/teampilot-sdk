@@ -112,7 +112,7 @@ export const CustomFunctions = () => {
           href="#hosted-functions"
           className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
         >
-          <div className="text-lg w-[200px] font-medium leading-snug text-primary group-hover:text-inherit">
+          <div className="text-lg w-full font-medium leading-snug text-primary group-hover:text-inherit">
             Hosted Functions
           </div>
           <div className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">
@@ -123,7 +123,7 @@ export const CustomFunctions = () => {
           href="#http-functions"
           className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
         >
-          <div className="text-lg w-[200px] font-medium leading-snug text-primary group-hover:text-inherit">
+          <div className="text-lg w-full font-medium leading-snug text-primary group-hover:text-inherit">
             HTTP Functions
           </div>
           <div className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">
@@ -134,7 +134,7 @@ export const CustomFunctions = () => {
           href="//TODO: Link"
           className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
         >
-          <div className="text-lg w-[200px] font-medium leading-snug text-primary group-hover:text-inherit">
+          <div className="text-lg w-full font-medium leading-snug text-primary group-hover:text-inherit">
             Widget Functions
           </div>
           <div className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">
