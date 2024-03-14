@@ -99,12 +99,12 @@ export const TOPICS = [
         slug: "#custom-functions" as const,
         subTopics: [
           {
-            title: "Hosted Functions",
-            slug: "-hosted-functions" as const,
-          },
-          {
             title: "HTTP Functions",
             slug: "-http-functions" as const,
+          },
+          {
+            title: "Hosted Functions",
+            slug: "-hosted-functions" as const,
           },
           {
             title: "Widget Functions",
