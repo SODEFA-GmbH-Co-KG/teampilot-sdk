@@ -48,7 +48,7 @@ There are a few steps necessary to use the SDK in your app.
       />
       <ReactMarkdown>{`
 Be aware, that if you want to use the SDK from the client side, the launchpad id will be leaked to the client and can potentially be abused. This can be circumvented by only using the sdk on your server side, like we are doing in this documentation via server actions.
-You then should make sure to not name the environment variable \`NEXT_PUBLIC_TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID\` but instead just \`TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID\` if you are using Nextjs.
+You then should make sure to not name the environment variable NEXT&shy;_PUBLIC&shy;_TEAMPILOT&shy;_DEFAULT&shy;_LAUNCHPAD&shy;_SLUG&shy;_ID but instead just TEAMPILOT&shy;_DEFAULT&shy;_LAUNCHPAD&shy;_SLUG&shy;_ID if you are using Nextjs.
       `}</ReactMarkdown>
     </div>
   )
