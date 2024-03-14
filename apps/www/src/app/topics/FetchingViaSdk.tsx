@@ -50,7 +50,21 @@ export const FetchingViaSdk = () => {
         }
       />
       <div className="h-6" />
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          table: ({ children }) => (
+            <table className="table-fixed">{children}</table>
+          ),
+          td: ({ children }) => (
+            <td className="" style={{ wordWrap: "break-word" }}>
+              {children}
+            </td>
+          ),
+        }}
+      >
+        {markdown}
+      </ReactMarkdown>
     </div>
   )
 }

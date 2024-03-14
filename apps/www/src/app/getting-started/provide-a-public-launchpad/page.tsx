@@ -24,7 +24,7 @@ Lets's say you want to provide a simple Vim Tutor for your team that can generat
 8. Change the switch to public. ![Public Switch](/docs/public-switch.png)
 9. To make the AI behave the way we want, we need to enter an appropriate system message. Therefore we click on the \`Add\` button at the bottom and select \`System Message\`. ![Add System Message](/docs/add-system-message.png)
 10. In the dialog that opens we enter the following message: 
-\`\`\`
+\`\`\`txt
 Generate a *knowledge*-level Vim lesson on *topic*. 
 The lesson should include necessary Vim commands, 
 the count of these commands, a sample code block 

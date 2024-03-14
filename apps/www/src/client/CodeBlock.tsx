@@ -29,7 +29,7 @@ export const CodeBlock: FC<Props> = ({
   return (
     <div
       className={cn(
-        "relative flex min-w-[160px] flex-col gap-2 text-base",
+        "relative flex min-w-[160px] max-w-[90vw] flex-col gap-2 text-base",
         className
       )}
     >

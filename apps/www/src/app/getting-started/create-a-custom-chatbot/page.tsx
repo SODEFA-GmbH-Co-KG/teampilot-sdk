@@ -13,7 +13,7 @@ Lets assume you have a SaaS product and you want to provide a chatbot to your us
 5. Configure a spending limit for the launchpad if you like. If nothing is entered here, the budget will be unlimited. But you can keep track of the spent amount by looking at the count above the input. ![Chatbot Spending Limit](/docs/spending-limit.png)
 6. Set the switch to public. ![Chatbot Public Switch](/docs/chatbot-public-switch.png) You will need to copy the value from the Widget field later to embed it on your webpage.
 7. Know we want to configure the Chatbots knowledge : Click the \`+\` button  and select \`System Message\`. ![Add System Message](/docs/add-system-message.png) In the dialog that opens we enter the following message:
-\`\`\`
+\`\`\`txt
 What is Teampilot AI?
 Teampilot AI is a versatile tool that leverages advanced AI models to assist users 
 and Teams in a wide range of tasks. It includes features like Chat Pilot for general 
@@ -39,7 +39,7 @@ capabilities.
 8. We then choose our base model that should handle the user requests by clicking on the bottom right button. In this case we choose the GPT-4-Turbo model. ![Chatbot Base Model](/docs/base-model.png)
 9. To test the launchpad before embedding it on your webpage, click on the bottom right button to save and launch the launchpad.
 10. Copy the Widget value and embed it on your webpage. To embded the chatbot on this page here, we just added the snippet to our nextjs page using the next/script component like so:
-\`\`\`tsx
+\`\`\`ts
 export default function Page() {
   return (
     <>

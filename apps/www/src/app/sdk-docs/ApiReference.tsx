@@ -125,7 +125,19 @@ Each of these proxy functions are explained more detailed in the following secti
       />
       <AnchorDiv id={fetchTeampilotId} />
       <IntersectionChecker topic={`/sdk-docs#${fetchTeampilotId}`} />
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          table: ({ children }) => (
+            <table className="table-fixed">{children}</table>
+          ),
+          td: ({ children }) => (
+            <td className="" style={{ wordWrap: "break-word" }}>
+              {children}
+            </td>
+          ),
+        }}
+      >
         {`
 ## fetchTeampilot()
 

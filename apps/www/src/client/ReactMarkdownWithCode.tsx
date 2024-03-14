@@ -16,7 +16,9 @@ export const ReactMarkdownWithCode = ({ children }: { children: string }) => {
               {...props}
             />
           ) : (
-            <code className={className}>{children}</code>
+            <div className="nono">
+              <code className={className}>{children}</code>
+            </div>
           )
         },
       }}
