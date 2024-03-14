@@ -1,5 +1,5 @@
 "use client"
-import { widgetToChatRpc } from "@teampilot/sdk"
+import { websiteToChatRpc } from "@teampilot/sdk"
 import { useLayoutEffect, useRef } from "react"
 
 // This is simulates the site that embeds the widget
@@ -8,17 +8,17 @@ export default function Page() {
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   useLayoutEffect(() => {
-    const widgetToChat = widgetToChatRpc({
+    const widgetToChat = websiteToChatRpc({
       localWindow: window,
       remoteWindow: iframeRef.current?.contentWindow as Window,
     })
     const listener = ({ params: { code } }: { params: { code: string } }) => {
       eval(code)
     }
-    widgetToChat.addMessageListener("evalJs", listener)
+    widgetToChat.addMessageListener("evalJsOnWebsite", listener)
 
     return () => {
-      widgetToChat.removeMessageListener("evalJs", listener)
+      widgetToChat.removeMessageListener("evalJsOnWebsite", listener)
     }
   }, [])
 

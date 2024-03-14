@@ -9,11 +9,12 @@ export {
 } from './fetchTeampilot'
 export { initTeampilotCollection } from './initTeampilotCollection'
 export { createTeampilotClient } from './proxy'
+export { communication } from './rpcProxy'
 export {
   chatToStyledFunctionRpc,
-  chatToWidgetRpc,
+  chatToWebsiteRpc,
   styledFunctionToChatRpc,
-  widgetToChatRpc,
+  websiteToChatRpc,
 } from './rpcSchema'
 export { teampilotFunctionHandler } from './teampilotFunctionHandler'
 export { transformZodToJsonSchema } from './transformZodToJsonSchema'

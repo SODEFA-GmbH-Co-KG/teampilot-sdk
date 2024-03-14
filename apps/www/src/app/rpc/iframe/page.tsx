@@ -1,5 +1,5 @@
 "use client"
-import { chatToStyledFunctionRpc, chatToWidgetRpc } from "@teampilot/sdk"
+import { chatToStyledFunctionRpc, chatToWebsiteRpc } from "@teampilot/sdk"
 import { useLayoutEffect, useRef } from "react"
 
 // This simulates the teampilot chat
@@ -8,7 +8,7 @@ export default function Page() {
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   useLayoutEffect(() => {
-    const chatToWidget = chatToWidgetRpc({
+    const chatToWidget = chatToWebsiteRpc({
       localWindow: window,
       remoteWindow: window.parent,
     })
@@ -17,12 +17,12 @@ export default function Page() {
       remoteWindow: iframeRef.current?.contentWindow as Window,
     })
     const listener = ({ params: { code } }: { params: { code: string } }) => {
-      chatToWidget.send("evalJs", { params: { code } })
+      chatToWidget.send("evalJsOnWebsite", { params: { code } })
     }
-    chatToStyledFunction.addMessageListener("evalJs", listener)
+    chatToStyledFunction.addMessageListener("evalJsOnWebsite", listener)
 
     return () => {
-      chatToStyledFunction.removeMessageListener("evalJs", listener)
+      chatToStyledFunction.removeMessageListener("evalJsOnWebsite", listener)
     }
   }, [])
 

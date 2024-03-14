@@ -8,12 +8,12 @@ import {
 
 export type StyledFunctionRpcSchema = RPCSchema<{
   messages: {
-    evalJs: {
+    evalJsOnWebsite: {
       params: {
         code: string
       }
     }
-    navigateInParent: {
+    navigateOnWebsite: {
       params: {
         url: string
         target: '_blank' | '_self'
@@ -29,7 +29,7 @@ export type StyledFunctionRpcSchema = RPCSchema<{
 
 export type ChatRpcSchema = RPCSchema<{
   messages: {
-    evalJs: {
+    evalJsOnWebsite: {
       params: {
         code: string
       }
@@ -42,7 +42,7 @@ type Windows = {
   remoteWindow: Window
 }
 
-export type WidgetRpcSchema = EmptyRPCSchema
+export type WebsiteRpcSchema = EmptyRPCSchema
 
 function createSingletonRPC<T extends RPCSchema, U extends RPCSchema>(
   createRpcFn: ({ localWindow, remoteWindow }: Windows) => RPC<T, U>
@@ -91,15 +91,15 @@ export const chatToStyledFunctionRpc = createSingletonRPC<
   }
 )
 
-export const chatToWidgetRpc = createSingletonRPC<
+export const chatToWebsiteRpc = createSingletonRPC<
   ChatRpcSchema,
-  WidgetRpcSchema
+  WebsiteRpcSchema
 >(
   ({
     localWindow,
     remoteWindow,
-  }: Windows): RPC<ChatRpcSchema, WidgetRpcSchema> => {
-    const rpc = createRPC<ChatRpcSchema, WidgetRpcSchema>({
+  }: Windows): RPC<ChatRpcSchema, WebsiteRpcSchema> => {
+    const rpc = createRPC<ChatRpcSchema, WebsiteRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
       }),
@@ -108,15 +108,15 @@ export const chatToWidgetRpc = createSingletonRPC<
   }
 )
 
-export const widgetToChatRpc = createSingletonRPC<
-  WidgetRpcSchema,
+export const websiteToChatRpc = createSingletonRPC<
+  WebsiteRpcSchema,
   ChatRpcSchema
 >(
   ({
     localWindow,
     remoteWindow,
-  }: Windows): RPC<WidgetRpcSchema, ChatRpcSchema> => {
-    const rpc = createRPC<WidgetRpcSchema, ChatRpcSchema>({
+  }: Windows): RPC<WebsiteRpcSchema, ChatRpcSchema> => {
+    const rpc = createRPC<WebsiteRpcSchema, ChatRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
       }),

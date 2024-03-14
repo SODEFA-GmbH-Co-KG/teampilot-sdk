@@ -1,5 +1,5 @@
 "use client"
-import { styledFunctionToChatRpc } from "@teampilot/sdk"
+import { communication, styledFunctionToChatRpc } from "@teampilot/sdk"
 import { useLayoutEffect, useState } from "react"
 import { Button } from "~/shadcn/components/ui/button"
 
@@ -25,8 +25,18 @@ export default function Page() {
       <div>
         <Button
           onClick={() => {
-            rpc?.send("evalJs", {
+            rpc?.send("evalJsOnWebsite", {
               params: { code: 'alert("Hello from the inner most iframe 👋.")' },
+            })
+            // alternatively, you can use the following code to send the message
+            communication.styledFunction.evalJsOnWebsite({
+              args: {
+                params: {
+                  code: 'alert("Hello again from the inner most iframe 👋.")',
+                },
+              },
+              origin: window,
+              remote: window.parent,
             })
           }}
         >
