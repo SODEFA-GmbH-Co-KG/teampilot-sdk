@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 type LocalizedString = string | { en: string; de: string }
 
-export type TeampilotCustomFunction<T extends z.Schema> = {
+export type TeampilotCustomFunction<T extends z.Schema, Output = any> = {
   nameForAI: string
   descriptionForAI: string
 
@@ -23,5 +23,17 @@ export type TeampilotCustomFunction<T extends z.Schema> = {
   execute: (options: {
     input: z.infer<T>
     request?: Request
-  }) => Promise<{ output: any }>
+  }) => Promise<{ output: Output }>
+
+  styled?:
+    | {
+        url?: string
+      }
+    | ((options: { input: z.infer<T>; output?: Output }) => any)
+}
+
+export const createTeampilotCustomFunction = <Input extends z.Schema, Output>(
+  func: TeampilotCustomFunction<Input, Output>
+) => {
+  return func
 }
