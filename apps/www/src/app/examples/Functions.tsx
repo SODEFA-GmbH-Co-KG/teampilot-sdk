@@ -1,10 +1,10 @@
-import ReactMarkdown from "react-markdown"
 import { AnchorDiv } from "~/client/AnchorDiv"
+import ReactMarkdown from "~/client/CustomReactMarkdown"
+import { IntersectionChecker } from "~/client/IntersectionChecker"
+import { ShowCase } from "~/client/ShowCase"
 import { Form } from "~/client/examples/Form"
 import { Time } from "~/client/examples/Time"
 import { Wikipedia } from "~/client/examples/wikipedia/Wikipedia"
-import { IntersectionChecker } from "~/client/IntersectionChecker"
-import { ShowCase } from "~/client/ShowCase"
 import { getIdForTopic } from "~/utils/navTopics"
 
 const markdown = `

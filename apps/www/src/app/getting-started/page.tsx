@@ -1,5 +1,5 @@
 import Link from "next/link"
-import ReactMarkdown from "react-markdown"
+import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { Badge } from "~/shadcn/components/ui/badge"
 import { getAllSubTopicsForCardsBySlug } from "~/utils/navTopics"
 

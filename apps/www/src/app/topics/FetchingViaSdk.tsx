@@ -1,6 +1,6 @@
-import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { CodeBlock } from "~/client/CodeBlock"
+import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { CopyNpmCommandButton } from "~/shadcn/components/copy-button"
 
 const markdown = `

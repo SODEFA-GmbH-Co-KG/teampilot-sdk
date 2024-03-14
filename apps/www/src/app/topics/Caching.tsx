@@ -1,5 +1,5 @@
-import ReactMarkdown from "react-markdown"
 import { AnchorDiv } from "~/client/AnchorDiv"
+import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { getIdForTopic } from "~/utils/navTopics"
 

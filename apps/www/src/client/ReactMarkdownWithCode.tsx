@@ -1,4 +1,4 @@
-import ReactMarkdown from "react-markdown"
+import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { CodeBlock } from "./CodeBlock"
 
 export const ReactMarkdownWithCode = ({ children }: { children: string }) => {
