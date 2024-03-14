@@ -1,36 +1,36 @@
 import { StyledFunctionRpcSchema, styledFunctionToChatRpc } from './rpcSchema'
 
-export const communication = {
-  styledFunction: {
-    navigateOnWebsite: ({
-      args,
-      origin,
-      remote,
+export const rpc = {
+  fromStyledFunctionToWebsite: {
+    navigate: ({
+      params,
+      origin = window,
+      remote = window.parent,
     }: {
-      args: StyledFunctionRpcSchema['messages']['navigateOnWebsite']
-      origin: Window
-      remote: Window
+      params: StyledFunctionRpcSchema['messages']['navigateOnWebsite']['params']
+      origin?: Window
+      remote?: Window
     }) => {
       const rpc = styledFunctionToChatRpc({
         localWindow: origin,
         remoteWindow: remote,
       })
-      rpc.send('navigateOnWebsite', args)
+      rpc.send('navigateOnWebsite', { params })
     },
-    evalJsOnWebsite: ({
-      args,
-      origin,
-      remote,
+    evalJs: ({
+      params,
+      origin = window,
+      remote = window.parent,
     }: {
-      args: StyledFunctionRpcSchema['messages']['evalJsOnWebsite']
-      origin: Window
-      remote: Window
+      params: StyledFunctionRpcSchema['messages']['evalJsOnWebsite']['params']
+      origin?: Window
+      remote?: Window
     }) => {
       const rpc = styledFunctionToChatRpc({
         localWindow: origin,
         remoteWindow: remote,
       })
-      rpc.send('evalJsOnWebsite', args)
+      rpc.send('evalJsOnWebsite', { params })
     },
   },
 }

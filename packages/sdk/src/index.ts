@@ -9,7 +9,7 @@ export {
 } from './fetchTeampilot'
 export { initTeampilotCollection } from './initTeampilotCollection'
 export { createTeampilotClient } from './proxy'
-export { communication } from './rpcProxy'
+export { rpc } from './rpcProxy'
 export {
   chatToStyledFunctionRpc,
   chatToWebsiteRpc,
