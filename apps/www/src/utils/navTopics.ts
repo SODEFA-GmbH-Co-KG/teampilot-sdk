@@ -106,10 +106,10 @@ export const TOPICS = [
             title: "Hosted Functions",
             slug: "-hosted-functions" as const,
           },
-          {
-            title: "Widget Functions",
-            slug: "-widget-functions" as const,
-          },
+          // {
+          //   title: "Widget Functions",
+          //   slug: "-widget-functions" as const,
+          // },
         ] as const,
       },
       {
