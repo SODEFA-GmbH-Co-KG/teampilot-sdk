@@ -16,6 +16,19 @@ module.exports = {
       },
     },
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            "h1, h2, h3, h4, h5, h6": {
+              fontFamily: "var(--space-grotesk)",
+            },
+          },
+        },
+      },
+      fontFamily: {
+        spaceGrotesk: ["var(--space-grotesk)"],
+        roboto: ["var(--roboto)"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -72,5 +85,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }

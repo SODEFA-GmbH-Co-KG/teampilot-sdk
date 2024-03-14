@@ -18,6 +18,7 @@ export const ShowCase = async ({
   align = "center",
   title,
   layout = "tabs",
+  description,
 }: {
   code?: string
   file?: string
@@ -25,6 +26,7 @@ export const ShowCase = async ({
   align?: "center" | "start" | "end"
   title?: string
   layout?: "tabs" | "side-by-side"
+  description?: string
 }) => {
   if (!code && file) {
     code = await getFile(file)
@@ -36,7 +38,11 @@ export const ShowCase = async ({
         <div className="space-y-2">
           <Heading>{title}</Heading>
           <SuspenseLoader>
-            <ShowCaseDescription title={title} code={code} />
+            <ShowCaseDescription
+              title={title}
+              description={description}
+              code={code}
+            />
           </SuspenseLoader>
         </div>
       )}

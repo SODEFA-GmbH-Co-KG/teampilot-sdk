@@ -1,9 +1,13 @@
 import { Analytics } from "@vercel/analytics/react"
 import { Github } from "lucide-react"
+import { Roboto, Space_Grotesk } from "next/font/google"
 import Link from "next/link"
+import Script from "next/script"
 import { type ReactNode } from "react"
 import { DarkModeToggle } from "~/client/DarkModeToggle"
+import { MainSideNav, MainSideNavMobile } from "~/client/MainSideNav"
 import { MainTopNav } from "~/client/MainTopNav"
+import { NavigationContextProvider } from "~/client/NavigationContext"
 import { SuspenseLoader } from "~/client/SuspenseLoader"
 import { TeampilotLogo } from "~/client/TeampilotLogo"
 import { ThemeProvider } from "~/shadcn/components/theme-provider"
@@ -19,6 +23,19 @@ export const metadata = {
   title: "Teampilot SDK",
 }
 
+const spaceGrotesk = Space_Grotesk({
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--space-grotesk",
+})
+const roboto = Roboto({
+  display: "swap",
+  weight: ["900", "400", "500", "300"],
+  subsets: ["latin"],
+  variable: "--roboto",
+})
+
 export default function RootLayout({ children }: { children?: ReactNode }) {
   return (
     <>
@@ -28,44 +45,60 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
         </head>
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased"
+            "min-h-[100dvh] bg-background antialiased font-roboto",
+            spaceGrotesk.variable,
+            roboto.variable
             // font.className
           )}
         >
+          <Script
+            defer
+            src="https://teampilot.ai/widget.js"
+            data-launchpad-slug-id="teampilot-docs-20ee457cee3b099cca3b762da5ca7105"
+          />
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <>
-              <div className="container flex flex-row items-center justify-between gap-6 py-6 2xl:max-w-[2000px]">
-                <Link href="/" className="flex flex-row items-center gap-3">
-                  <TeampilotLogo className="h-8 w-8" />
-                  <div className="text-xl">
-                    <strong>
-                      Teampilot <span className="text-primary">SDK</span>
-                    </strong>
+            <NavigationContextProvider>
+              <>
+                <div className="sticky top-0 w-full z-10">
+                  <div className="container flex flex-row items-center justify-between gap-6 py-6 bg-background w-full mx-auto">
+                    <Link href="/" className="flex flex-row items-center gap-3">
+                      <TeampilotLogo className="h-8 w-8" />
+                      <div className="text-xl">
+                        <strong className="font-spaceGrotesk">
+                          Teampilot <span className="text-primary">Docs</span>
+                        </strong>
+                      </div>
+                    </Link>
+                    <div className="hidden flex-1 xl:flex">
+                      <MainTopNav />
+                    </div>
+                    <div className="flex flex-row">
+                      <Link
+                        href="https://github.com/sodefa-gmbh-co-kg/teampilot-sdk"
+                        target="_blank"
+                      >
+                        <Button variant={"ghost"} size="icon">
+                          <Github />
+                        </Button>
+                      </Link>
+                      <DarkModeToggle />
+                      <MainSideNavMobile />
+                    </div>
                   </div>
-                </Link>
-                <div className="hidden flex-1 xl:flex">
-                  <MainTopNav />
                 </div>
-                <div className="flex flex-row">
-                  <Link
-                    href="https://github.com/sodefa-gmbh-co-kg/teampilot-sdk"
-                    target="_blank"
-                  >
-                    <Button variant={"ghost"} size="icon">
-                      <Github />
-                    </Button>
-                  </Link>
-                  <DarkModeToggle />
+                <hr />
+                <div className="container mx-auto flex flex-row justify-center">
+                  <div className="border-r max-md:hidden">
+                    <div className="w-48 top-[89px] sticky max-h-[calc(100dvh-89px)] py-8 pr-6 overflow-y-auto scrollbar-hide">
+                      <MainSideNav />
+                    </div>
+                  </div>
+                  <div className="flex flex-1 flex-col flex-wrap gap-8 py-8 md:pl-6 lg:max-w-screen-lg">
+                    <SuspenseLoader>{children}</SuspenseLoader>
+                  </div>
                 </div>
-              </div>
-              <div className="container flex pb-6 xl:hidden 2xl:max-w-[2000px]">
-                <MainTopNav />
-              </div>
-              <hr />
-              <div className="container flex flex-col gap-8 py-8 2xl:max-w-[2000px]">
-                <SuspenseLoader>{children}</SuspenseLoader>
-              </div>
-            </>
+              </>
+            </NavigationContextProvider>
           </ThemeProvider>
           <Analytics />
         </body>
