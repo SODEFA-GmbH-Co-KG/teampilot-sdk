@@ -25,6 +25,7 @@ export default function ReactMarkdown(
             {children}
           </td>
         ),
+        ...props.components,
       }}
     />
   )
