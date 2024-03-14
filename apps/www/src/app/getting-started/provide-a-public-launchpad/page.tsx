@@ -1,4 +1,4 @@
-import ReactMarkdown from "react-markdown"
+import { ReactMarkdownWithCode } from "~/client/ReactMarkdownWithCode"
 
 const markdown = `
 # Provide a Public Launchpad
@@ -56,7 +56,7 @@ You can extend your launchpad further by adding custom functions, documents, and
 export default function Page() {
   return (
     <div className="prose max-w-[inherit] dark:prose-invert">
-      <ReactMarkdown>{markdown}</ReactMarkdown>
+      <ReactMarkdownWithCode>{markdown}</ReactMarkdownWithCode>
     </div>
   )
 }
