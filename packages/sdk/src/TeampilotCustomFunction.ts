@@ -1,6 +1,4 @@
-import { RPC } from 'rpc-anywhere'
 import { z } from 'zod'
-import { ChatRpcSchema, StyledFunctionRpcSchema } from './rpcSchema'
 
 type LocalizedString = string | { en: string; de: string }
 
@@ -31,11 +29,7 @@ export type TeampilotCustomFunction<T extends z.Schema, Output = any> = {
     | {
         url?: string
       }
-    | ((options: {
-        input: z.infer<T>
-        output?: Output
-        rpc?: RPC<StyledFunctionRpcSchema, ChatRpcSchema>
-      }) => any)
+    | ((options: { input: z.infer<T>; output?: Output }) => any)
 }
 
 export const createTeampilotCustomFunction = <Input extends z.Schema, Output>(
