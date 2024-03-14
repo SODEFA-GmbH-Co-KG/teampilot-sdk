@@ -1,6 +1,7 @@
 import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { Divider } from "~/shared/Divider"
+import { ApiReference } from "./ApiReference"
 import { InstallationAndSetup } from "./InstallationAndSetup"
 
 const markdown = `
@@ -16,8 +17,8 @@ export default function Page() {
       <ReactMarkdown>{markdown}</ReactMarkdown>
       <Divider />
       <InstallationAndSetup />
-      {/* <Divider />
-      <ApiReference /> */}
+      <Divider />
+      <ApiReference />
     </div>
   )
 }
