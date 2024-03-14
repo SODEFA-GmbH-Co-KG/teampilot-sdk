@@ -7,6 +7,8 @@ type styledFunctionToChatRpcReturnType = ReturnType<
   typeof styledFunctionToChatRpc
 >
 
+// This simulates the (hosted) styled functions
+
 export default function Page() {
   const [rpc, setRpc] = useState<styledFunctionToChatRpcReturnType | null>(null)
 

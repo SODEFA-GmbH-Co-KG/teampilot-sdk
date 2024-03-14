@@ -1,6 +1,9 @@
 "use client"
 import { chatToStyledFunctionRpc, chatToWidgetRpc } from "@teampilot/sdk"
 import { useLayoutEffect, useRef } from "react"
+
+// This simulates the teampilot chat
+
 export default function Page() {
   const iframeRef = useRef<HTMLIFrameElement>(null)
 

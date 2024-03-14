@@ -2,6 +2,8 @@
 import { widgetToChatRpc } from "@teampilot/sdk"
 import { useLayoutEffect, useRef } from "react"
 
+// This is simulates the site that embeds the widget
+
 export default function Page() {
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
