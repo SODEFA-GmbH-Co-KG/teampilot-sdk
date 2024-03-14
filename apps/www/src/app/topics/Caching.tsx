@@ -24,7 +24,7 @@ export const Caching = () => {
     secondLevelSlug: "#caching",
   })
   return (
-    <div className="prose dark:prose-invert break-all">
+    <div className="prose dark:prose-invert max-sm:break-all">
       <IntersectionChecker topic={"/topics#caching"} />
       <AnchorDiv id={cachingId} />
       <ReactMarkdown>{markdown}</ReactMarkdown>
