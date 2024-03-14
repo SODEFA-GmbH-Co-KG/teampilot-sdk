@@ -1,4 +1,5 @@
 import RawReactMarkdown from "react-markdown"
+import { CodeBlock } from "./CodeBlock"
 
 export default function ReactMarkdown(
   props: Parameters<typeof RawReactMarkdown>[0]
@@ -25,6 +26,22 @@ export default function ReactMarkdown(
             {children}
           </td>
         ),
+        code({ className, children, ...props }) {
+          const match = /language-(\w+)/.exec(className || "")
+          return match && match[1] ? (
+            <CodeBlock
+              // key={Math.random()}
+              language={match[1]}
+              value={String(children).replace(/\n$/, "")}
+              lightMode={"dark"}
+              {...props}
+            />
+          ) : (
+            <div className="nono">
+              <code className={className}>{children}</code>
+            </div>
+          )
+        },
         ...props.components,
       }}
     />

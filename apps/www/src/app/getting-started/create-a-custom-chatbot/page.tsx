@@ -1,4 +1,4 @@
-import { ReactMarkdownWithCode } from "~/client/ReactMarkdownWithCode"
+import ReactMarkdown from "~/client/CustomReactMarkdown"
 
 const markdown = `
 # Create a Custom Chatbot
@@ -66,7 +66,7 @@ export default function Page() {
   return (
     <>
       <div className="prose max-w-[inherit] dark:prose-invert">
-        <ReactMarkdownWithCode>{markdown}</ReactMarkdownWithCode>
+        <ReactMarkdown>{markdown}</ReactMarkdown>
       </div>
     </>
   )
