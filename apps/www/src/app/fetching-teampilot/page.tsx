@@ -16,7 +16,7 @@ The SDK (written in Typescript) is just a nice wrapper around the API, so both h
 
 export default function Page() {
   return (
-    <div className="prose max-w-none dark:prose-invert">
+    <div className="prose max-w-[inherit] dark:prose-invert">
       <ReactMarkdown>{markdown}</ReactMarkdown>
 
       <DocsLinksGrid

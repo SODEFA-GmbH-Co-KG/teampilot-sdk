@@ -8,10 +8,10 @@ Teampilot is a powerful conversational AI platform, akin to ChatGPT, but packed 
 ## Exploring the Teampilot SDK
 
 The Teampilot SDK serves two main functions: 
-1. **[Integrating Teampilot into your product](${
+1. **[Integrating Teampilot into Your Product](${
   getPageByHref("/teampilot-into-your-product")?.href
 })**
-2. **[Integrating your product into Teampilot](${
+2. **[Integrating Your Product into Teampilot](${
   getPageByHref("/your-product-into-teampilot")?.href
 })**
 
@@ -35,7 +35,7 @@ The possibilities are endless with what kind of functions you can develop and in
 
 export default function Page() {
   return (
-    <div className="prose max-w-none dark:prose-invert">
+    <div className="prose dark:prose-invert max-w-[inherit]">
       <ReactMarkdown className="w-full">{markdown}</ReactMarkdown>
 
       <DocsLinksGrid
