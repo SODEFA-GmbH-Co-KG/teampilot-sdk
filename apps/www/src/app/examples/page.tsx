@@ -1,4 +1,4 @@
-import ReactMarkdown from "~/client/CustomReactMarkdown"
+import ReactMarkdown from "react-markdown"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { Divider } from "~/shared/Divider"
 import { Functions } from "./Functions"

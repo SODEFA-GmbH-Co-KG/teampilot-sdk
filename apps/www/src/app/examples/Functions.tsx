@@ -160,7 +160,9 @@ export const Wikipedia = async () => {
 `}
         layout="side-by-side"
       >
-        <Wikipedia />
+        <div className="max-sm:break-all">
+          <Wikipedia />
+        </div>
       </ShowCase>
       <IntersectionChecker topic={`/examples#${callingAFuctionFromWidgetId}`} />
       <AnchorDiv id={callingAFuctionFromWidgetId} />
