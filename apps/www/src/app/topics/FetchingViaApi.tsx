@@ -1,7 +1,7 @@
 import { ArrowDown } from "lucide-react"
-import ReactMarkdown from "react-markdown"
 import { AnchorDiv } from "~/client/AnchorDiv"
 import { CodeBlock } from "~/client/CodeBlock"
+import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { getIdForTopic } from "~/utils/navTopics"
 

@@ -1,10 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
 import { type PropsWithChildren } from "react"
-import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { AnchorDiv } from "~/client/AnchorDiv"
 import { CodeBlock } from "~/client/CodeBlock"
+import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { getPageByHref } from "~/client/DocsLink"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { getIdForTopic } from "~/utils/navTopics"
@@ -107,12 +107,12 @@ export const CustomFunctions = () => {
         adaptable tool.
       </p>
       <p>We have multiple ways to create custom function:</p>
-      <div className="flex flex-col md:flex-row gap-8  my-6">
+      <div className="flex flex-col lg:flex-row gap-8  my-6">
         <a
           href="#hosted-functions"
           className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
         >
-          <div className="text-lg w-[200px] font-medium leading-snug text-primary group-hover:text-inherit">
+          <div className="text-lg w-full font-medium leading-snug text-primary group-hover:text-inherit">
             Hosted Functions
           </div>
           <div className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">
@@ -123,7 +123,7 @@ export const CustomFunctions = () => {
           href="#http-functions"
           className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
         >
-          <div className="text-lg w-[200px] font-medium leading-snug text-primary group-hover:text-inherit">
+          <div className="text-lg w-full font-medium leading-snug text-primary group-hover:text-inherit">
             HTTP Functions
           </div>
           <div className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">
@@ -134,7 +134,7 @@ export const CustomFunctions = () => {
           href="//TODO: Link"
           className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
         >
-          <div className="text-lg w-[200px] font-medium leading-snug text-primary group-hover:text-inherit">
+          <div className="text-lg w-full font-medium leading-snug text-primary group-hover:text-inherit">
             Widget Functions
           </div>
           <div className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">

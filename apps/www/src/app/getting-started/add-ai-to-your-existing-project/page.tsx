@@ -1,4 +1,4 @@
-import { ReactMarkdownWithCode } from "~/client/ReactMarkdownWithCode"
+import ReactMarkdown from "~/client/CustomReactMarkdown"
 
 const markdown = `
   # Get Started
@@ -120,7 +120,7 @@ const markdown = `
 export default function Page() {
   return (
     <div className="prose max-w-[inherit] dark:prose-invert">
-      <ReactMarkdownWithCode>{markdown}</ReactMarkdownWithCode>
+      <ReactMarkdown>{markdown}</ReactMarkdown>
     </div>
   )
 }

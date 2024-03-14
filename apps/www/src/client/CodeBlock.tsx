@@ -29,7 +29,7 @@ export const CodeBlock: FC<Props> = ({
   return (
     <div
       className={cn(
-        "relative flex min-w-[160px] max-w-[90vw] flex-col gap-2 text-base",
+        "relative flex min-w-[160px] flex-col gap-2 text-base",
         className
       )}
     >
@@ -40,10 +40,14 @@ export const CodeBlock: FC<Props> = ({
         <SyntaxHighlighter
           language={language}
           style={lightMode === "light" ? oneLight : oneDark}
-          wrapLongLines
+          lineProps={{
+            style: { wordBreak: "break-all", whiteSpace: "pre-wrap" },
+          }}
+          wrapLines={true}
           customStyle={{
             margin: 0,
-            // background:
+            wordBreak: "break-all",
+            whiteSpace: "pre-wrap",
           }}
         >
           {value}

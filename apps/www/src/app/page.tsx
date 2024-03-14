@@ -1,4 +1,4 @@
-import ReactMarkdown from "react-markdown"
+import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { DocsLinksGrid, getPageByHref } from "~/client/DocsLink"
 const markdown = `
 # **Welcome to Teampilot**

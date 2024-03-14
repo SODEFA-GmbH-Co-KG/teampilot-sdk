@@ -25,7 +25,7 @@ export const DayInHistorySelector = () => {
         onSelect={(date) => setDate(date ?? new Date())}
         className="rounded-md border bg-card"
       />
-      <div className="w-72">
+      <div className="w-full max-w-72">
         <SuspenseLoader>
           <DayInHistory date={date} />
         </SuspenseLoader>
