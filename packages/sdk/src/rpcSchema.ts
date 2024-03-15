@@ -1,4 +1,5 @@
 import {
+  _RPCPacket,
   createRPC,
   createTransportFromMessagePort,
   EmptyRPCSchema,
@@ -68,7 +69,9 @@ export const styledFunctionToChatRpc = createSingletonRPC<
     const rpc = createRPC<StyledFunctionRpcSchema, ChatRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
+        transportId: 'teampilot-rpc',
       }),
+      _debugHooks,
     })
     return rpc
   }
@@ -85,7 +88,9 @@ export const chatToStyledFunctionRpc = createSingletonRPC<
     const rpc = createRPC<ChatRpcSchema, StyledFunctionRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
+        transportId: 'teampilot-rpc',
       }),
+      _debugHooks,
     })
     return rpc
   }
@@ -102,7 +107,9 @@ export const chatToWebsiteRpc = createSingletonRPC<
     const rpc = createRPC<ChatRpcSchema, WebsiteRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
+        transportId: 'teampilot-rpc',
       }),
+      _debugHooks,
     })
     return rpc
   }
@@ -119,8 +126,24 @@ export const websiteToChatRpc = createSingletonRPC<
     const rpc = createRPC<WebsiteRpcSchema, ChatRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
+        transportId: 'teampilot-rpc',
       }),
+      _debugHooks,
     })
     return rpc
   }
 )
+
+// Set this to true to enable debug logging
+const DEBUDG_MODE = false
+
+function _debugOnSend(packet: _RPCPacket) {
+  console.log('[iframe] sent', packet)
+}
+function _debugOnReceive(packet: _RPCPacket) {
+  console.log('[iframe] received', packet)
+}
+
+const _debugHooks = DEBUDG_MODE
+  ? { onSend: _debugOnSend, onReceive: _debugOnReceive }
+  : {}
