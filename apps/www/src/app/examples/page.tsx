@@ -1,9 +1,26 @@
 import ReactMarkdown from "react-markdown"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { Divider } from "~/shared/Divider"
+import { generateOgUrl } from "../og/generateOGUrl"
 import { Functions } from "./Functions"
 import { Interaction } from "./Interaction"
 import { Schema } from "./Schema"
+
+export const metadata = {
+  openGraph: {
+    title: `Examples | Teampilot Docs`,
+    type: "article",
+    images: [
+      {
+        url: generateOgUrl({ title: "Examples" }),
+        width: 1200,
+        height: 630,
+        alt: "Examples",
+      },
+    ],
+    siteName: "docs.teampilot.ai",
+  },
+}
 
 const markdown = `
 # Examples

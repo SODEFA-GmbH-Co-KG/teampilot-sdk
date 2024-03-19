@@ -1,5 +1,22 @@
-import { Collections } from "~/client/examples/Collections"
 import { ShowCase } from "~/client/ShowCase"
+import { Collections } from "~/client/examples/Collections"
+import { generateOgUrl } from "../og/generateOGUrl"
+
+export const metadata = {
+  openGraph: {
+    title: `Collections | Teampilot Docs`,
+    type: "article",
+    images: [
+      {
+        url: generateOgUrl({ title: "Collections" }),
+        width: 1200,
+        height: 630,
+        alt: "Collections",
+      },
+    ],
+    siteName: "docs.teampilot.ai",
+  },
+}
 
 export default function Page() {
   return (

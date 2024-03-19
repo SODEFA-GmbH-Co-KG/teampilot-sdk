@@ -2,6 +2,7 @@ import Link from "next/link"
 import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { Badge } from "~/shadcn/components/ui/badge"
 import { getAllSubTopicsForCardsBySlug } from "~/utils/navTopics"
+import { generateOgUrl } from "../og/generateOGUrl"
 
 const markdown = `
 # Getting Started
@@ -12,6 +13,22 @@ Depending on what you want to achieve, choose your path below. If you are missin
 
 const slug = "/getting-started"
 const gettingStartedSubPages = getAllSubTopicsForCardsBySlug(slug)
+
+export const metadata = {
+  openGraph: {
+    title: `Getting Started | Teampilot Docs`,
+    type: "article",
+    images: [
+      {
+        url: generateOgUrl({ title: "Teampilot Docs Getting Started" }),
+        width: 1200,
+        height: 630,
+        alt: "Getting Started",
+      },
+    ],
+    siteName: "docs.teampilot.ai",
+  },
+}
 
 export default function Page() {
   return (
