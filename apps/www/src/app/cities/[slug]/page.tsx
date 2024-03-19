@@ -11,7 +11,7 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const city = await teampilot.default.fetchData({
-    message: `Generate the City Analysis for: ${params.slug}`,
+    message: `Generate a City Analysis for: ${params.slug}`,
     schema: z.object({
       name: z.string(),
       population: z.number(),
