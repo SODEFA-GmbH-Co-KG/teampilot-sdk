@@ -27,5 +27,8 @@
   },
   "peerDependencies": {
     "zod": "^3.21.4"
+  },
+  "dependencies": {
+    "rpc-anywhere": "^1.7.0"
   }
 }
