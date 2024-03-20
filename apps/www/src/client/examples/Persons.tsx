@@ -1,4 +1,6 @@
+import { fetchTeampilotData } from "@teampilot/sdk"
 import { z } from "zod"
+import { env } from "~/env.mjs"
 import {
   Card,
   CardContent,
@@ -6,10 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "~/shadcn/components/ui/card"
-import { teampilot } from "~/teampilot"
 
 export const Persons = async () => {
-  const data = await teampilot.default.fetchData({
+  const data = await fetchTeampilotData({
+    launchpadSlugId: env.NEXT_PUBLIC_TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID,
     message: "First 6 Presidents of the US",
     schema: z.array(
       z.object({

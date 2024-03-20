@@ -1,11 +1,14 @@
+import { fetchTeampilotMedia } from "@teampilot/sdk/src/fetchTeampilot"
 import Image from "next/image"
 import { use } from "react"
-import { teampilot } from "~/teampilot"
+import { env } from "~/env.mjs"
 
 export const ImageExample = () => {
   const media = use(
-    teampilot.functions.fetchMedia({
+    fetchTeampilotMedia({
+      launchpadSlugId: env.LAUNCHPAD_SLUG_ID_FUNCTIONS,
       message: "Generate an Image of a flying elephant",
+      cacheTtlSeconds: 60 * 60 * 24, // 1 day
     })
   )
 

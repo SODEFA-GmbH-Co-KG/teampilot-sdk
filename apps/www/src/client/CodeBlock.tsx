@@ -8,12 +8,14 @@ import {
   oneLight,
 } from "react-syntax-highlighter/dist/cjs/styles/prism"
 import { CopyButton } from "~/shadcn/components/copy-button"
+import { cn } from "~/shadcn/utils"
 
 interface Props {
   language: string
   value: string
   lightMode: "light" | "dark"
   copyButton?: ReactNode
+  className?: string
 }
 
 // FROM: https://github.com/mckaywrigley/chatbot-ui/blob/main/components/Markdown/CodeBlock.tsx
@@ -22,9 +24,15 @@ export const CodeBlock: FC<Props> = ({
   value,
   lightMode,
   copyButton,
+  className,
 }) => {
   return (
-    <div className="relative flex min-w-[160px] flex-col gap-2 text-base">
+    <div
+      className={cn(
+        "relative flex min-w-[160px] flex-col gap-2 text-base",
+        className
+      )}
+    >
       <Slot className="absolute right-4 top-4">
         {copyButton ?? <CopyButton value={value} />}
       </Slot>
@@ -32,10 +40,14 @@ export const CodeBlock: FC<Props> = ({
         <SyntaxHighlighter
           language={language}
           style={lightMode === "light" ? oneLight : oneDark}
-          wrapLongLines
+          lineProps={{
+            style: { wordBreak: "break-all", whiteSpace: "pre-wrap" },
+          }}
+          wrapLines={true}
           customStyle={{
             margin: 0,
-            // background:
+            wordBreak: "break-all",
+            whiteSpace: "pre-wrap",
           }}
         >
           {value}

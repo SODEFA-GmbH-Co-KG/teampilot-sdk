@@ -27,7 +27,7 @@ export const Widget = () => {
   return (
     <>
       <div
-        className="flex h-80 w-80 items-center justify-center rounded-md border text-3xl"
+        className="flex w-full aspect-square items-center justify-center rounded-md border text-3xl"
         style={{
           backgroundColor: color,
         }}

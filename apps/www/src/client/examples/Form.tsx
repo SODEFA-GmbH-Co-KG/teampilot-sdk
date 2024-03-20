@@ -3,7 +3,7 @@ import { Button } from "~/shadcn/components/ui/button"
 import { Input } from "~/shadcn/components/ui/input"
 import { teampilot } from "~/teampilot"
 
-export const Form = () => {
+export const Form = async () => {
   const submit = async (data: FormData) => {
     "use server"
     const email = data.get("email")

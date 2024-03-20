@@ -5,54 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "~/shadcn/utils"
 
-const entries = [
-  {
-    name: "Overview",
-    href: "/",
-  },
-  {
-    name: "Schema",
-    href: "/schema",
-  },
-  {
-    name: "Interactive",
-    href: "/interactive",
-  },
-  {
-    name: "Functions",
-    href: "/functions",
-  },
-  {
-    name: "Media",
-    href: "/media",
-  },
-  // {
-  //   name: "Widget",
-  //   href: "/widget",
-  // },
-  // {
-  //   name: "Todo",
-  //   href: "/todo-app",
-  // },
-  {
-    name: "Collections",
-    href: "/collections",
-  },
-  {
-    name: "SEO",
-    href: "/seo",
-  },
-  {
-    name: "Future™️",
-    href: "/future",
-  },
-  // {
-  //   name: "Teampilot",
-  //   iconEnd: ExternalLink,
-  //   href: "https://teampilot.ai",
-  //   target: "_blank",
-  // },
-]
+const entries: any[] = []
 
 export function MainTopNav({
   className,
