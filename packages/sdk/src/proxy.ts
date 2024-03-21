@@ -3,7 +3,8 @@ import {
   fetchTeampilotData,
   fetchTeampilotMedia,
   fetchTeampilotText,
-} from "./fetchTeampilot"
+  streamTeampilotData,
+} from './fetchTeampilot'
 
 type LaunchpadConfig = {
   launchpadSlugId: string
@@ -32,6 +33,7 @@ const createLaunchpadProxy = (config: LaunchpadConfig) => {
     fetchData: setDefaults(fetchTeampilotData, config),
     fetchText: setDefaults(fetchTeampilotText, config),
     fetchMedia: setDefaults(fetchTeampilotMedia, config),
+    streamData: setDefaults(streamTeampilotData, config),
     mutate: (message: string) =>
       setDefaults(
         fetchTeampilot,
