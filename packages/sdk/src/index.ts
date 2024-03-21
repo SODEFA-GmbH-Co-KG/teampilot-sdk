@@ -6,6 +6,7 @@ export {
   fetchTeampilot,
   fetchTeampilotData,
   fetchTeampilotText,
+  streamTeampilotData,
   type FetchTeampilotOptions,
 } from './fetchTeampilot'
 export { initTeampilotCollection } from './initTeampilotCollection'
