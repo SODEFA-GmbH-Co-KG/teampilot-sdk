@@ -1,5 +1,22 @@
 import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { DocsLinksGrid } from "~/client/DocsLink"
+import { generateOgUrl } from "../og/generateOGUrl"
+
+export const metadata = {
+  openGraph: {
+    title: `Fetching Teampilot | Teampilot Docs`,
+    type: "article",
+    images: [
+      {
+        url: generateOgUrl({ title: "Fetching Teampilot" }),
+        width: 1200,
+        height: 630,
+        alt: "Fetching Teampilot",
+      },
+    ],
+    siteName: "docs.teampilot.ai",
+  },
+}
 
 const markdown = `
 # Fetching Teampilot
