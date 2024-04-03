@@ -4,7 +4,7 @@ import { getBaseUrl } from './getBaseUrl'
 
 const defaultMetadataSchema = z.any()
 
-export const initTeampilotCollection = async <
+export const initTeampilotCollection = <
   T extends ZodSchema = typeof defaultMetadataSchema
 >({
   collectionSecret,
@@ -13,24 +13,28 @@ export const initTeampilotCollection = async <
   collectionSecret?: string
   metadataSchema?: T
 }) => {
-  const urlCollection = `${await getBaseUrl()}/api/rest/collection`
-  const urlInfo = `${urlCollection}/info`
-  const urlItems = `${urlCollection}/items`
+  const getUrls = async () => {
+    const urlCollection = `${await getBaseUrl()}/api/rest/collection`
+    const urlInfo = `${urlCollection}/info`
+    const urlItems = `${urlCollection}/items`
 
-  // Check if collectionSecret is provided
-  if (!collectionSecret) {
-    collectionSecret =
-      (await getEnv('NEXT_PUBLIC_TEAMPILOT_COLLECTION_SECRET')) ||
-      (await getEnv('TEAMPILOT_COLLECTION_SECRET'))
-  }
-  if (!collectionSecret) {
-    throw new Error(
-      'Provide a collectionSecret in the function call or in the environment variables via TEAMPILOT_COLLECTION_SECRET or NEXT_PUBLIC_TEAMPILOT_COLLECTION_SECRET'
-    )
+    // Check if collectionSecret is provided
+    if (!collectionSecret) {
+      collectionSecret =
+        (await getEnv('NEXT_PUBLIC_TEAMPILOT_COLLECTION_SECRET')) ||
+        (await getEnv('TEAMPILOT_COLLECTION_SECRET'))
+    }
+    if (!collectionSecret) {
+      throw new Error(
+        'Provide a collectionSecret in the function call or in the environment variables via TEAMPILOT_COLLECTION_SECRET or NEXT_PUBLIC_TEAMPILOT_COLLECTION_SECRET'
+      )
+    }
+    return { urlCollection, urlInfo, urlItems }
   }
 
   // Get Collection Info
   const getInfo = async ({ cache }: { cache?: RequestCache } = {}) => {
+    const { urlInfo } = await getUrls()
     const params = new URLSearchParams({
       collectionSecret: collectionSecret!,
     })
@@ -60,6 +64,7 @@ export const initTeampilotCollection = async <
       metadata?: z.infer<T>
     }[]
   }) => {
+    const { urlItems } = await getUrls()
     const schema = z.object({
       id: z.string().optional(),
       text: z.string(),
@@ -97,6 +102,7 @@ export const initTeampilotCollection = async <
     limit?: number
     cache?: RequestCache
   }) => {
+    const { urlItems } = await getUrls()
     const params = new URLSearchParams({
       collectionSecret: collectionSecret!,
       searchQuery,
@@ -125,6 +131,7 @@ export const initTeampilotCollection = async <
   }
 
   const deleteOne = async ({ itemId }: { itemId: string }) => {
+    const { urlItems } = await getUrls()
     const params = new URLSearchParams({
       collectionSecret: collectionSecret!,
       itemId,
@@ -139,6 +146,7 @@ export const initTeampilotCollection = async <
   }
 
   const deleteAll = async () => {
+    const { urlItems } = await getUrls()
     const params = new URLSearchParams({
       collectionSecret: collectionSecret!,
       allItems: 'true',

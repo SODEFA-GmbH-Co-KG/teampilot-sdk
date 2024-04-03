@@ -12,13 +12,13 @@ import { revalidatePath } from "next/cache"
 import { z } from "zod"
 import { Button } from "~/shadcn/components/ui/button"
 
+const collection = initTeampilotCollection({
+  metadataSchema: z.object({
+    myDate: z.string(),
+  }),
+})
+
 export const Collections = async () => {
-  const collection = await initTeampilotCollection({
-    metadataSchema: z.object({
-      myDate: z.string(),
-    }),
-  })
-  
   const searchQuery = "earth"
   const { results } = await collection.searchItems({
     searchQuery,
