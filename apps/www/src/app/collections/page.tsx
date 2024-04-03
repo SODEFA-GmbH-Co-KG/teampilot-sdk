@@ -12,7 +12,7 @@ import { revalidatePath } from "next/cache"
 import { z } from "zod"
 import { Button } from "~/shadcn/components/ui/button"
 
-const collection = initTeampilotCollection({
+const collection = await initTeampilotCollection({
   metadataSchema: z.object({
     myDate: z.string(),
   }),
