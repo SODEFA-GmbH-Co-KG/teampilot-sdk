@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { TeampilotCustomFunction } from './TeampilotCustomFunction'
-import { getEnv } from './denoCompatability/getEnv'
+import { getEnv } from './denoCompatibility/getEnv'
 import { getBaseUrl } from './getBaseUrl'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 

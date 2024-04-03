@@ -1,4 +1,4 @@
-import { getEnv } from './denoCompatability/getEnv'
+import { getEnv } from './denoCompatibility/getEnv'
 
 export const getBaseUrl = async () => {
   return (
