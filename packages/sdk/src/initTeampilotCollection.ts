@@ -1,9 +1,10 @@
 import { ZodSchema, z } from 'zod'
+import { getEnv } from './denoCompatability/getEnv'
 import { getBaseUrl } from './getBaseUrl'
 
 const defaultMetadataSchema = z.any()
 
-export const initTeampilotCollection = <
+export const initTeampilotCollection = async <
   T extends ZodSchema = typeof defaultMetadataSchema
 >({
   collectionSecret,
@@ -12,15 +13,15 @@ export const initTeampilotCollection = <
   collectionSecret?: string
   metadataSchema?: T
 }) => {
-  const urlCollection = `${getBaseUrl()}/api/rest/collection`
+  const urlCollection = `${await getBaseUrl()}/api/rest/collection`
   const urlInfo = `${urlCollection}/info`
   const urlItems = `${urlCollection}/items`
 
   // Check if collectionSecret is provided
   if (!collectionSecret) {
     collectionSecret =
-      process.env.NEXT_PUBLIC_TEAMPILOT_COLLECTION_SECRET ||
-      process.env.TEAMPILOT_COLLECTION_SECRET
+      (await getEnv('NEXT_PUBLIC_TEAMPILOT_COLLECTION_SECRET')) ||
+      (await getEnv('TEAMPILOT_COLLECTION_SECRET'))
   }
   if (!collectionSecret) {
     throw new Error(
