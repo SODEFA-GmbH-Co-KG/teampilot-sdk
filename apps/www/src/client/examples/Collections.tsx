@@ -1,20 +1,45 @@
 import { initTeampilotCollection } from "@teampilot/sdk"
 import { revalidatePath } from "next/cache"
+import { useEffect, useState } from "react"
 import { z } from "zod"
 import { Button } from "~/shadcn/components/ui/button"
 
-const collection = await initTeampilotCollection({
-  metadataSchema: z.object({
-    myDate: z.string(),
-  }),
-})
+// const collection = await initTeampilotCollection({
+//   metadataSchema: z.object({
+//     myDate: z.string(),
+//   }),
+// })
+
+// type Collection = typeof collection
 
 export const Collections = async () => {
+  // TODO: Typings
+  const [collection, setCollection] = useState<any | null>(null)
+  const [results, setResults] = useState<any[]>([])
   const searchQuery = "earth"
-  const { results } = await collection.searchItems({
-    searchQuery,
-  })
 
+  useEffect(() => {
+    const initializeCollection = async () => {
+      const collectionInstance = await initTeampilotCollection({
+        metadataSchema: z.object({
+          myDate: z.string(),
+        }),
+      })
+      setCollection(collectionInstance)
+    }
+    initializeCollection()
+  }, [])
+
+  useEffect(() => {
+    if (!collection) return
+    const searchItems = async () => {
+      if (collection) {
+        const { results } = await collection.searchItems({ searchQuery })
+        setResults(results)
+      }
+    }
+    searchItems()
+  }, [collection, searchQuery])
   return (
     <div className="flex flex-col items-center gap-4">
       {/* SEARCH */}
