@@ -1,3 +1,7 @@
+declare global {
+  var Deno: any
+}
+
 export const getEnv = async (key: string) => {
   if (typeof Deno !== 'undefined') {
     return Deno.env.get(key)
