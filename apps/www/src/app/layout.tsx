@@ -42,6 +42,12 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
       <html lang="en" suppressHydrationWarning>
         <head>
           <link rel="icon" href="/favicon.svg" />
+          <Script
+            defer
+            src="https://umami-sodefa.vercel.app/pathfinder"
+            data-website-id="5b212f09-3561-46a5-9922-bb474ee1bc20"
+            data-domains="docs.teampilot.ai"
+          />
         </head>
         <body
           className={cn(
