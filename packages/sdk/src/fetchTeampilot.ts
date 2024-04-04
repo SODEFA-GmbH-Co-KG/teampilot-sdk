@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { TeampilotCustomFunction } from './TeampilotCustomFunction'
+import { getEnv } from './denoCompatibility/getEnv'
 import { getBaseUrl } from './getBaseUrl'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
@@ -93,8 +94,8 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
 
   if (!launchpadSlugId) {
     launchpadSlugId =
-      process.env.TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID ||
-      process.env.NEXT_PUBLIC_TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID
+      (await getEnv('TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID')) ||
+      (await getEnv('NEXT_PUBLIC_TEAMPILOT_DEFAULT_LAUNCHPAD_SLUG_ID'))
   }
   if (!launchpadSlugId) {
     throw new Error(
@@ -109,8 +110,8 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
   }
 
   const defaultCacheTtlSecondsEnv =
-    process.env.TEAMPILOT_DEFAULT_CACHE_TTL_SECONDS ||
-    process.env.NEXT_PUBLIC_TEAMPILOT_DEFAULT_CACHE_TTL_SECONDS
+    (await getEnv('TEAMPILOT_DEFAULT_CACHE_TTL_SECONDS')) ||
+    (await getEnv('NEXT_PUBLIC_TEAMPILOT_DEFAULT_CACHE_TTL_SECONDS'))
   const defaultCacheTtlSeconds = defaultCacheTtlSecondsEnv
     ? defaultCacheTtlSecondsEnv === 'forever'
       ? 'forever'
@@ -123,7 +124,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     cacheTtlSeconds = 'forever'
   }
 
-  const url = overrideUrl || `${getBaseUrl()}/api/rest/message`
+  const url = overrideUrl || `${await getBaseUrl()}/api/rest/message`
 
   const response = await fetch(url, {
     method: 'POST',
