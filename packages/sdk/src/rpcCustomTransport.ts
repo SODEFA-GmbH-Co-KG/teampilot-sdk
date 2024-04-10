@@ -7,12 +7,12 @@ import {
 
 export function createTransportForWindow(
   window: Window,
-  options: RPCMessagePortTransportOptions = {}
+  options: RPCMessagePortTransportOptions & { remotePort?: Window } = {}
 ): RPCTransport {
   const { transportId, filter, remotePort } = options
 
   const local = window
-  const remote = (remotePort ?? window) as Window
+  const remote = remotePort ?? window
 
   let transportHandler: ((event: MessageEvent) => any) | undefined
   return {
