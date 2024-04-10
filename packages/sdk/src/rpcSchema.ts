@@ -65,7 +65,7 @@ function createRpcInstance<T extends RPCSchema, U extends RPCSchema>(
       localWindow,
       remoteWindow,
       enableDebugHooks,
-      transportId,
+      transportId: transportId ?? 'teampilot-rpc',
     })
   }
 }
@@ -83,7 +83,7 @@ export const styledFunctionToChatRpc = createRpcInstance<
     const rpc = createRPC<StyledFunctionRpcSchema, ChatRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
-        transportId: transportId ?? 'teampilot-rpc',
+        transportId: transportId,
       }),
       _debugHooks: getDebugHooks({ enableDebugHooks }),
     })
@@ -104,7 +104,7 @@ export const chatToStyledFunctionRpc = createRpcInstance<
     const rpc = createRPC<ChatRpcSchema, StyledFunctionRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
-        transportId: transportId ?? 'teampilot-rpc',
+        transportId: transportId,
       }),
       _debugHooks: getDebugHooks({ enableDebugHooks }),
     })
@@ -125,7 +125,7 @@ export const chatToWebsiteRpc = createRpcInstance<
     const rpc = createRPC<ChatRpcSchema, EmptyRPCSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
-        transportId: transportId ?? 'teampilot-rpc',
+        transportId: transportId,
       }),
       _debugHooks: getDebugHooks({ enableDebugHooks }),
     })
@@ -146,7 +146,7 @@ export const websiteToChatRpc = createRpcInstance<
     const rpc = createRPC<EmptyRPCSchema, ChatRpcSchema>({
       transport: createTransportFromMessagePort(localWindow, {
         remotePort: remoteWindow,
-        transportId: transportId ?? 'teampilot-rpc',
+        transportId: transportId,
       }),
       _debugHooks: getDebugHooks({ enableDebugHooks }),
     })
