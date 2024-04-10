@@ -1,11 +1,11 @@
 import {
   _RPCPacket,
   createRPC,
-  createTransportFromMessagePort,
   EmptyRPCSchema,
   type RPC,
   type RPCSchema,
 } from 'rpc-anywhere'
+import { createTransportForWindow } from './rpcCustomTransport'
 
 export type StyledFunctionRpcSchema = RPCSchema<{
   messages: {
@@ -81,7 +81,7 @@ export const styledFunctionToChatRpc = createRpcInstance<
     enableDebugHooks,
   }: RpcOptions): RPC<StyledFunctionRpcSchema, ChatRpcSchema> => {
     const rpc = createRPC<StyledFunctionRpcSchema, ChatRpcSchema>({
-      transport: createTransportFromMessagePort(localWindow, {
+      transport: createTransportForWindow(localWindow, {
         remotePort: remoteWindow,
         transportId: transportId,
       }),
@@ -102,7 +102,7 @@ export const chatToStyledFunctionRpc = createRpcInstance<
     enableDebugHooks,
   }: RpcOptions): RPC<ChatRpcSchema, StyledFunctionRpcSchema> => {
     const rpc = createRPC<ChatRpcSchema, StyledFunctionRpcSchema>({
-      transport: createTransportFromMessagePort(localWindow, {
+      transport: createTransportForWindow(localWindow, {
         remotePort: remoteWindow,
         transportId: transportId,
       }),
@@ -123,7 +123,7 @@ export const chatToWebsiteRpc = createRpcInstance<
     enableDebugHooks,
   }: RpcOptions): RPC<ChatRpcSchema, EmptyRPCSchema> => {
     const rpc = createRPC<ChatRpcSchema, EmptyRPCSchema>({
-      transport: createTransportFromMessagePort(localWindow, {
+      transport: createTransportForWindow(localWindow, {
         remotePort: remoteWindow,
         transportId: transportId,
       }),
@@ -144,7 +144,7 @@ export const websiteToChatRpc = createRpcInstance<
     enableDebugHooks,
   }: RpcOptions): RPC<EmptyRPCSchema, ChatRpcSchema> => {
     const rpc = createRPC<EmptyRPCSchema, ChatRpcSchema>({
-      transport: createTransportFromMessagePort(localWindow, {
+      transport: createTransportForWindow(localWindow, {
         remotePort: remoteWindow,
         transportId: transportId,
       }),
