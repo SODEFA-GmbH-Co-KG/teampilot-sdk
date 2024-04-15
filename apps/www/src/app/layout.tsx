@@ -14,13 +14,22 @@ import { ThemeProvider } from "~/shadcn/components/theme-provider"
 import { Button } from "~/shadcn/components/ui/button"
 import { cn } from "~/shadcn/utils"
 import "~/styles/globals.css"
+import { generateOgUrl } from "./og/generateOGUrl"
 
 // const font = Space_Grotesk({
 //   subsets: ["latin"],
 // })
 
 export const metadata = {
-  title: "Teampilot SDK",
+  title: "Teampilot Documentation",
+  images: [
+    {
+      url: generateOgUrl({ title: "Teampilot Documentation" }),
+      width: 1200,
+      height: 630,
+      alt: "Teampilot Documentation",
+    },
+  ],
 }
 
 const spaceGrotesk = Space_Grotesk({
