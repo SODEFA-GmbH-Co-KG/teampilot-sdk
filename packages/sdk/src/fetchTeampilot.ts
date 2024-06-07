@@ -21,6 +21,7 @@ export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
     name: string
     error?: string
   }
+  apiKey?: string
 } & Omit<RequestInit, 'body' | 'method'> & {
     // TODO: NextJS 13 overrides the global RequestInit type. But when this SDK is packaged it inlines the RequestInit type from the global scope. This is a workaround to enable usage with NextJS 13.
     next?: {
@@ -89,6 +90,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     customFunctions,
     customFunctionsMaxExecutions = DEFAULT_MAX_CUSTOM_FUNCTION_EXECUTIONS,
     functionExecution,
+    apiKey,
     ...requestOptions
   } = options
 
@@ -126,13 +128,16 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
 
   const url = overrideUrl || `${await getBaseUrl()}/api/rest/message`
 
+  const headers = new Headers(requestOptions.headers)
+  headers.set('Content-Type', 'application/json')
+  headers.set('x-sdk-version', '0.0.20')
+  if (apiKey) {
+    headers.set('authorization', `Bearer ${apiKey}`)
+  }
+
   const response = await fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-sdk-version': '0.0.20', // used to break next.js cache when the zod schema changes
-      ...requestOptions.headers,
-    },
+    headers,
     body: JSON.stringify({
       launchpadSlugId,
       message,
