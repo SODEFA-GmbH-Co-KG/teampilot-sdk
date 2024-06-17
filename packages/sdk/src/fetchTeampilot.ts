@@ -279,3 +279,121 @@ export const fetchTeampilotMedia = async (
   }
   return media
 }
+
+type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>
+    }
+  : T
+
+export const streamTeampilotData = async <T extends z.SomeZodObject>({
+  schema,
+  onPartialData,
+  onText,
+  ...options
+}: FetchTeampilotOptions<T> & {
+  schema: T
+  onPartialData?: (data: DeepPartial<z.infer<T>>) => void
+  onText?: (text: string) => void
+}) => {
+  const url = `${getBaseUrl()}/api/rest/message/stream`
+  const response = await fetch(url, {
+    cache: 'no-store',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'accept-language': 'de',
+    },
+    body: JSON.stringify({
+      launchpadSlugId: options.launchpadSlugId,
+      message: options.message,
+      schema: transformZodToJsonSchema(schema),
+      cacheTtlSeconds: 'forever',
+    }),
+  })
+
+  if (!response.ok) {
+    const errorMessage = await response.text()
+
+    throw new Error(
+      errorMessage ||
+        'Teampilot is not able to answer currently. Please try again later.'
+    )
+  }
+
+  const data = response.body
+
+  if (!data) {
+    throw new Error(
+      'Teampilot is not able to answer currently. Please try again later.'
+    )
+  }
+
+  const reader = data.getReader()
+  const decoder = new TextDecoder()
+  let done = false
+  let text = ''
+  let stringBuf = ''
+
+  while (!done) {
+    try {
+      const { value, done: doneReading } = await reader.read()
+      done = doneReading
+      const chunkValue = decoder.decode(value)
+      if (!chunkValue) continue
+
+      // It is possible that the response is in small or big chunks. Maybe the chunk contains not the whole JSON string or
+      // maybe the chunk contains more than one JSON string. So we have to split the string by newline and parse the JSON.
+      // FROM: http://localhost:3000/team/dev-db/chat/fda060f759cad88c2027e2e67ea027d0 (Its localhost, because vercel was down at this time.)
+      stringBuf += chunkValue
+      let newlineIndex
+      while ((newlineIndex = stringBuf.indexOf('\n')) !== -1) {
+        const jsonString = stringBuf.slice(0, newlineIndex)
+        stringBuf = stringBuf.slice(newlineIndex + 1) // Trim the processed JSON string along with the newline off.
+        const parsed = z
+          .object({
+            content: z.string().optional(),
+            functionCall: z
+              .object({
+                name: z.string().optional(),
+                arguments: z.string().optional(),
+                parsedArguments: z.unknown().optional(),
+              })
+              .optional(),
+            error: z.string().optional(),
+          })
+          .parse(JSON.parse(jsonString))
+
+        if (parsed.content) {
+          text += parsed.content
+          onText?.(text)
+        }
+
+        if (parsed.functionCall) {
+          if (parsed.functionCall.name === 'deliverAnswerToUser') {
+            const parsedArgs = schema
+              .deepPartial()
+              .safeParse(parsed.functionCall.parsedArguments)
+            if (parsedArgs.success) {
+              onPartialData?.(
+                parsedArgs.data as unknown as DeepPartial<z.infer<T>>
+              )
+            }
+          }
+        }
+
+        if (parsed.error) {
+          console.log('parsed.error', parsed.error)
+        }
+      }
+    } catch (error) {
+      const message =
+        error && typeof error === 'object' && 'toString' in error
+          ? error.toString()
+          : JSON.stringify(error)
+      console.log('error in useStream', message)
+    }
+  }
+
+  // TODO: Return teamTokens & stuff
+}
