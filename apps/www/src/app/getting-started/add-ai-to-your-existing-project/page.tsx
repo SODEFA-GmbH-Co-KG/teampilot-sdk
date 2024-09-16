@@ -1,4 +1,21 @@
+import { generateOgUrl } from "~/app/og/generateOGUrl"
 import ReactMarkdown from "~/client/CustomReactMarkdown"
+
+export const metadata = {
+  openGraph: {
+    title: `Add AI to your existing project | Teampilot Docs`,
+    type: "article",
+    images: [
+      {
+        url: generateOgUrl({ title: "Add AI to your existing project" }),
+        width: 1200,
+        height: 630,
+        alt: "Add AI to your existing project",
+      },
+    ],
+    siteName: "docs.teampilot.ai",
+  },
+}
 
 const markdown = `
   # Get Started

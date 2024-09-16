@@ -1,4 +1,21 @@
+import { generateOgUrl } from "~/app/og/generateOGUrl"
 import ReactMarkdown from "~/client/CustomReactMarkdown"
+
+export const metadata = {
+  openGraph: {
+    title: `Create a Custom Chatbot | Teampilot Docs`,
+    type: "article",
+    images: [
+      {
+        url: generateOgUrl({ title: "Create a Custom Chatbot" }),
+        width: 1200,
+        height: 630,
+        alt: "Create a Custom Chatbot",
+      },
+    ],
+    siteName: "docs.teampilot.ai",
+  },
+}
 
 const markdown = `
 # Create a Custom Chatbot
