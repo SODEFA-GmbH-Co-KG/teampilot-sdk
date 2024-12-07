@@ -11,6 +11,8 @@ const markdown = `
 
   In order to use the Teampilot SDK, you need to have a launchpad. If you haven't created a launchpad yet, you can read how to create one [here](/getting-started/provide-a-public-launchpad).
 
+  Want to see whats possible with the Teampilot SDK or look at how others implemented it? Check out our [showcases](https://teampilot.ai/showcases).
+
   ## Basic Usage
   \`\`\`ts
   import { fetchTeampilot } from '@teampilot/sdk'
