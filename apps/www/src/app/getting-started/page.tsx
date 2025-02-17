@@ -3,6 +3,13 @@ import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { Badge } from "~/shadcn/components/ui/badge"
 import { getAllSubTopicsForCardsBySlug } from "~/utils/navTopics"
 
+export const metadata = {
+  title: "Teampilot SDK Getting Started",
+  alternates: {
+    canonical: 'https://docs.teampilot.ai/getting-started',
+  },
+}
+
 const markdown = `
 # Getting Started
 
