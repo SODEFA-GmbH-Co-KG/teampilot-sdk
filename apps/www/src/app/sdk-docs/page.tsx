@@ -3,6 +3,7 @@ import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { Divider } from "~/shared/Divider"
 import { ApiReference } from "./ApiReference"
 import { InstallationAndSetup } from "./InstallationAndSetup"
+import { NavigationFooter } from "~/shared/navigation-footer"
 
 const markdown = `
 # SDK Docs
@@ -19,6 +20,12 @@ export default function Page() {
       <InstallationAndSetup />
       <Divider />
       <ApiReference />
+      <NavigationFooter 
+        prevHref="/examples" 
+        prevLabel="Examples"
+        nextHref="/api-docs"
+        nextLabel="API Docs"
+      />
     </div>
   )
 }

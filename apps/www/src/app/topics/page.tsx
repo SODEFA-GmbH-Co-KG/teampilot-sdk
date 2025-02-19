@@ -4,6 +4,7 @@ import { CustomFunctions } from "./CustomFunctions"
 import { FetchingViaApi } from "./FetchingViaApi"
 import { FetchingViaSdk } from "./FetchingViaSdk"
 import { Launchpads } from "./Launchpads"
+import { NavigationFooter } from "~/shared/navigation-footer"
 
 export const metadata = {
   title: "Teampilot SDK Topics",
@@ -24,6 +25,12 @@ export default function Page() {
       <FetchingViaApi />
       <Divider />
       <FetchingViaSdk />
+      <NavigationFooter 
+        prevHref="/getting-started" 
+        prevLabel="Getting Started"
+        nextHref="/examples"
+        nextLabel="Examples"
+      />
     </div>
   )
 }

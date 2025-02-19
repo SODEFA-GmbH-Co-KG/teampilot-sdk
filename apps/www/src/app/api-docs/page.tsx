@@ -1,4 +1,5 @@
 import ReactMarkdown from "~/client/CustomReactMarkdown"
+import { NavigationFooter } from "~/shared/navigation-footer"
 
 const markdown = `
 # Teampilot API
@@ -9,6 +10,10 @@ export default function Page() {
   return (
     <div className="prose max-w-[inherit] dark:prose-invert">
       <ReactMarkdown>{markdown}</ReactMarkdown>
+      <NavigationFooter 
+        prevHref="/sdk-docs" 
+        prevLabel="SDK Docs"
+      />
     </div>
   )
 }
