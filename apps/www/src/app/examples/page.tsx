@@ -4,6 +4,7 @@ import { Divider } from "~/shared/Divider"
 import { Functions } from "./Functions"
 import { Interaction } from "./Interaction"
 import { Schema } from "./Schema"
+import { NavigationFooter } from "~/shared/navigation-footer"
 
 const markdown = `
 # Examples
@@ -29,6 +30,12 @@ export default function Page() {
       <Seo /> */}
       {/* <Divider />
       <Future /> */}
+      <NavigationFooter 
+        prevHref="/topics" 
+        prevLabel="Topics"
+        nextHref="/sdk-docs"
+        nextLabel="SDK Docs"
+      />
     </div>
   )
 }

@@ -2,6 +2,7 @@ import Link from "next/link"
 import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { Badge } from "~/shadcn/components/ui/badge"
 import { getAllSubTopicsForCardsBySlug } from "~/utils/navTopics"
+import { NavigationFooter } from "~/shared/navigation-footer"
 
 export const metadata = {
   title: "Teampilot SDK Getting Started",
@@ -55,6 +56,8 @@ export default function Page() {
           </Link>
         ))}
       </div>
+      
+      <NavigationFooter nextHref="/topics" nextLabel="Topics" />
     </div>
   )
 }
