@@ -4,7 +4,7 @@ import { getEnv } from './denoCompatibility/getEnv'
 import { getBaseUrl } from './getBaseUrl'
 import { transformZodToJsonSchema } from './transformZodToJsonSchema'
 
-const DEFAULT_MAX_CUSTOM_FUNCTION_EXECUTIONS = 10
+const DEFAULT_MAX_FUNCTION_EXECUTIONS = 20
 
 export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   launchpadSlugId?: string
@@ -16,7 +16,7 @@ export type FetchTeampilotOptions<T extends z.Schema = z.ZodUndefined> = {
   previousMessageId?: string
   accessLevel?: 'TEAM' | 'LINK_READ' | 'LINK_WRITE'
   customFunctions?: TeampilotCustomFunction<any>[]
-  customFunctionsMaxExecutions?: number
+  maxFunctionExecutions?: number
   functionExecution?: {
     name: string
     error?: string
@@ -88,7 +88,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     previousMessageId,
     accessLevel,
     customFunctions,
-    customFunctionsMaxExecutions = DEFAULT_MAX_CUSTOM_FUNCTION_EXECUTIONS,
+    maxFunctionExecutions = DEFAULT_MAX_FUNCTION_EXECUTIONS,
     functionExecution,
     apiKey,
     ...requestOptions
@@ -151,6 +151,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
         inputSchema: transformZodToJsonSchema(customFunction.inputSchema),
       })),
       functionExecution,
+      maxFunctionExecutions,
     }),
     ...requestOptions,
   })
@@ -180,7 +181,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
         `Custom function ${parsed.data.message.functionName} not found`
       )
     }
-    if (customFunctionsMaxExecutions <= 0) {
+    if (maxFunctionExecutions <= 0) {
       throw new Error(
         `Custom function ${parsed.data.message.functionName} exceeded maximum number of executions`
       )
@@ -199,7 +200,7 @@ export const fetchTeampilot = async <T extends z.Schema = z.ZodUndefined>(
     // Recursion:
     const result = await fetchTeampilot({
       ...options,
-      customFunctionsMaxExecutions: customFunctionsMaxExecutions - 1,
+      maxFunctionExecutions: maxFunctionExecutions - 1,
       chatroomId: parsed.data.chatroom.id,
       previousMessageId: parsed.data.message.id,
       message:
