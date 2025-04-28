@@ -102,6 +102,10 @@ export function transformZodToJsonSchema(
       description: schema.description,
     }
   } else if (isZodDefault(schema) || isZodOptional(schema)) {
+    console.warn(
+      'Zod .optional() and .default() are not supported in strict JSON schemas. Latest models like OpenAI-o3 use these strict schemas. You can use .nullable() instead.\n' +
+        'We will remove these properties from the schema in the next major version.'
+    )
     const subProperty = transformZodToJsonSchema(schema._def.innerType)
     return {
       ...subProperty,
