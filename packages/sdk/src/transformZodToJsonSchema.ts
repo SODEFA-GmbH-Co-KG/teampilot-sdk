@@ -46,6 +46,18 @@ const isZodBoolean = (schema: z.Schema<unknown>): schema is z.ZodBoolean => {
   return getZodType(schema) === 'ZodBoolean'
 }
 
+const isZodOptional = (
+  schema: z.Schema<unknown>
+): schema is z.ZodOptional<any> => {
+  return getZodType(schema) === 'ZodOptional'
+}
+
+const isZodDefault = (
+  schema: z.Schema<unknown>
+): schema is z.ZodDefault<any> => {
+  return getZodType(schema) === 'ZodDefault'
+}
+
 const isZodNullable = (
   schema: z.Schema<unknown>
 ): schema is z.ZodNullable<any> => {
@@ -61,7 +73,11 @@ export function transformZodToJsonSchema(
 
     for (const key in schema.shape) {
       const zodType: z.ZodTypeAny = schema.shape[key]
-      required.push(key)
+
+      if (!zodType.isOptional()) {
+        required.push(key)
+      }
+
       const subProperty = transformZodToJsonSchema(zodType)
       if (subProperty) {
         properties[key] = subProperty
@@ -94,6 +110,15 @@ export function transformZodToJsonSchema(
     return {
       type: 'boolean',
       description: schema.description,
+    }
+  } else if (isZodDefault(schema) || isZodOptional(schema)) {
+    console.warn(
+      'Zod .optional() and .default() are not supported in strict JSON schemas. Latest models like OpenAI o3 use these strict schemas. Please use .nullable() instead.'
+    )
+    const subProperty = transformZodToJsonSchema(schema._def.innerType)
+    return {
+      ...subProperty,
+      description: schema.description ?? subProperty.description,
     }
   } else if (isZodNullable(schema)) {
     const subProperty = transformZodToJsonSchema(schema._def.innerType)
