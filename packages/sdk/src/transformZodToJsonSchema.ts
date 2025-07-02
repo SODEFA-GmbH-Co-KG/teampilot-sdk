@@ -15,6 +15,7 @@ export type OpenAIFunctionParameters = {
   required?: string[]
   items?: OpenAIFunctionParameters
   nullable?: boolean
+  additionalProperties?: boolean
 }
 
 export type OpenAIFunctionDefinition = {
@@ -89,6 +90,7 @@ export function transformZodToJsonSchema(
       properties,
       required,
       description: schema.description,
+      additionalProperties: false,
     }
   } else if (isZodEnum(schema)) {
     return {
