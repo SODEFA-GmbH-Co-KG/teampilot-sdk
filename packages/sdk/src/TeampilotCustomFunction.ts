@@ -1,5 +1,12 @@
 import { z } from 'zod'
 
+export const CustomFunctionBillableSchema = z.object({
+  upstreamCostsInCents: z.number().finite().nonnegative(),
+  apiData: z.record(z.any()).optional(),
+})
+
+export type CustomFunctionBillable = z.infer<typeof CustomFunctionBillableSchema>
+
 type LocalizedString = string | { en: string; de: string }
 
 export type TeampilotCustomFunction<T extends z.Schema, Output = any> = {
@@ -23,7 +30,7 @@ export type TeampilotCustomFunction<T extends z.Schema, Output = any> = {
   execute: (options: {
     input: z.infer<T>
     request?: Request
-  }) => Promise<{ output: Output }>
+  }) => Promise<{ output: Output; billables?: CustomFunctionBillable[] }>
 
   styled?:
     | {
