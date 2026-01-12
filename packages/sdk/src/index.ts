@@ -1,5 +1,7 @@
 export {
   createTeampilotCustomFunction,
+  CustomFunctionBillableSchema,
+  type CustomFunctionBillable,
   type TeampilotCustomFunction,
 } from './TeampilotCustomFunction'
 export {
