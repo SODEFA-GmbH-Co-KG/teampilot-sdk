@@ -32,6 +32,10 @@ export const ApiReference = () => {
     secondLevelSlug: "#api-reference",
     thirdLevelSlug: "-fetch-teampilot-media",
   })
+  const teampilotWidgetId = getIdForTopic({
+    secondLevelSlug: "#api-reference",
+    thirdLevelSlug: "-teampilot-widget",
+  })
   const fetchTeampilotFunctionHandlerId = getIdForTopic({
     secondLevelSlug: "#api-reference",
     thirdLevelSlug: "-teampilot-function-handler",
@@ -182,6 +186,52 @@ fetchTeampilotText is a wrapper function around fetchTeampilot. It takes the sam
 ## fetchTeampilotMedia()
 
 fetchTeampilotMedia is a wrapper function around fetchTeampilot. It takes the same parameters as fetchTeampilot, but only returns the first mediaAttachment from the response. The function is useful if you don't want to deal with the complete response object and only want to work with the media.
+`}
+      </ReactMarkdown>
+      <AnchorDiv id={teampilotWidgetId} />
+      <IntersectionChecker topic={`/sdk-docs#${teampilotWidgetId}`} />
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        {`
+## teampilotWidget
+
+The \`teampilotWidget\` export provides a typed wrapper around the global \`window.teampilot\` object exposed by the [Widget](/topics#launchpads-widget) script. It handles waiting for the widget to be loaded before calling methods, so you don't need to worry about timing.
+
+### Import
+
+\`\`\`ts
+import { teampilotWidget } from "@teampilot/sdk"
+\`\`\`
+
+### Methods
+
+| Method | Description |
+| --- | --- |
+| \`showChat()\` | Shows the chat widget. |
+| \`hideChat()\` | Hides the chat widget. |
+| \`sendMessage({ message: string })\` | Sends a message to the chat. Automatically opens the widget if hidden. |
+| \`waitForChatroomLoaded()\` | Returns a Promise that resolves when the chatroom is fully loaded. |
+| \`setCustomStyle({ style: string })\` | Injects custom CSS into the widget at runtime. |
+| \`registerFunction(fn)\` | Registers a custom function the AI can call. Returns a cleanup function for use in React \`useEffect\`. |
+| \`unregisterFunction(name: string)\` | Removes a previously registered custom function. |
+
+### registerFunction
+
+The \`registerFunction\` method accepts a \`TeampilotCustomFunction\` and returns a cleanup function, making it easy to use in React:
+
+\`\`\`tsx
+useEffect(() => {
+  return teampilotWidget.registerFunction({
+    nameForAI: "myFunction",
+    descriptionForAI: "Description for the AI",
+    inputSchema: z.object({ query: z.string() }),
+    execute: async ({ input }) => {
+      return { output: "result" }
+    },
+  })
+}, [])
+\`\`\`
+
+The \`inputSchema\` uses Zod and is automatically converted to JSON Schema before being sent to the widget.
 `}
       </ReactMarkdown>
       <AnchorDiv id={fetchTeampilotFunctionHandlerId} />

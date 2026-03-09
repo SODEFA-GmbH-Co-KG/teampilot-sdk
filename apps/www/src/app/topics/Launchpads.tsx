@@ -1,8 +1,20 @@
+import { type PropsWithChildren } from "react"
+import remarkGfm from "remark-gfm"
 import { AnchorDiv } from "~/client/AnchorDiv"
+import { CodeBlock } from "~/client/CodeBlock"
 import ReactMarkdown from "~/client/CustomReactMarkdown"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { getIdForTopic } from "~/utils/navTopics"
 import { WidgetShowcase } from "./WidgetShowcase"
+
+const tableComponents = {
+  table: ({ children }: PropsWithChildren) => (
+    <table className="table-fixed">{children}</table>
+  ),
+  td: ({ children }: PropsWithChildren) => (
+    <td style={{ wordWrap: "break-word" }}>{children}</td>
+  ),
+}
 
 export const Launchpads = () => {
   const launchpadsId = getIdForTopic({
@@ -58,6 +70,140 @@ Also checkout our [Getting Started](/getting-started/provide-a-public-launchpad)
 `}</ReactMarkdown>
       <IntersectionChecker topic={`/topics#${widgetId}`} />
       <AnchorDiv id={widgetId} />
+      <ReactMarkdown>{`
+## Widget
+
+The Teampilot Widget lets you embed an AI chatbot directly into your website. It renders as a floating chat bubble that opens an iframe-based chat interface. The widget is loaded via a single script tag and can be fully customized and controlled via JavaScript.
+`}</ReactMarkdown>
+
+      <h3>Basic Setup</h3>
+      <CodeBlock
+        language="html"
+        lightMode="dark"
+        value={`<script
+  defer
+  src="https://teampilot.ai/widget.js"
+  data-launchpad-slug-id="your-launchpad-slug-id"
+/>`}
+      />
+
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={tableComponents}
+      >
+        {`
+### Script Tag Attributes
+
+| Attribute | Default | Description | Required |
+| --- | --- | --- | --- |
+| \`data-launchpad-slug-id\` | | The public launchpad's slug identifier | Yes |
+| \`data-icon-bg\` | \`#F55E00\` | Background color of the floating chat bubble | No |
+| \`data-icon-color\` | \`#FFFFFF\` | Icon color of the floating chat bubble | No |
+| \`data-primary-color\` | | Primary color applied to the widget UI | No |
+| \`data-hide-bubble\` | | When present, hides the floating chat bubble. Useful when triggering the chat via custom UI elements | No |
+| \`data-remember-chatroom\` | \`true\` | When \`true\`, stores the chatroom ID in localStorage and reopens it on return visits | No |
+| \`data-open-after-reload\` | \`true\` | When \`true\`, remembers the open/closed state and restores it after page reload | No |
+| \`data-iframe-style\` | | Custom CSS inline styles applied to the iframe element (e.g. \`"border: 2px solid orange;"\`) | No |
+| \`data-custom-style\` | | Custom CSS rules injected inside the widget (e.g. \`".text-lg { color: orange; }"\`) | No |
+`}
+      </ReactMarkdown>
+
+      <ReactMarkdown>{`
+### JavaScript API
+
+After the widget script loads, a global \`window.teampilot\` object is available with the following methods:
+`}</ReactMarkdown>
+
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={tableComponents}
+      >
+        {`
+#### Control Methods
+
+| Method | Description |
+| --- | --- |
+| \`showChat()\` | Shows the chat widget. Creates the iframe on first call (lazy loading). |
+| \`hideChat()\` | Hides the chat widget. |
+| \`createNewChatroom()\` | Resets the chat and creates a new chatroom. |
+| \`sendMessage({ message })\` | Sends a user message to the chat. Automatically opens the widget if hidden. |
+| \`waitForChatroomLoaded()\` | Returns a Promise that resolves when the chatroom is fully loaded. |
+
+#### Custom Function Methods
+
+| Method | Description |
+| --- | --- |
+| \`registerFunction(fn)\` | Registers a custom function that the AI can call. See the example below. |
+| \`unregisterFunction(name)\` | Removes a previously registered custom function by its \`nameForAI\`. |
+
+#### Styling Methods
+
+| Method | Description |
+| --- | --- |
+| \`setCustomStyle({ style })\` | Injects custom CSS into the widget at runtime. |
+
+#### Event Methods
+
+| Method | Description |
+| --- | --- |
+| \`on(event, callback)\` | Registers a listener for a widget event. |
+| \`off(event, callback)\` | Removes a previously registered event listener. |
+`}
+      </ReactMarkdown>
+
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={tableComponents}
+      >
+        {`
+### Events
+
+| Event | Data | Description |
+| --- | --- | --- |
+| \`chatroomLoaded\` | \`{ chatroomId: string }\` | Fired when the chatroom finishes loading. |
+| \`newChat\` | — | Fired when the user starts a new chat. |
+| \`closeChat\` | — | Fired when the user closes the chat widget. |
+| \`navigate\` | \`{ url: string, target: string }\` | Fired when the widget needs to navigate (e.g. link click inside chat). |
+`}
+      </ReactMarkdown>
+
+      <h3>Full Example</h3>
+      <CodeBlock
+        language="html"
+        lightMode="dark"
+        value={`<script
+  defer
+  src="https://teampilot.ai/widget.js"
+  data-launchpad-slug-id="your-launchpad-slug-id"
+  data-icon-bg="#508090"
+  data-primary-color="#508090"
+  data-remember-chatroom="true"
+/>
+
+<script>
+  // Open widget with a custom button
+  document.getElementById('chat-btn')
+    .addEventListener('click', () => {
+      window.teampilot.showChat()
+    })
+
+  // Listen for events
+  window.teampilot.on('chatroomLoaded', (data) => {
+    console.log('Chatroom ready:', data.chatroomId)
+  })
+
+  // Send a message programmatically
+  window.teampilot.sendMessage({ message: 'Hello!' })
+</script>`}
+      />
+
+      <ReactMarkdown>{`
+### SDK Wrapper
+
+When using the \`@teampilot/sdk\` package, you can use the typed \`teampilotWidget\` wrapper instead of accessing \`window.teampilot\` directly. See the [API Reference](/sdk-docs#api-reference-teampilot-widget) for details.
+`}</ReactMarkdown>
+
+      <h3>Interactive Example</h3>
       <WidgetShowcase />
     </div>
   )
