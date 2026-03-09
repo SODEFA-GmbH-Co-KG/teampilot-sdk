@@ -37,9 +37,7 @@ export default function ReactMarkdown(
               {...props}
             />
           ) : (
-            <div className="nono">
-              <code className={className}>{children}</code>
-            </div>
+            <code className="rounded bg-gray-200 px-1.5 py-0.5 font-mono text-sm dark:bg-gray-700 before:content-none after:content-none">{children}</code>
           )
         },
         ...props.components,
