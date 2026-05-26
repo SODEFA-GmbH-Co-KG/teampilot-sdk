@@ -130,7 +130,7 @@ export const MainSideNavMobile = ({}) => {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger>
+      <SheetTrigger asChild>
         <Button className="md:hidden" variant={"ghost"} size="icon">
           <Menu />
         </Button>

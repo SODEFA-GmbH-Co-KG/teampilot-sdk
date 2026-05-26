@@ -57,11 +57,6 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
             // font.className
           )}
         >
-          <Script
-            defer
-            src="https://teampilot.ai/widget.js"
-            data-launchpad-slug-id="teampilot-docs-20ee457cee3b099cca3b762da5ca7105"
-          />
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <NavigationContextProvider>
               <>
