@@ -102,10 +102,6 @@ export const TOPICS = [
             title: "HTTP Functions",
             slug: "-http-functions" as const,
           },
-          {
-            title: "Hosted Functions",
-            slug: "-hosted-functions" as const,
-          },
           // {
           //   title: "Widget Functions",
           //   slug: "-widget-functions" as const,

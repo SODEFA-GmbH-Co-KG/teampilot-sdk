@@ -5,12 +5,17 @@ import remarkGfm from "remark-gfm"
 import { AnchorDiv } from "~/client/AnchorDiv"
 import { CodeBlock } from "~/client/CodeBlock"
 import ReactMarkdown from "~/client/CustomReactMarkdown"
-import { getPageByHref } from "~/client/DocsLink"
 import { IntersectionChecker } from "~/client/IntersectionChecker"
 import { getIdForTopic } from "~/utils/navTopics"
 
 const DocImage = (props: Parameters<typeof Image>[0]) => {
-  return <Image {...props} className="rounded shadow-md shadow-black/5" />
+  return (
+    <Image
+      {...props}
+      alt={props.alt}
+      className="rounded shadow-md shadow-black/5"
+    />
+  )
 }
 
 const InlineCode = ({ children }: PropsWithChildren) => {
@@ -20,24 +25,6 @@ const InlineCode = ({ children }: PropsWithChildren) => {
     </span>
   )
 }
-
-const rest = `
-  - Env Vars
-    - Add env vars
-    - Deno.env.get("API_KEY")
-  - Creating takes a while
-  - Error messages
-
-# Custom Functions
-Teampilot can call [**functions**](${
-  getPageByHref("/functions")?.href
-}) to do things it can't do itself. Teampilot already ships with many tight integrated and helpful functions, but you can also create your own functions and connect them to Teampilot.
-
-Custom functions let you run your own code on your own Servers and give Teampilot access to your data and functions.
-To help you with that, we provide an Typescript SDK that you can use to create your own functions and connect them to Teampilot.
-If you don't use Typescript you can connect them as well, we currently don't have a documentation for that, but you can hop onto our Discord and our engineers will help you out.
-
-## How to create a custom function via the SDK and Next.js`
 
 const customFunctionSection1 = `
 # Custom Functions: Extending LLM Capabilities
@@ -55,10 +42,6 @@ export const CustomFunctions = () => {
   const httpFunctionsId = getIdForTopic({
     secondLevelSlug: "#custom-functions",
     thirdLevelSlug: "-http-functions",
-  })
-  const hostedFunctionsId = getIdForTopic({
-    secondLevelSlug: "#custom-functions",
-    thirdLevelSlug: "-hosted-functions",
   })
   return (
     <div className="prose max-w-[inherit] dark:prose-invert">
@@ -109,17 +92,6 @@ export const CustomFunctions = () => {
       <p>We have multiple ways to create custom function:</p>
       <div className="flex flex-col lg:flex-row gap-8  my-6">
         <a
-          href="#hosted-functions"
-          className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
-        >
-          <div className="text-lg w-full font-medium leading-snug text-primary group-hover:text-inherit">
-            Hosted Functions
-          </div>
-          <div className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">
-            Hosted on Teampilot
-          </div>
-        </a>
-        <a
           href="#http-functions"
           className="group block space-y-2 rounded-md border border-neutral-400 p-6 no-underline shadow-md shadow-black/5 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700"
         >
@@ -127,7 +99,7 @@ export const CustomFunctions = () => {
             HTTP Functions
           </div>
           <div className="line-clamp-3 text-sm text-neutral-600 dark:text-neutral-400">
-            Hosted on your own servers
+            Run on your own servers
           </div>
         </a>
         <a
@@ -181,70 +153,11 @@ export const CustomFunctions = () => {
         </li>
         <li>Click &quot;Save&quot;</li>
       </ol>
-      <AnchorDiv id={hostedFunctionsId} />
-      <IntersectionChecker topic="/topics#custom-functions-hosted-functions" />
-      <h1 id="hosted-functions">Hosted Functions</h1>
-      <p>
-        As a TypeScript / JavaScript developer, you can leverage our Hosted
-        Functions feature.{" "}
-        <span className="font-bold">We host your functions</span>, allowing you
-        to concentrate on the business logic. You have nothing todo with
-        servers, scaling, or security. Just provide the code and we take care of
-        the rest.
-      </p>
-
-      <h2>How to setup?</h2>
-
-      <ol>
-        <li>
-          Goto{" "}
-          <a href="https://teampilot.ai/start/settings/integrations">
-            Integrations
-          </a>{" "}
-          and add a new integration
-          <DocImage
-            src="/docs/add-integration.jpg"
-            width={257}
-            height={174}
-            alt="Add Integration"
-          />
-        </li>
-        <li>
-          Select &quot;Hosted Functions&quot;
-          {/* TODO: Redo screenshot with beta */}
-          tag
-          <DocImage
-            src="/docs/select-hosted-functions.jpg"
-            width={540}
-            height={447}
-            alt="Select Hosted Functions"
-          />
-        </li>
-        <li>Click &quot;Create&quot;</li>
-        <li>You are redirected to our function designer</li>
-        <DocImage
-          src="/docs/function-designer.png"
-          width={540}
-          height={447}
-          alt="Function Designer"
-        />
-        <li>
-          Enter your code (checkout the detailed walkthrough of the example code{" "}
-          <a href="#walkthrough">below</a>)
-        </li>
-        <li>
-          To test simply tell the AI to call the function in the chat window on
-          the right. Everything is set up for you!
-        </li>
-      </ol>
       <h2 id="walkthrough">Let&apos;s walk through an example code</h2>
       <p>
-        We are using <span className="font-bold">Deno</span> to run your code.
-        You can deploy either{" "}
-        <span className="font-bold">TypeScript or JavaScript</span> code and use
-        any package from <span className="font-bold">npm or Deno</span>. To use
-        an external package just import them as you usually would, no need for a
-        package.json or install commands.
+        Host your HTTP function in your own TypeScript or JavaScript app. Use
+        your normal dependency and deployment workflow, then connect the public
+        endpoint in Teampilot.
       </p>
 
       <p>
@@ -255,10 +168,9 @@ export const CustomFunctions = () => {
       </p>
 
       <p className="rounded border-primary border py-1 px-2">
-        Some packages and Deno packages might not work, due to different package
-        structures.You can still use the packages & deploy your code, but you
-        won&apos;t get any type hints in the editor. Please let us know if this
-        happens in our Discord so we can improve the experience.
+        Some packages might not expose complete type information to the editor.
+        You can still use those packages in your own app; the missing types only
+        affect autocomplete.
         {/* // TODO: Link */}
       </p>
 
@@ -401,13 +313,13 @@ export default teampilotFunctionHandler({
           </ul>
         </div>
       </div>
-      <h2>Hosted Styled Functions</h2>
+      <h2>Styled Functions</h2>
       <div className="rounded border-primary border py-1 px-2">
         This feature is currently in beta
       </div>
       <div className="flex flex-row gap-2">
         <p className="w-1/2">
-          In Hosted Functions you can also take advantage of the{" "}
+          In custom functions you can also take advantage of the{" "}
           <InlineCode>styled</InlineCode> property. The styled property acts as
           a React component that get&apos;s rendered in the chat when the
           function is called. This is useful for functions that return a visual
@@ -441,7 +353,7 @@ import { z } from "zod"
 import { type FC } from "react"
 
 const fetchWeather = async (location: string) => {
-  const apiKey = Deno.env.get("OPENWEATHER_API_KEY")
+  const apiKey = process.env.OPENWEATHER_API_KEY
   const url = \`https://api.openweathermap.org/data/2.5/weather?q=\${location}&appid=\${apiKey}&units=metric\`
 
   const response = await fetch(url)
