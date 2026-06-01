@@ -2,7 +2,7 @@
 import { rpc } from "@teampilot/sdk"
 import { Button } from "~/shadcn/components/ui/button"
 
-// This simulates the (hosted) styled functions
+// This simulates styled functions
 
 export default function Page() {
   return (
