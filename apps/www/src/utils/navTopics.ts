@@ -218,22 +218,6 @@ export const TOPICS = [
       //   title: "POST /message",
       //   slug: "#post-message" as const,
       // },
-      // {
-      //   title: "GET /collection/info",
-      //   slug: "#get-collection-info" as const,
-      // },
-      // {
-      //   title: "POST /collection/items",
-      //   slug: "#post-collection-items" as const,
-      // },
-      // {
-      //   title: "GET /collection/items",
-      //   slug: "#get-collection-items" as const,
-      // },
-      // {
-      //   title: "DELETE /collection/items",
-      //   slug: "#delete-collection-items" as const,
-      // },
     ] as const,
   },
   // {
